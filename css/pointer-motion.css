@@ -1,0 +1,30 @@
+/* Home only. No DOM wrappers: existing CMS keys, layout and hit targets stay intact. */
+@media (hover: hover) and (pointer: fine) and (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+  .pointer-motion-enabled .hero-video {
+    transform: translate3d(var(--motion-bg-x, 0px), var(--motion-bg-y, 0px), 0) scale(1.045);
+  }
+  .pointer-motion-enabled .hero-inner {
+    transform: translate3d(var(--motion-text-x, 0px), var(--motion-text-y, 0px), 0);
+  }
+  .pointer-motion-enabled .hero-overlay { pointer-events: none; }
+  .pointer-motion-enabled .hero-overlay::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 480px 340px at var(--motion-light-x, 50%) var(--motion-light-y, 50%), rgba(221,195,146,.13), transparent 75%);
+    opacity: var(--motion-light, 0);
+  }
+  .pointer-motion-enabled .pointer-card {
+    position: relative;
+    transform: perspective(1100px) rotateX(var(--motion-tilt-x, 0deg)) rotateY(var(--motion-tilt-y, 0deg));
+  }
+  .pointer-motion-enabled .pointer-card::after {
+    content: ''; position: absolute; inset: 0; border-radius: inherit;
+    pointer-events: none; z-index: 2;
+    background: radial-gradient(circle 260px at var(--motion-light-x, 50%) var(--motion-light-y, 50%), rgba(211,185,143,.16), transparent 75%);
+    opacity: var(--motion-light, 0);
+  }
+  .pointer-motion-enabled .pointer-card.is-pointer-active { will-change: transform; }
+  .pointer-motion-enabled .hero.is-pointer-active .hero-video,
+  .pointer-motion-enabled .hero.is-pointer-active .hero-inner { will-change: transform; }
+}
+/* These effects have no styles outside the fine-pointer/non-reduced-motion query.
+   Touch, keyboard navigation and OS reduced-motion preferences remain unchanged. */

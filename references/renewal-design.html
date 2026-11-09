@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>우동키노야 · 리뉴얼 & 업종전환 사례</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+:root{
+  --navy:#1E2A38; --navy-deep:#14202B; --navy-soft:#2A3646;
+  --ivory:#F4EEE2; --ivory-2:#EAE2D0; --off-white:#FBF7EE;
+  --wood:#6B4A2B; --wood-light:#A8825C; --noodle:#E8D9B4; --broth:#C79A5A;
+  --ink:#17130E; --red:#9E2B25;
+  --line-dark:rgba(244,238,226,.15); --line-light:rgba(30,42,56,.12);
+  --font:'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif;
+  --disp:'Helvetica Neue','Pretendard',sans-serif;
+  --serif:'Noto Serif JP','Times New Roman',serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);color:var(--ink);background:var(--ivory);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:120px 0;position:relative}
+.sec-ivory{background:var(--ivory)}
+.sec-navy{background:var(--navy-deep);color:var(--ivory);overflow:hidden}
+body{overflow-x:clip}
+
+/* ---------- shared head ---------- */
+.head{text-align:center;margin-bottom:72px}
+.jp{font-family:var(--serif);font-size:clamp(24px,2.4vw,34px);color:var(--wood);margin-bottom:14px;letter-spacing:.04em}
+.sec-navy .jp{color:var(--noodle)}
+.eyebrow{font-family:var(--disp);font-size:14px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--wood);display:inline-flex;align-items:center;gap:12px;margin-bottom:22px}
+.eyebrow::before,.eyebrow::after{content:'';width:28px;height:1px;background:currentColor;opacity:.7}
+.sec-navy .eyebrow{color:var(--noodle)}
+.h-display{font-size:clamp(32px,4.6vw,54px);font-weight:700;line-height:1.22;letter-spacing:-.03em;word-break:keep-all}
+.head .sub{margin-top:22px;font-size:18px;line-height:1.75;color:rgba(23,19,14,.7);word-break:keep-all}
+.head .sub strong{color:var(--ink);font-weight:700}
+.sec-navy .head .sub{color:rgba(244,238,226,.68)}
+.sec-navy .head .sub strong{color:var(--noodle)}
+.verify-note{font-size:14px;opacity:.55;text-align:center;margin-top:28px;word-break:keep-all}
+
+/* ---------- BEFORE / AFTER ---------- */
+.ba-summary{display:flex;justify-content:center;gap:0;margin:-24px auto 72px;max-width:760px;border-top:1px solid var(--line-light);border-bottom:1px solid var(--line-light)}
+.ba-summary div{flex:1;padding:22px 12px;text-align:center}
+.ba-summary div+div{border-left:1px solid var(--line-light)}
+.ba-summary .k{font-size:13px;letter-spacing:.14em;color:var(--wood-light);font-weight:600;font-family:var(--disp);text-transform:uppercase}
+.ba-summary .v{margin-top:6px;font-size:22px;font-weight:700;letter-spacing:-.02em}
+.ba-summary .v small{font-size:15px;font-weight:600;color:rgba(23,19,14,.55);margin-left:2px}
+
+.ba-list{display:flex;flex-direction:column;gap:88px}
+.ba-row{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:56px;align-items:center}
+.ba-row:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.55fr)}
+.ba-row:nth-child(even) .ba-info{order:-1}
+
+.compare{position:relative;aspect-ratio:3/2;overflow:hidden;background:var(--navy);box-shadow:0 30px 60px -20px rgba(20,32,43,.35);cursor:ew-resize;user-select:none;touch-action:pan-y;--pos:50%}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.compare .before{clip-path:inset(0 calc(100% - var(--pos)) 0 0);filter:saturate(.75) brightness(.95)}
+.compare .handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:var(--noodle);transform:translateX(-1px);pointer-events:none}
+.compare .knob{position:absolute;top:50%;left:50%;width:58px;height:58px;border-radius:50%;transform:translate(-50%,-50%);background:var(--navy-deep);border:2px solid var(--noodle);display:grid;place-items:center;color:var(--noodle);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.compare .knob svg{width:26px;height:26px}
+.tag{position:absolute;top:20px;font-family:var(--disp);font-size:12px;font-weight:700;letter-spacing:.22em;padding:9px 14px;pointer-events:none;z-index:2;transition:opacity .2s}
+.tag.b{left:20px;background:rgba(20,32,43,.82);color:var(--ivory);backdrop-filter:blur(4px)}
+.tag.a{right:20px;background:var(--noodle);color:var(--navy-deep)}
+.compare .hint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;color:var(--ivory);background:rgba(20,32,43,.7);padding:7px 14px;border-radius:20px;pointer-events:none;letter-spacing:.02em;transition:opacity .3s;white-space:nowrap}
+.compare.touched .hint{opacity:0}
+.compare:focus-visible{outline:3px solid var(--broth);outline-offset:4px}
+
+.ba-info .num{font-family:var(--serif);font-size:88px;line-height:1;color:var(--wood-light);opacity:.35;font-weight:700}
+.ba-info .case{font-family:var(--disp);font-size:13px;font-weight:700;letter-spacing:.24em;color:var(--wood);text-transform:uppercase;margin:18px 0 10px}
+.ba-info h3{font-size:clamp(28px,3vw,38px);font-weight:700;letter-spacing:-.03em}
+.ba-info .desc{margin-top:14px;font-size:17px;line-height:1.7;color:rgba(23,19,14,.68);word-break:keep-all}
+.ba-info dl{margin-top:30px;border-top:1px solid var(--ink)}
+.ba-info dl div{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line-light)}
+.ba-info dt{font-size:15px;color:rgba(23,19,14,.55)}
+.ba-info dd{font-size:17px;font-weight:600;text-align:right;white-space:nowrap}
+.ba-info dd.cost{font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--navy)}
+.ba-info dd.cost small{font-size:17px;font-weight:600;margin-left:2px}
+.ba-info .extra{display:inline-block;margin-top:14px;font-size:14px;color:var(--wood);border:1px solid var(--wood-light);padding:5px 12px;border-radius:20px}
+
+/* ---------- CONVERSION ---------- */
+.sec-navy::before{content:'業種転換';position:absolute;right:-20px;top:40px;font-family:var(--serif);font-size:220px;font-weight:700;color:rgba(232,217,180,.035);writing-mode:vertical-rl;pointer-events:none;line-height:1}
+.conv-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.conv-card{background:var(--navy);border:1px solid var(--line-dark);display:flex;flex-direction:column}
+.conv-top{padding:36px 36px 28px;display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+.conv-top .badge{font-family:var(--disp);font-size:12px;font-weight:700;letter-spacing:.24em;color:var(--noodle);opacity:.8}
+.conv-top h3{font-size:30px;font-weight:700;letter-spacing:-.03em;margin-top:12px}
+.conv-top h3 small{font-size:17px;font-weight:500;opacity:.55;margin-left:6px}
+.route{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:15px;color:rgba(244,238,226,.7)}
+.route .from{text-decoration:line-through;text-decoration-color:rgba(244,238,226,.35)}
+.route svg{width:22px;height:10px;color:var(--broth)}
+.route .to{color:var(--noodle);font-weight:600}
+.conv-top .slogan{font-family:var(--serif);font-size:15px;line-height:1.7;color:rgba(244,238,226,.6);text-align:right;border-right:2px solid var(--broth);padding-right:14px;white-space:nowrap}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:var(--navy-deep);position:relative}
+.pair figure{position:relative;aspect-ratio:7/5;overflow:hidden}
+.pair img{width:100%;height:100%;object-fit:cover;transform:scale(1.14);transition:transform .8s var(--ease)}
+.conv-card:hover .pair img{transform:scale(1.19)}
+.pair .b img{filter:saturate(.7) brightness(.9)}
+.pair figcaption{position:absolute;left:14px;bottom:14px;font-family:var(--disp);font-size:11px;font-weight:700;letter-spacing:.22em;padding:7px 11px}
+.pair .b figcaption{background:rgba(20,32,43,.85);color:var(--ivory)}
+.pair .a figcaption{background:var(--noodle);color:var(--navy-deep)}
+.pair .mid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--navy-deep);border:1.5px solid var(--noodle);display:grid;place-items:center;color:var(--noodle);z-index:2}
+.pair .mid svg{width:18px;height:18px}
+
+.conv-body{padding:36px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;flex:1}
+.bars{display:flex;flex-direction:column;gap:18px}
+.bar .lbl{display:flex;justify-content:space-between;font-size:14px;color:rgba(244,238,226,.6);margin-bottom:8px}
+.bar .lbl b{font-size:20px;font-weight:700;color:var(--ivory);letter-spacing:-.02em}
+.bar.after .lbl b{color:var(--noodle)}
+.bar .track{height:12px;background:rgba(244,238,226,.06);position:relative;overflow:hidden}
+.bar .fill{position:absolute;inset:0 auto 0 0;width:0;background:rgba(244,238,226,.32);transition:width 1.4s var(--ease)}
+.bar.after .fill{background:linear-gradient(90deg,var(--broth),var(--noodle))}
+.in .bar .fill{width:var(--w)}
+.in .bar.after .fill{transition-delay:.25s}
+.mult{text-align:right;border-left:1px solid var(--line-dark);padding-left:32px}
+.mult .x{font-family:var(--serif);font-size:76px;font-weight:700;line-height:.9;color:var(--noodle);letter-spacing:-.02em}
+.mult .x span{font-size:38px;margin-left:2px}
+.mult .t{font-size:14px;margin-top:12px;color:rgba(244,238,226,.6);letter-spacing:.04em}
+
+.quote{margin:72px auto 0;max-width:880px;text-align:center;position:relative;padding:0 60px}
+.quote::before,.quote::after{font-family:var(--serif);font-size:90px;line-height:1;color:var(--broth);position:absolute;opacity:.6}
+.quote::before{content:'“';left:0;top:-14px}
+.quote::after{content:'”';right:0;bottom:-50px}
+.quote p{font-family:var(--serif);font-size:clamp(20px,2.2vw,28px);font-weight:500;line-height:1.6;color:var(--ivory);word-break:keep-all}
+.quote p+p{font-family:var(--font);font-size:17px;color:rgba(244,238,226,.62);margin-top:10px;font-weight:400}
+.sec-navy .verify-note{color:var(--ivory)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:960px){
+  .ba-row,.ba-row:nth-child(even){grid-template-columns:1fr;gap:28px}
+  .ba-row:nth-child(even) .ba-info{order:0}
+  .ba-info .num{font-size:60px}
+  .conv-grid{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .section{padding:80px 0}
+  .conv-top{flex-direction:column;padding:28px 24px 22px}
+  .conv-top .slogan{text-align:left;border-right:0;border-left:2px solid var(--broth);padding:0 0 0 12px}
+  .conv-body{grid-template-columns:1fr;padding:28px 24px}
+  .mult{border-left:0;border-top:1px solid var(--line-dark);padding:20px 0 0;text-align:left;display:flex;align-items:baseline;gap:14px}
+  .ba-summary .v{font-size:18px}
+  .quote{padding:0 28px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ BEFORE & AFTER ============ -->
+<section class="section sec-ivory" id="before-after" data-screen-label="01 Before & After">
+  <div class="container">
+    <div class="head rv">
+      <div class="jp" lang="ja">空間の生まれ変わり</div>
+      <div class="eyebrow">Before &amp; After · 리뉴얼 사례</div>
+      <h2 class="h-display">기존 식당 그대로,<br>우동키노야로 다시 열다</h2>
+      <p class="sub">바닥·천장·설비 인프라는 최대한 살리고 핵심 외관·다찌·사인물만 리뉴얼.<br><strong>무권리 점포 기준 7,200만~8,200만원으로 오픈한 실제 매장입니다.</strong></p>
+    </div>
+
+    <div class="ba-summary rv">
+      <div><div class="k">중앙대점</div><div class="v">7,400<small>만원</small></div></div>
+      <div><div class="k">일산차병원점</div><div class="v">7,200<small>만원</small></div></div>
+      <div><div class="k">건대점</div><div class="v">8,200<small>만원</small></div></div>
+    </div>
+
+    <div class="ba-list" id="baList"></div>
+    <p class="verify-note">※ 창업비용은 각 매장의 실제 오픈 사례이며, 점포 스펙·평수·별도공사 여부에 따라 달라질 수 있습니다. (점포비 별도)</p>
+  </div>
+</section>
+
+<!-- ============ CONVERSION ============ -->
+<section class="section sec-navy" id="conversion" data-screen-label="02 Business Conversion">
+  <div class="container">
+    <div class="head rv">
+      <div class="jp" lang="ja">業種転換の成功事例</div>
+      <div class="eyebrow">Business Conversion · 기존업주 업종전환</div>
+      <h2 class="h-display">업종 변경으로,<br>다시 성장한 매장들</h2>
+      <p class="sub">같은 자리에서 간판과 시스템만 바꿨습니다.<br><strong>기존 매장을 활용한 업종변경도 우동키노야와 함께할 수 있습니다.</strong></p>
+    </div>
+
+    <div class="conv-grid" id="convGrid"></div>
+
+    <div class="quote rv">
+      <p>같은 자리, 다른 선택.<br>매장의 가능성이 달라졌습니다.</p>
+      <p>기존 매장을 활용한 업종변경도 우동키노야와 함께할 수 있습니다.</p>
+    </div>
+    <p class="verify-note">※ 업종변경 전후 동일 매장의 월평균 매출자료 기준이며, 매장 입지·평수·운영 여건에 따라 결과는 달라질 수 있습니다.</p>
+  </div>
+</section>
+
+<script>
+const BA = [
+  {n:'01', name:'중앙대점', img:'ba1', desc:'노출 덕트의 일반 식당을 밝은 우드톤 홀과 1인 다찌석 중심으로 전환했습니다.', type:'무권리 점포', scope:'홀 + 다찌 리뉴얼', cost:'7,400'},
+  {n:'02', name:'일산차병원점', img:'ba2', desc:'기존 구조를 그대로 살리고 홀 테이블과 오픈 주방 카운터를 새로 구성했습니다.', type:'무권리 점포', scope:'홀 + 주방 리뉴얼', cost:'7,200'},
+  {n:'03', name:'건대점', img:'ba3', desc:'창가 채광을 살린 넓은 홀에 1인 닷지(바석)를 추가 시공해 회전율을 높였습니다.', type:'무권리 점포', scope:'홀 + 1인 닷지 설치', cost:'8,200', extra:'1인 닷지(바석) 추가 시공 포함'}
+];
+const CONV = [
+  {n:'01', name:'합정메세나점', alt:'합정점', from:'카레 전문점', slogan:'기존 매장을 살리고,<br>브랜드 경쟁력을 더하다.', img:'c1', before:4000, after:9500, x:'2.4'},
+  {n:'02', name:'금천구청역점', from:'개인 돈까스점', slogan:'기존 매장을 살리고,<br>검증된 운영 시스템을 더하다.', img:'c2', before:1900, after:8000, x:'4.2'}
+];
+const arrowSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg>';
+const fmt = v => v.toLocaleString('ko-KR');
+
+document.getElementById('baList').innerHTML = BA.map(c => `
+  <article class="ba-row rv">
+    <div class="compare" tabindex="0" role="slider" aria-label="${c.name} 리뉴얼 전후 비교" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+      <img class="after" src="assets/up/${c.img}-after.jpg" alt="${c.name} 리뉴얼 후 우동키노야 매장">
+      <img class="before" src="assets/up/${c.img}-before.jpg" alt="${c.name} 리뉴얼 전 기존 매장">
+      <span class="tag b">BEFORE</span><span class="tag a">AFTER · KINOYA</span>
+      <div class="handle"><div class="knob">${arrowSvg}</div></div>
+      <span class="hint">좌우로 드래그해 비교해보세요</span>
+    </div>
+    <div class="ba-info">
+      <div class="num">${c.n}</div>
+      <div class="case">Renewal Case ${c.n}</div>
+      <h3>${c.name}</h3>
+      <p class="desc">${c.desc}</p>
+      <dl>
+        <div><dt>점포 유형</dt><dd>${c.type}</dd></div>
+        <div><dt>공사 범위</dt><dd>${c.scope}</dd></div>
+        <div><dt>창업비용</dt><dd class="cost">${c.cost}<small>만원</small></dd></div>
+      </dl>
+      ${c.extra ? `<span class="extra">${c.extra}</span>` : ''}
+    </div>
+  </article>`).join('');
+
+document.getElementById('convGrid').innerHTML = CONV.map(c => {
+  const max = 10000;
+  return `
+  <article class="conv-card rv">
+    <div class="conv-top">
+      <div>
+        <div class="badge">CASE ${c.n} · SUCCESS STORY</div>
+        <h3>${c.name}${c.alt ? `<small>(${c.alt})</small>` : ''}</h3>
+        <div class="route"><span class="from">${c.from}</span>
+          <svg viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 5h20M16 1l4 4-4 4"/></svg>
+          <span class="to">우동키노야</span></div>
+      </div>
+      <div class="slogan">${c.slogan}</div>
+    </div>
+    <div class="pair">
+      <figure class="b"><img src="assets/up/${c.img}-before.jpg" alt="${c.name} 업종변경 전 ${c.from} 외관"><figcaption>BEFORE</figcaption></figure>
+      <figure class="a"><img src="assets/up/${c.img}-after.jpg" alt="${c.name} 업종변경 후 우동키노야 외관"><figcaption>AFTER</figcaption></figure>
+      <div class="mid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    </div>
+    <div class="conv-body">
+      <div class="bars">
+        <div class="bar"><div class="lbl"><span>변경 전 · 월평균 매출</span><b>${fmt(c.before)}만원</b></div><div class="track"><div class="fill" style="--w:${c.before/max*100}%"></div></div></div>
+        <div class="bar after"><div class="lbl"><span>우동키노야 · 월평균 매출</span><b>${fmt(c.after)}만원</b></div><div class="track"><div class="fill" style="--w:${c.after/max*100}%"></div></div></div>
+      </div>
+      <div class="mult"><div class="x">${c.x}<span>배</span></div><div class="t">매출 성장 달성</div></div>
+    </div>
+  </article>`;
+}).join('');
+
+/* compare slider */
+document.querySelectorAll('.compare').forEach(el => {
+  let drag = false;
+  const set = p => { p = Math.max(0, Math.min(100, p)); el.style.setProperty('--pos', p + '%'); el.setAttribute('aria-valuenow', Math.round(p));
+    el.querySelector('.tag.b').style.opacity = p < 14 ? 0 : 1; el.querySelector('.tag.a').style.opacity = p > 80 ? 0 : 1; };
+  const fromEvt = e => { const r = el.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); };
+  el.addEventListener('pointerdown', e => { drag = true; el.classList.add('touched'); el.setPointerCapture(e.pointerId); fromEvt(e); });
+  el.addEventListener('pointermove', e => drag && fromEvt(e));
+  el.addEventListener('pointerup', () => drag = false);
+  el.addEventListener('pointercancel', () => drag = false);
+  el.addEventListener('keydown', e => { const cur = parseFloat(el.style.getPropertyValue('--pos')) || 50;
+    if (e.key === 'ArrowLeft') { set(cur - 5); el.classList.add('touched'); e.preventDefault(); }
+    if (e.key === 'ArrowRight') { set(cur + 5); el.classList.add('touched'); e.preventDefault(); } });
+  el._set = set;
+});
+
+/* reveal + intro sweep */
+const io = new IntersectionObserver(es => es.forEach(en => {
+  if (!en.isIntersecting) return;
+  const t = en.target; t.classList.add('in'); io.unobserve(t);
+  const cmp = t.querySelector('.compare');
+  if (cmp && !cmp.classList.contains('touched')) {
+    const start = performance.now();
+    const step = now => { if (cmp.classList.contains('touched')) return;
+      const k = Math.min(1, (now - start) / 1800);
+      cmp._set(50 + Math.sin(k * Math.PI * 2) * 22 * (1 - k)); if (k < 1) requestAnimationFrame(step); };
+    setTimeout(() => requestAnimationFrame(step), 500);
+  }
+}), {threshold: .25});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

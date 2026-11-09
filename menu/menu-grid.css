@@ -1,0 +1,38 @@
+/* Six categories; each category is a single horizontal row at every width. */
+.menu-page-grid .menu-card.menu-photo-ready[data-cms-type="bg"],
+.menu-catalog .menu-catalog-photo.menu-photo-ready[data-cms-type="bg"] { visibility:visible!important; animation:none!important; }
+.menu-page-grid .menu-card { background-image:none; }
+.menu-catalog { display:grid; gap:48px; min-width:0; }
+.menu-category { min-width:0; scroll-margin-top:150px; }
+.menu-category-heading { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 0 18px; margin:0; border-bottom:1px solid rgba(30,42,56,.18); background:none; position:static; }
+.menu-category-number { display:block; color:var(--wood,#9c8265); font-size:11px; letter-spacing:.15em; text-transform:uppercase; margin-bottom:6px; }
+.menu-category-heading h3 { margin:0; color:var(--navy,#1e2a38); font-size:clamp(23px,2.6vw,32px); font-weight:700; }
+.menu-category-lane:focus-visible { outline:2px solid var(--wood,#9c8265); outline-offset:3px; }
+.menu-category-lane { --menu-gap:18px; --menu-card-width:calc((100% - 54px)/4); min-width:0; width:100%; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; overscroll-behavior-x:contain; scrollbar-width:thin; scrollbar-color:#b4a28c transparent; padding:22px 0 12px; touch-action:pan-x pan-y; }
+.menu-category-track { display:flex; flex-wrap:nowrap; gap:var(--menu-gap); width:100%; }
+.menu-catalog-card { flex:0 0 var(--menu-card-width); min-width:0; display:flex; flex-direction:column; background:#fffaf2; border:1px solid #e1d9cc; border-radius:6px; overflow:hidden; scroll-snap-align:start; }
+.menu-catalog-photo { aspect-ratio:4/3; background:#eee8de; background-size:cover; background-position:center; visibility:visible!important; animation:none!important; }
+.menu-category[data-category="set"] .menu-catalog-photo:not(.has-menu-photo),
+.menu-category[data-category="side"] .menu-catalog-photo:not(.has-menu-photo) { display:none!important; }
+.menu-category[data-category="drink"]:not(:has(.has-menu-photo)) { display:none!important; }
+.section-jump-links a[href$="category-drink"] { display:none!important; }
+.menu-catalog-body { padding:18px; display:flex; flex:1; flex-direction:column; gap:10px; }
+.menu-catalog-body h4 { margin:0; font-size:18px; font-weight:700; line-height:1.45; color:#1e2a38; word-break:keep-all; }
+.menu-catalog-description { color:#66645e; font-size:13px; line-height:1.7; margin:0; }
+.menu-catalog-price { color:#1e2a38; font-size:15px; font-weight:600; line-height:1.7; margin:auto 0 0; padding-top:6px; font-variant-numeric:tabular-nums; }
+.menu-catalog-badge { align-self:flex-start; color:#7b6045; font-size:11px; border:1px solid #d5c7b4; padding:3px 7px; border-radius:3px; }
+.menu-food-gallery .menu-category-lane { scroll-snap-type:none; scroll-behavior:auto; }
+.menu-food-gallery .menu-food-card { background:#fffaf2; scroll-snap-align:none; }
+.menu-food-gallery .menu-food-body { padding:16px 18px 18px; gap:8px; }
+.menu-food-gallery .menu-food-caption { color:#262420; font-size:14px; font-weight:500; line-height:1.65; margin:0; word-break:keep-all; }
+.menu-category.is-dragging .menu-category-lane { cursor:grabbing; scroll-snap-type:none; user-select:none; }
+.menu-category-track > .home-anchor-alias { position:absolute; width:0; height:0; }
+@media (max-width:1023px) { .menu-category-lane { --menu-card-width:calc((100% - 18px)/2); } }
+@media (max-width:767px) {
+  .menu-catalog { gap:32px; }
+  .menu-category-lane { --menu-gap:12px; --menu-card-width:100%; padding-top:18px; }
+  .menu-category-heading { gap:8px; }
+  .menu-catalog-body { padding:20px; }
+  .menu-catalog-body h4 { font-size:21px; }
+  .menu-catalog-description { font-size:14px; }
+}

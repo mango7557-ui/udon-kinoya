@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.udonkinoya.com/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/brand/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/brand/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/brand/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/brand/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/brand/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/noodle/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/noodle/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/noodle/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/noodle/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/noodle/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/menu/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/menu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/menu/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/menu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/menu/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/store/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/store/guri/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/guri/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/guri/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/guri/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/guri/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/store/yongsan/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/yongsan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/yongsan/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/yongsan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/yongsan/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/store/hapjeong/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/hapjeong/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/hapjeong/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/hapjeong/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/hapjeong/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/store/magok/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/magok/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/magok/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/magok/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/magok/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/store/euljiro/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/euljiro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/euljiro/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/store/gayang/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/gayang/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/gayang/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/store/yeomchang/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/yeomchang/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/yeomchang/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/store/guro/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/guro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/guro/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/store/hanammisa/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/hanammisa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/hanammisa/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/store/seomyeon/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/seomyeon/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/seomyeon/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/franchise/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/franchise/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/franchise/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/franchise/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/franchise/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/franchise/cost/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/franchise/cost/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/franchise/cost/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/franchise/cost/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/franchise/cost/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/franchise/faq/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/franchise/faq/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/franchise/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/franchise/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/franchise/faq/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/people/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/people/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/people/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/people/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/people/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/contact/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/contact/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/contact/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/news/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/news/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/news/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/resources/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/resources/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/resources/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/brand/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/brand/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/brand/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/brand/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/brand/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/noodle/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/noodle/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/noodle/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/noodle/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/noodle/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/menu/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/menu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/menu/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/menu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/menu/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/store/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/store/guri/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/guri/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/guri/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/guri/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/guri/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/store/yongsan/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/yongsan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/yongsan/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/yongsan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/yongsan/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/store/hapjeong/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/hapjeong/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/hapjeong/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/hapjeong/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/hapjeong/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/store/magok/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/magok/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/magok/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/magok/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/magok/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/franchise/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/franchise/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/franchise/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/franchise/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/franchise/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/franchise/cost/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/franchise/cost/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/franchise/cost/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/franchise/cost/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/franchise/cost/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/franchise/faq/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/franchise/faq/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/franchise/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/franchise/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/franchise/faq/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/people/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/people/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/people/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/people/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/people/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/en/contact/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/contact/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/contact/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/brand/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/brand/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/brand/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/brand/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/brand/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/noodle/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/noodle/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/noodle/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/noodle/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/noodle/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/menu/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/menu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/menu/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/menu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/menu/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/store/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/store/guri/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/guri/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/guri/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/guri/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/guri/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/store/yongsan/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/yongsan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/yongsan/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/yongsan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/yongsan/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/store/hapjeong/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/hapjeong/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/hapjeong/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/hapjeong/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/hapjeong/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/store/magok/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/store/magok/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/store/magok/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/store/magok/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/store/magok/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/franchise/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/franchise/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/franchise/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/franchise/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/franchise/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/franchise/cost/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/franchise/cost/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/franchise/cost/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/franchise/cost/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/franchise/cost/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/franchise/faq/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/franchise/faq/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/franchise/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/franchise/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/franchise/faq/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/people/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/people/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/people/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/people/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/people/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/ja/contact/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.udonkinoya.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.udonkinoya.com/en/contact/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.udonkinoya.com/ja/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.udonkinoya.com/contact/"/>
+  </url>
+  <url>
+    <loc>https://www.udonkinoya.com/guide/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

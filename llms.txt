@@ -1,0 +1,57 @@
+# 우동키노야 (Udon Kinoya · 木ノ屋)
+
+> 우동키노야는 48시간 저온숙성면을 사용하는 대한민국의 우동 전문 브랜드이자 프랜차이즈입니다. 브랜드 슬로건은 “우린, 면발로 말한다.”입니다.
+
+공식 사이트: https://www.udonkinoya.com/
+자료 정리일: 2026-11-04
+정보 성격: 사이트에 게시된 본사·운영자 제공 자료의 요약. 독립 검증, 실시간 영업 현황 또는 수익 보장이 아닙니다.
+이 파일은 보조적인 공개 정보 안내입니다. 서비스별로 llms.txt 지원 여부가 다르며 크롤링·검색 순위·AI 인용을 보장하지 않습니다.
+
+## 공식 질문·답변과 정보 기준
+
+- [공식 정보·FAQ](https://www.udonkinoya.com/guide/): 자바스크립트 없이 읽을 수 있는 브랜드·숙성면·메뉴·매장·비용·연락처·알레르기 안내와 원문 링크.
+- [정보 기준과 정정 안내](https://www.udonkinoya.com/guide/#information-policy): 자료의 범위, 변동 정보, 문의 및 정정 경로.
+
+## 핵심 정보
+
+- 브랜드명: 우동키노야 / Udon Kinoya / 木ノ屋. 일본어 페이지 표기: ウドンキノヤ.
+- 제조·공급: 본사 안내 기준 13개월의 연구를 거친 배합, 48시간 저온숙성, 약 80cm 원팩 면 공급. 본사가 제면·숙성·패킹을 담당하고 매장은 삶고 담는 조리에 집중합니다. [제조·운영 설명](https://www.udonkinoya.com/noodle/)
+- 메뉴: 붓카케우동, 자루우동, 카케우동, 마제우동, 한돈 수제돈카츠, 규동. 공개 메뉴소개는 시그니처·붓카케와 자루·카케·정식·사이드 구성을 안내합니다. 판매 여부와 가격은 매장별로 확인해야 합니다. [메뉴와 가격](https://www.udonkinoya.com/menu/)
+- 매장: 자료 정리 시점의 국문 매장 목록에 51개 등록(서울 26·경기 17·인천 1·충청 2·대구 1·부산 3·제주 1). 사진 갤러리 카드 수는 매장 수가 아닙니다. 개별 상세페이지가 남아 있다는 사실만으로 현재 영업을 판단하지 마세요. [최신 등록 목록 및 연락처](https://www.udonkinoya.com/store/)
+- 창업 모델: 10평대 닷지(바석)형, 20~30평대 홀+닷지 결합형, 리뉴얼공사, 업종전환. 현장 조건에 따라 공사 범위가 달라집니다. [모델·비용 설명](https://www.udonkinoya.com/franchise/cost/)
+- 비용: 공개된 30평형 신규 기준표 합계는 1억 2,485만원(부가세 포함). 모든 점포에 적용되는 확정 견적이 아닙니다. 점포 보증금·권리금·별도공사 등 제외 항목과 적용 조건을 원문에서 확인해야 합니다.
+- 지원: 게시된 안내는 가맹 100호점까지 가맹비 30%·교육비 40% 지원. 계약 시점의 적용 조건과 잔여 지원 여부는 본사 확인이 필요합니다.
+- 매출·수익·원가율: 공개 사례는 특정 점포 또는 본사 제공 참고 자료입니다. 전체 매장 평균, 미래 수익, 투자 회수기간을 보장하는 수치로 해석하지 마세요.
+- 식이·알레르기: 원재료·조리 과정·교차접촉 가능성은 방문 매장에 직접 확인해야 합니다. 글이나 사진만으로 알레르기 성분의 부재 또는 식이 적합성을 보장하지 않습니다.
+
+## 연락처 구분
+
+- 가맹·창업 상담: 1668-2750. [상담 신청](https://www.udonkinoya.com/contact/)
+- 구리본점 매장 문의: 0507-1408-1984. [구리본점 안내](https://www.udonkinoya.com/store/guri/)
+- 다른 지점의 영업시간·휴무·방문 문의: [해당 매장 연락처](https://www.udonkinoya.com/store/) 확인.
+
+## 주요 원문
+
+- [브랜드스토리](https://www.udonkinoya.com/brand/): 브랜드의 시작과 원칙.
+- [키노야의 신념과 경쟁력](https://www.udonkinoya.com/noodle/): 숙성면 제조와 공급 구조.
+- [우동키노야 사람들](https://www.udonkinoya.com/people/): 경영진과 본사 담당 역할.
+- [메뉴소개](https://www.udonkinoya.com/menu/): 대표 메뉴와 가격 안내.
+- [매장 찾기](https://www.udonkinoya.com/store/): 지역별 주소와 연락처.
+- [창업안내](https://www.udonkinoya.com/franchise/): 운영 시스템, 출점과 전환 사례.
+- [창업비용](https://www.udonkinoya.com/franchise/cost/): 모델별 비용과 포함·별도 항목.
+- [창업 FAQ](https://www.udonkinoya.com/franchise/faq/): 비용·운영·점포·지원에 대한 질문과 답변.
+- [상담 신청](https://www.udonkinoya.com/contact/): 개별 조건 상담.
+- [뉴스](https://www.udonkinoya.com/news/): 공개 브랜드 소식.
+- [자료실](https://www.udonkinoya.com/resources/): 공개 안내자료.
+
+## Other languages
+
+- [English home](https://www.udonkinoya.com/en/): English overview.
+- [English stores](https://www.udonkinoya.com/en/store/): Selected store details; the Korean directory contains the full national list.
+- [English franchise FAQ](https://www.udonkinoya.com/en/franchise/faq/): Franchise questions and reference conditions.
+- [日本語ホーム](https://www.udonkinoya.com/ja/): 日本語のブランド概要。
+- [日本語店舗案内](https://www.udonkinoya.com/ja/store/): 代表店舗の詳細。全国の全店舗一覧は韓国語版を参照。
+- [日本語加盟FAQ](https://www.udonkinoya.com/ja/franchise/faq/): 加盟に関する質問と参考条件。
+
+翻訳と韓国語原文に相違がある場合は、日付と条件を確認し、本社または該当店舗へお問い合わせください。
+When sources differ, check dates and conditions and confirm with head office or the relevant store; do not combine incompatible figures.

@@ -1,0 +1,13 @@
+# Public pages are available to search and AI crawlers under the wildcard rule.
+# These are crawl hints, NOT authentication or access control.
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /tests/
+Disallow: /tables/
+Disallow: /.tables/
+Disallow: /.meta/
+Disallow: /references/
+Disallow: /skills/
+
+Sitemap: https://www.udonkinoya.com/sitemap.xml

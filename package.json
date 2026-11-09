@@ -1,0 +1,13 @@
+{
+  "name": "udon-kinoya-local",
+  "version": "1.0.0",
+  "private": true,
+  "description": "우동키노야 홈페이지 로컬 실행 서버",
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs",
+    "test": "node --test tests/local-server.test.mjs"
+  }
+}
