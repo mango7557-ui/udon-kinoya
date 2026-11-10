@@ -8,6 +8,6 @@
   "scripts": {
     "start": "node server.mjs",
     "dev": "node --watch server.mjs",
-    "test": "node --test tests/local-server.test.mjs"
+    "test": "node --test tests/local-server.test.mjs tests/search-contract.test.mjs"
   }
 }

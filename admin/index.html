@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>우동키노야 관리자 | 콘텐츠 관리</title>
+<meta name="description" content="우동키노야 공식 홈페이지의 텍스트, 사진, 매장, 메뉴, 뉴스, 상담신청 내역을 관리하는 통합 관리자 페이지입니다.">
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
@@ -15,10 +16,11 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
 <link rel="stylesheet" href="management.css">
 <style>
-  body{ font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Noto Sans KR', sans-serif; }
-  .field-textarea{ min-height: 70px; }
+  .field-textarea{ min-height: 72px; }
   @media(min-width:1024px){#group-nav{max-height:70vh;overflow-y:auto!important;}}
 </style>
+<link rel="stylesheet" href="studio.css">
+<script src="studio.js" defer></script>
 </head>
 <body class="bg-slate-100 text-slate-800">
 
@@ -51,7 +53,7 @@
   <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
     <!-- 좌측: 그룹 네비게이션 -->
     <aside class="lg:w-64 shrink-0">
-      <div class="bg-white rounded-xl shadow-sm p-3 lg:sticky lg:top-20">
+      <div class="p-3 lg:sticky lg:top-20">
         <div class="text-xs font-semibold text-slate-400 px-2 mb-2">페이지별 이동</div>
         <nav id="group-nav" class="flex lg:flex-col gap-1 overflow-x-auto lg:overflow-visible pb-1"></nav>
       </div>
@@ -59,6 +61,8 @@
 
     <!-- 우측: 콘텐츠 편집 영역 -->
     <main class="flex-1 min-w-0">
+      <div class="studio-welcome"><div><h1>브랜드를 관리하는 공간.</h1><p>콘텐츠 편집부터 상담 접수까지, 필요한 작업을 한곳에서.</p></div><a href="../" target="_blank" rel="noopener">홈페이지 확인 ↗</a></div>
+      <nav class="studio-shortcuts" aria-label="자주 사용하는 관리 기능"><a href="#consultations-section">상담 접수</a><a href="home.html">메인 편집</a><a href="#news-manage-section">뉴스 관리</a><a href="#backup-section">백업 · 복원</a></nav>
       <div class="bg-white rounded-xl shadow-sm p-4 mb-4 flex flex-wrap items-center gap-3 justify-between">
         <div>
           <div class="font-semibold text-slate-700">모든 항목을 수정한 뒤 <span class="text-slate-900">전체 저장</span>을 눌러주세요.</div>
@@ -83,13 +87,13 @@
         <div id="admin-sub-tabs" role="tablist" aria-label="세부 섹션 선택" class="flex flex-wrap gap-1.5 pt-2.5"></div>
       </div>
       <nav class="admin-quick-links hidden" aria-label="데이터 관리 바로가기"><a href="#consultations-section">상담신청</a><a href="#backup-section">백업·복원</a><a href="#yt-sync-section">유튜브 연동</a><a href="#plogo-section">협력사</a><a href="#stores-manage-section">매장 추가·관리</a><a href="#faq-manage-section">FAQ</a><a href="#news-manage-section">뉴스</a><a href="#resources-manage-section">자료실</a></nav>
-      <section id="consultations-section" class="bg-white rounded-xl shadow-sm p-5 mb-8"></section>
+      <section id="consultations-section" class="mb-8"></section>
       <!-- ============ 전체 데이터 백업/복원 (JSON·엑셀) ============
            site_content(텍스트/사진 설정), consultations(상담신청), youtube_videos(영상/쇼츠),
            partner_logos(협력사 로고), faq_items(FAQ), news_items(뉴스), resources(자료실)
            7개 테이블을 시트 7개짜리 엑셀 파일로 한 번에 내보내고,
            같은 형식의 엑셀 파일을 다시 업로드해 복원할 수 있습니다. -->
-      <section id="backup-section" class="bg-white rounded-xl shadow-sm p-5 mb-8">
+      <section id="backup-section" class="mb-8">
         <h2 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
           <span>💾</span> 전체 데이터 백업/복원 (JSON·엑셀)
         </h2>
@@ -113,7 +117,7 @@
            모든 페이지에서 js/main.js가 페이지뷰(1회/로드)와 [data-event] 클릭을
            visitor_logs 테이블에 자동으로 기록합니다. 여기서는 기간을 선택해
            일별 방문 추이, 인기 페이지, 인기 클릭, 기기 비율을 확인하고 엑셀로 내보낼 수 있습니다. -->
-      <section id="visitor-stats-section" class="bg-white rounded-xl shadow-sm p-5 mb-8">
+      <section id="visitor-stats-section" class="mb-8">
         <h2 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
           <span>📊</span> 방문자 통계 리포트
         </h2>
@@ -156,7 +160,7 @@
         </div>
 
         <div class="mb-5" style="height:260px;">
-          <canvas id="vstat-daily-chart"></canvas>
+          <canvas id="vstat-daily-chart" aria-label="일별 방문자 통계 차트"></canvas>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -181,7 +185,7 @@
            ③youtube_videos 테이블에 DB 저장까지 한 번에 처리합니다.
            홈페이지는 더 이상 방문자 브라우저에서 매번 유튜브 API를 호출하지 않고,
            이 DB(youtube_videos, site_content의 통계값)를 읽어서 표시합니다. -->
-      <section id="yt-sync-section" class="bg-white rounded-xl shadow-sm p-5 mb-8">
+      <section id="yt-sync-section" class="mb-8">
         <h2 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
           <span>📡</span> 유튜브 채널 자동 연동 (한 번에 업데이트)
         </h2>
@@ -216,7 +220,7 @@
       </section>
 
       <!-- ============ 유튜브 영상 목록 관리 (수동 등록 + DB 목록) ============ -->
-      <section id="yt-manage-section" class="bg-white rounded-xl shadow-sm p-5 mb-8">
+      <section id="yt-manage-section" class="mb-8">
         <h2 class="text-lg font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center gap-2">
           <span>▶️</span> 유튜브 영상 관리 (목록 · 수동 등록)
         </h2>
@@ -253,7 +257,7 @@
       </section>
 
       <!-- ============ 협력사 로고 관리 (상단/중간/하단 3줄, 각 자동 스크롤) ============ -->
-      <section id="plogo-section" class="bg-white rounded-xl shadow-sm p-5 mb-8">
+      <section id="plogo-section" class="mb-8">
         <h2 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
           <span>🤝</span> 협력사 로고 관리
         </h2>
@@ -307,7 +311,7 @@
 
       <!-- ============ 신규 매장 등록 · 관리 ============
            /store/ 페이지 및 메인 페이지(서울 지역 / 전국 각지 슬라이드)에 새 매장을 추가·수정·삭제합니다. -->
-      <section id="stores-manage-section" class="bg-white rounded-xl shadow-sm p-5 mb-8">
+      <section id="stores-manage-section" class="mb-8">
         <h2 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
           <span>🏪</span> 신규 매장 등록 · 관리 (서울 지역 · 전국 각지)
         </h2>
@@ -318,7 +322,7 @@
            여기서 하나 이상 등록하면 공개 FAQ 페이지가 기존 정적 목록 대신 이 데이터를 표시합니다
            (아직 하나도 등록하지 않았다면 기존 정적 FAQ 목록이 그대로 유지됩니다).
            카테고리 탭(브랜드·제품/창업비용/매출·수익/운영/점포/본사 지원)은 기존 페이지와 동일합니다. -->
-      <section id="faq-manage-section" class="bg-white rounded-xl shadow-sm p-5 mb-8">
+      <section id="faq-manage-section" class="mb-8">
         <h2 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
           <span>❓</span> FAQ 관리
         </h2>
@@ -358,7 +362,7 @@
 
       <!-- ============ 뉴스 관리 ============
            /news/ 페이지에 표시되는 언론보도·소식 목록을 관리합니다. -->
-      <section id="news-manage-section" class="bg-white rounded-xl shadow-sm p-5 mb-8">
+      <section id="news-manage-section" class="mb-8">
         <h2 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
           <span>📰</span> 뉴스 관리
         </h2>
@@ -402,7 +406,7 @@
 
       <!-- ============ 자료실 관리 ============
            /resources/ 페이지에서 다운로드 가능한 자료(브로슈어, 서류 등)를 관리합니다. -->
-      <section id="resources-manage-section" class="bg-white rounded-xl shadow-sm p-5 mb-8">
+      <section id="resources-manage-section" class="mb-8">
         <h2 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
           <span>📁</span> 자료실 관리
         </h2>

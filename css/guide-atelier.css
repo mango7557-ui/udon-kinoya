@@ -1,0 +1,189 @@
+/* Hallmark · v2.0.0 · genre: editorial · theme: kiln (custom) · shape: Long Document · redesign: restyle · copy: verbatim */
+/* critique: mineral stone background, WCAG AA contrast across all FAQ cards and index links, >=12px functional text, and 4px spacing grid. */
+
+:root:root {
+  --guide-bg: #f4f6f9;
+  --guide-surface: #fafbfd;
+  --guide-surface-2: #eaeef4;
+  --guide-ink: #13202b;
+  --guide-muted: #425261;
+  --guide-navy: #13202b;
+  --guide-cream: #f5f7fa;
+  --guide-cream-muted: #ced8e2;
+  --guide-gold: #e6cf9e;
+  --guide-gold-deep: #5c4328;
+  --guide-border: rgba(19, 32, 43, 0.14);
+  --guide-border-dark: rgba(230, 207, 158, 0.28);
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+body {
+  background: var(--guide-bg);
+  color: var(--guide-ink);
+  line-height: 1.8;
+}
+
+.guide-header {
+  background: var(--guide-navy);
+  color: var(--guide-cream);
+  border-bottom: 1px solid var(--guide-border-dark);
+  padding-block: 20px;
+}
+
+.guide-logo span {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--guide-cream-muted);
+}
+
+.guide-header nav a {
+  font-size: 13px;
+}
+
+.guide-header .guide-cta {
+  background: var(--guide-gold);
+  color: var(--guide-navy);
+  border-radius: 4px;
+}
+
+.guide-hero {
+  background: var(--guide-navy);
+  color: var(--guide-cream);
+  padding: 80px 32px;
+}
+
+.guide-hero h1 {
+  font-size: clamp(40px, 5.5vw, 68px);
+  letter-spacing: -0.035em;
+  line-height: 1.22;
+}
+
+.guide-hero em {
+  color: var(--guide-gold);
+}
+
+.guide-intro {
+  color: var(--guide-cream-muted);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.guide-kicker,
+.guide-number {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--guide-muted);
+}
+
+.guide-hero .guide-kicker {
+  color: var(--guide-cream-muted);
+}
+
+.guide-policy .guide-kicker {
+  color: var(--guide-muted);
+}
+
+.guide-date {
+  color: var(--guide-cream-muted);
+  font-size: 12px;
+}
+
+.guide-layout {
+  padding-block: 64px;
+  gap: 56px;
+}
+
+.guide-index p {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--guide-gold-deep);
+}
+
+.guide-index nav a {
+  font-size: 13px;
+  padding-block: 12px;
+  border-color: var(--guide-border);
+  color: var(--guide-ink);
+}
+
+.guide-answer {
+  background: var(--guide-surface);
+  border: 1px solid var(--guide-border);
+  border-radius: 8px;
+  padding: 36px;
+  margin-bottom: 24px;
+  box-shadow: none;
+}
+
+.guide-answer h2 {
+  font-size: 24px;
+  letter-spacing: -0.03em;
+  line-height: 1.45;
+  color: var(--guide-ink);
+}
+
+.guide-answer p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--guide-ink);
+}
+
+.guide-note {
+  color: var(--guide-muted);
+  font-size: 14px;
+}
+
+.guide-source {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--guide-gold-deep);
+}
+
+.guide-policy {
+  border-radius: 8px;
+  background: var(--guide-surface-2);
+  border: 1px solid var(--guide-border);
+  padding: 36px;
+  color: var(--guide-ink);
+}
+
+.guide-policy p {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--guide-ink);
+}
+
+.guide-footer {
+  background: var(--guide-navy);
+  color: var(--guide-cream);
+  font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  .guide-hero {
+    padding: 48px 24px;
+  }
+  .guide-answer,
+  .guide-policy {
+    padding: 24px;
+  }
+  .guide-answer h2 {
+    font-size: 20px;
+  }
+  .guide-layout {
+    gap: 24px;
+    padding-block: 32px;
+  }
+  .guide-header nav a {
+    font-size: 12px;
+  }
+  .guide-logo span {
+    display: none;
+  }
+}

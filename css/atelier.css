@@ -1,0 +1,1324 @@
+/* Hallmark · v2.0.0 · genre: editorial · theme: kiln (custom) · shape: Long Document · redesign: restyle · copy: verbatim */
+/* critique: preserved full Korean/English/Japanese franchise content and CMS bindings while enforcing mineral stone surfaces, WCAG AA contrast, 12px minimum functional text, and 4px spacing rhythm. */
+/* waive: 11 (hover elevation shared across interactive cards), F7 (shared card and input surface recipe across catalog items) */
+
+:root:root {
+  --font: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+  --disp: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+  --serif: 'Noto Serif JP', Georgia, serif;
+
+  --navy: #13202b;
+  --navy-deep: #0d1720;
+  --navy-soft: #1d2f3d;
+  --ivory: #f4f6f9;
+  --ivory-2: #eaeef4;
+  --off-white: #fafbfd;
+  --ink-black: #13202b;
+  --wood: #5c4328;
+  --wood-light: #6e5233;
+  --noodle: #ebd8b2;
+  --broth: #8a6236;
+  --line-dark: rgba(235, 216, 178, 0.28);
+  --line-light: rgba(19, 32, 43, 0.14);
+  --line-gold: rgba(235, 216, 178, 0.32);
+  --line-gold-strong: rgba(235, 216, 178, 0.64);
+  --line-bronze: rgba(19, 32, 43, 0.16);
+  --line-bronze-strong: rgba(92, 67, 40, 0.48);
+
+  --atelier-bg: #f4f6f9;
+  --atelier-surface: #fafbfd;
+  --atelier-surface-2: #eaeef4;
+  --atelier-ink: #13202b;
+  --atelier-ink-muted: #425261;
+  --atelier-navy: #13202b;
+  --atelier-navy-deep: #0d1720;
+  --atelier-navy-panel: #192a38;
+  --atelier-cream: #f5f7fa;
+  --atelier-cream-muted: #ced8e2;
+  --atelier-gold: #e6cf9e;
+  --atelier-gold-deep: #5c4328;
+  --atelier-accent: #a63a24;
+  --atelier-border: rgba(19, 32, 43, 0.14);
+  --atelier-border-dark: rgba(230, 207, 158, 0.28);
+  --atelier-overlay: linear-gradient(90deg, rgba(13, 23, 32, 0.92) 0%, rgba(13, 23, 32, 0.64) 52%, rgba(13, 23, 32, 0.2) 100%), linear-gradient(0deg, rgba(13, 23, 32, 0.72), transparent 44%);
+  --atelier-shadow: 0 16px 40px -24px rgba(13, 23, 32, 0.22);
+  --atelier-shadow-sm: 0 8px 24px -16px rgba(13, 23, 32, 0.18);
+  --atelier-backdrop: rgba(13, 23, 32, 0.68);
+}
+
+html,
+body {
+  overflow-x: clip;
+  scroll-padding-top: 112px;
+}
+
+body {
+  background: var(--atelier-bg);
+  color: var(--atelier-ink);
+  font-family: var(--font);
+  line-height: 1.65;
+}
+
+body ::selection {
+  background: var(--atelier-gold);
+  color: var(--atelier-navy-deep);
+}
+
+body .container {
+  max-width: 1280px;
+  padding-inline: clamp(24px, 4vw, 64px);
+}
+
+body .section {
+  padding-block: clamp(64px, 8vw, 112px);
+}
+
+body .h-display,
+body .force-2-lines {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.32 !important;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+
+body .eyebrow,
+body .hero-brand-tag,
+body .menu-category-number,
+body .people-profile-category,
+body .rc-tag,
+body .rc-case,
+body .compact-bar-kicker,
+body .slot-pill,
+body .patent-seal,
+body .banner-tag,
+body .reduction-eyebrow {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+body .eyebrow {
+  color: var(--atelier-gold-deep);
+}
+
+body .eyebrow::before {
+  width: 24px;
+  background: currentColor;
+}
+
+body .page-header .eyebrow {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--atelier-cream-muted) !important;
+}
+body .page-header .eyebrow::before {
+  display: none;
+}
+
+body .sec-navy > .container .eyebrow,
+body .sec-navy > .container .jp-title,
+body .sec-navy > .container .num-value,
+body .sec-navy > .container .model-tag {
+  color: var(--atelier-gold) !important;
+}
+
+/* Ensure inline low-opacity styles and muted captions always meet >= 4.5:1 WCAG AA contrast */
+body :is(p, span, div, small, li, a, b)[style*="opacity"] {
+  opacity: 1 !important;
+}
+
+body :is(.sec-ivory, .sec-off, .home-full-section) :is(p, b, .eyebrow, .jp-title, .p-lead, .num-value, .num-desc, .verify-note, .section-jump-label, .section-jump-links a, .model-note, .addr, .faq-a-inner, .form-note) {
+  color: var(--atelier-ink-muted) !important;
+  opacity: 1 !important;
+}
+
+body :is(.sec-ivory, .sec-off, .home-full-section) :is(.eyebrow, .jp-title, .num-value, b) {
+  color: var(--atelier-gold-deep) !important;
+}
+
+body :is(.sec-navy > .container, .hero, .page-header, .sec-social, .footer) :is(p, .p-lead, .num-desc, .verify-note, .card-jp, .pos-amount-highlight span, .footer-company-info, .footer-bottom, .company-copy, .footer-col ul li b, .footer-sns-label, .mobile-bottom-nav a, .final-card .cd) {
+  color: var(--atelier-cream-muted) !important;
+  opacity: 1 !important;
+}
+
+body .sec-navy > .container .number-card {
+  background: var(--atelier-navy-panel) !important;
+  color: var(--atelier-cream) !important;
+}
+
+body :is(.sec-ivory, .sec-off) .number-card {
+  background: var(--atelier-surface) !important;
+  color: var(--atelier-ink) !important;
+}
+
+body :is(.miracle-visual .badge, .tech-callout, .patent-cert-banner, .patent-cert-card, .fr-cost-reduction-graphic, .fr-start-banner, .final-card, .commit-final, .pos-proof-card, .conv-card-top, .ba-slot-head, .slot-head) :is(p, span, div, h3, h4, b, strong, em) {
+  color: var(--atelier-cream) !important;
+  opacity: 1 !important;
+}
+
+body :is(.ba-slot-head, .slot-head) .slot-pill.is-after,
+body .slot-pill.is-after,
+body .ba-slot-head.is-after .slot-pill,
+body .conv-photo-slot.is-after .slot-pill,
+body .conv-photo-slot.is-after .slot-head,
+body .conv-photo-slot.is-after .slot-head span,
+body .r-badge,
+body .btn-brochure,
+body .btn-brochure span {
+  background: var(--atelier-gold) !important;
+  color: var(--atelier-navy-deep) !important;
+}
+
+body :is(.fr-ba-card, .fr-conversion-card, .fr-compact-bar-card) :is(.ba-photo-slot, .conv-photo-slot, .compact-bar-note, .compact-bar-metrics li) {
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body .store-card .store-thumb {
+  padding: 12px;
+}
+
+body :is(.tech-callout .label, .patent-seal, .reduction-eyebrow, .banner-copy .banner-tag, .final-card .cn, .r-price em, .banner-copy em) {
+  color: var(--atelier-gold) !important;
+}
+
+body :is(p, li, dd, blockquote, .miracle-body p, .model-card p, .faq-a-inner) {
+  line-height: 1.75 !important;
+}
+
+body .jp-title {
+  font-size: clamp(18px, 2vw, 24px);
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+}
+
+body p,
+body .sub {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+body :is(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid var(--atelier-accent);
+  outline-offset: 4px;
+}
+
+body :is(button, a, input, select, textarea) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body :is(.btn-primary, .btn-ghost, .nav-cta, .form-submit) {
+  min-height: 48px;
+  border-radius: 4px;
+  transition: transform 0.18s ease-out, opacity 0.18s ease-out;
+  letter-spacing: -0.01em;
+}
+
+body :is(.btn-primary, .btn-ghost, .nav-cta, .form-submit, .atelier-tools button):active {
+  transform: translateY(1px);
+}
+
+/* Navigation */
+body .nav,
+body .nav.is-scrolled,
+body.kinoya-home .nav,
+body.kinoya-home .nav.is-scrolled {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 88px;
+  padding: 16px 32px;
+  background: var(--atelier-navy);
+  color: var(--atelier-cream);
+  border-bottom: 1px solid var(--atelier-border-dark);
+  overflow: visible;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+body .nav-logo,
+body.kinoya-home .nav-logo {
+  flex: 0 0 148px;
+  width: 148px;
+  margin: 0;
+}
+
+body .nav-logo img,
+body.kinoya-home .nav-logo img {
+  width: 148px;
+  height: 48px;
+  max-height: 48px;
+  object-fit: contain;
+}
+
+body .nav-menu,
+body.kinoya-home .nav-menu {
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  align-items: center;
+}
+
+body .nav-menu a,
+body.kinoya-home .nav-menu a {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  color: var(--atelier-cream);
+  text-shadow: none;
+  white-space: nowrap;
+}
+
+body .nav-menu a:is(:hover, .is-active) {
+  color: var(--atelier-gold);
+}
+
+body .nav > .nav-cta,
+body.kinoya-home .nav > .nav-cta {
+  margin: 0;
+  background: var(--atelier-gold);
+  color: var(--atelier-navy-deep);
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  min-height: 44px;
+}
+
+body .nav > .lang-switch-group,
+body.kinoya-home .nav > .lang-switch-group {
+  margin: 0;
+  display: flex;
+  gap: 8px;
+}
+
+body .lang-switch,
+body.kinoya-home .lang-switch {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 12px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--atelier-cream);
+}
+
+/* Hero */
+body.kinoya-home .hero {
+  min-height: min(920px, 100svh);
+  padding: 160px 0 80px;
+  background: var(--atelier-navy-deep);
+  color: var(--atelier-cream);
+  isolation: isolate;
+}
+
+body.kinoya-home .hero-overlay {
+  background: var(--atelier-overlay);
+}
+
+body.kinoya-home .hero-inner {
+  max-width: 1280px;
+  padding-inline: clamp(24px, 4vw, 64px);
+}
+
+body.kinoya-home .hero-brand-tag {
+  border: 0;
+  border-radius: 0;
+  color: var(--atelier-gold);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+  padding: 0;
+}
+
+body.kinoya-home .hero-jp {
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  color: var(--atelier-cream-muted);
+  margin-bottom: 20px;
+}
+
+body.kinoya-home .hero-headline {
+  font-size: clamp(48px, 6vw, 84px);
+  line-height: 1.14;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  max-width: 880px;
+  margin-bottom: 28px;
+  color: var(--atelier-cream);
+}
+
+body.kinoya-home .hero-sub {
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--atelier-cream);
+}
+
+body.kinoya-home .hero-inner > p {
+  font-size: 15px !important;
+  color: var(--atelier-cream-muted) !important;
+  line-height: 1.85 !important;
+}
+
+body.kinoya-home .hero-cta-row {
+  gap: 12px;
+}
+
+body.kinoya-home .hero-cta-row a {
+  height: 52px;
+  padding-inline: 24px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+body.kinoya-home .hero-cta-row .btn-primary {
+  background: var(--atelier-cream);
+  color: var(--atelier-navy-deep);
+}
+
+body.kinoya-home .hero-cta-row .btn-ghost {
+  background: transparent;
+  color: var(--atelier-cream);
+  border: 1px solid var(--atelier-border-dark);
+}
+
+body.kinoya-home .hero-scroll {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--atelier-cream-muted);
+}
+
+body.kinoya-home .hero-facts {
+  gap: 40px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--atelier-border-dark);
+}
+
+body.kinoya-home .hero-facts strong {
+  font-size: 28px;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--atelier-cream);
+}
+
+body.kinoya-home .hero-facts span {
+  font-size: 12px;
+  letter-spacing: 0;
+  color: var(--atelier-cream-muted);
+}
+
+body.kinoya-home .discovery-nav {
+  padding-inline: clamp(24px, 4vw, 64px);
+  background: var(--atelier-surface);
+  color: var(--atelier-ink);
+  border-bottom: 1px solid var(--atelier-border);
+}
+
+body.kinoya-home .discovery-inner {
+  max-width: 1280px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.kinoya-home .discovery-link {
+  padding: 28px 24px;
+  border-color: var(--atelier-border);
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+body.kinoya-home .discovery-link small {
+  font-size: 12px;
+  color: var(--atelier-gold-deep);
+  letter-spacing: 0.02em;
+  font-weight: 700;
+}
+
+body.kinoya-home .discovery-link strong {
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  color: var(--atelier-ink);
+}
+
+body.kinoya-home .discovery-link span {
+  font-size: 20px;
+  color: var(--atelier-gold-deep);
+}
+
+/* Headers and section jump bars */
+body .page-header {
+  padding: 160px 0 72px;
+  background: var(--atelier-navy);
+  color: var(--atelier-cream);
+  border-bottom: 1px solid var(--atelier-border-dark);
+}
+
+body .page-header :is(h1, h2) {
+  font-size: clamp(36px, 4.6vw, 60px);
+  letter-spacing: -0.035em;
+  line-height: 1.22;
+  text-wrap: balance;
+  color: var(--atelier-cream);
+}
+
+body .page-header p {
+  font-size: 16px;
+  line-height: 1.85;
+  max-width: 720px;
+  color: var(--atelier-cream-muted);
+}
+
+html[lang="ko"] body .home-full-section > .page-header {
+  padding: 72px 0 64px;
+  position: relative;
+}
+
+body .home-full-section > .page-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  width: 48px;
+  height: 4px;
+  background: var(--atelier-accent);
+}
+
+body .home-full-section .page-header .h-display {
+  font-size: clamp(32px, 4vw, 52px);
+  margin-bottom: 20px;
+}
+
+body .section-jump {
+  background: var(--atelier-surface-2);
+  color: var(--atelier-ink);
+  border-block: 1px solid var(--atelier-border);
+}
+
+body .section-jump-links {
+  gap: 8px;
+}
+
+body .section-jump-label {
+  color: var(--atelier-gold-deep);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+body .section-jump-links a,
+body.kinoya-home .section-jump-links a {
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  line-height: 1.5;
+  color: var(--atelier-ink);
+  border-color: var(--atelier-border);
+  background: var(--atelier-surface);
+}
+
+body .breadcrumb {
+  font-size: 13px;
+  color: var(--atelier-cream-muted);
+}
+
+/* High-contrast fixes for dark callouts, banners, and cards across sections */
+body .sec-navy {
+  background: var(--atelier-navy);
+  color: var(--atelier-cream);
+}
+
+body .sec-ivory {
+  background: var(--atelier-bg);
+  color: var(--atelier-ink);
+}
+
+body .sec-off,
+body .home-full-section {
+  background: var(--atelier-surface);
+  color: var(--atelier-ink);
+}
+
+body .miracle-visual .badge,
+body .tech-callout,
+body .patent-cert-banner,
+body .patent-cert-card,
+body .fr-cost-reduction-graphic,
+body .fr-start-banner,
+body .final-card,
+body .commit-final,
+body .pos-proof-card,
+body .conv-card-top,
+body .ba-slot-head,
+body .slot-head {
+  background: var(--atelier-navy-panel) !important;
+  color: var(--atelier-cream) !important;
+}
+
+body .patent-cert-header {
+  background: var(--atelier-navy-deep) !important;
+  color: var(--atelier-cream) !important;
+}
+
+body .patent-seal,
+body .tech-callout .label,
+body .reduction-eyebrow,
+body .banner-copy .banner-tag,
+body .final-card .cn,
+body .r-price em,
+body .banner-copy em,
+body .promise-body em {
+  color: var(--atelier-gold) !important;
+  font-style: normal;
+}
+
+body .sec-ivory .promise-body em,
+body .sec-off .promise-body em,
+body .home-full-section .promise-body em {
+  color: var(--atelier-gold-deep) !important;
+  font-weight: 700;
+}
+
+body .reduction-before .r-label,
+body .reduction-before .r-strike,
+body .reduction-arrow span,
+body .reduction-after .r-sub,
+body .banner-copy p,
+body .final-card .cd {
+  color: var(--atelier-cream-muted) !important;
+}
+
+body .reduction-after .r-price,
+body .banner-copy h3,
+body .final-card .ct,
+body .final-card .clink {
+  color: var(--atelier-cream) !important;
+}
+
+body #final .h-display {
+  color: var(--atelier-ink);
+}
+
+body .sec-navy#final .h-display {
+  color: var(--atelier-cream);
+}
+
+body .rc-number {
+  color: var(--atelier-gold-deep) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+body .compact-bar-metrics li.is-sales {
+  background: var(--atelier-navy-deep) !important;
+  color: var(--atelier-cream) !important;
+}
+
+body .compact-bar-metrics li.is-sales .m-label {
+  color: var(--atelier-cream-muted) !important;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+body .compact-bar-metrics li.is-sales .m-value {
+  color: var(--atelier-gold) !important;
+}
+
+body .system-arrow {
+  color: var(--atelier-gold) !important;
+}
+
+body .miracle-visual .stat .big,
+body .number-card .num-value,
+body .stat-value,
+body .reduction-after .r-price {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Partner logos: static calm presentation instead of distracting infinite marquee */
+body .partner-logo-track {
+  animation: none !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Content grids & cards */
+body :is(.miracle, .origin-grid, .fr-reasonable-showcase) {
+  gap: clamp(32px, 5vw, 64px);
+}
+
+body :is(.miracle-visual, .story-visual) {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+body .miracle-body :is(p, .body-text) {
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+body :is(.tech-card, .model-card, .store-card, .menu-catalog-card, .resource-item, .news-list-card, .people-profile-card, .final-card, .fr-cost-guide-card, .cost-concept-block, .faq-item) {
+  box-shadow: none;
+  border-radius: 8px !important;
+  border-color: var(--atelier-border) !important;
+}
+
+body .menu-catalog-photo {
+  background-color: var(--atelier-surface-2);
+}
+
+body .menu-catalog-body {
+  padding: 24px;
+}
+
+body .menu-category-heading {
+  padding-bottom: 20px;
+  margin-bottom: 28px;
+}
+
+body .menu-category-heading h3 {
+  font-size: 28px;
+  letter-spacing: -0.03em;
+}
+
+body .store-body {
+  padding: 24px;
+}
+
+body .store-body h3 {
+  font-size: 22px;
+  letter-spacing: -0.03em;
+}
+
+body .store-body address {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+body .store-actions a {
+  min-height: 44px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+body .news-list-card .news-list-body {
+  padding: 24px;
+}
+
+body .news-list-title {
+  font-size: 20px;
+  line-height: 1.45;
+  letter-spacing: -0.03em;
+}
+
+body .resource-item {
+  padding: 28px;
+  background: var(--atelier-surface);
+}
+
+body .resource-download {
+  padding: 12px 20px;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+body .faq-item {
+  margin-bottom: 12px;
+  background: var(--atelier-surface);
+  overflow: hidden;
+}
+
+body .faq-q {
+  padding: 24px;
+  font-size: 17px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+body .faq-a-inner {
+  padding: 0 24px 24px;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+body .faq-category-tabs button {
+  border-radius: 4px;
+  font-size: 13px;
+  min-height: 44px;
+}
+
+body :is(.cost-table, .fr-cost-table) {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+body :is(.cost-table, .fr-cost-table) :is(td, th) {
+  padding: 16px 20px;
+}
+
+body .rc-row {
+  padding-block: 44px;
+}
+
+body .rc-info h4 {
+  font-size: 32px;
+  letter-spacing: -0.035em;
+}
+
+body .rc-compare {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Social media section: keep dark navy surface so light titles, shorts overlays, and buttons remain high-contrast */
+body .sec-social {
+  background: var(--atelier-navy-deep);
+  color: var(--atelier-cream);
+  border-bottom: 1px solid var(--atelier-border-dark);
+}
+
+body .sec-social .h-display,
+body .social-desc,
+body .social-section-title,
+body .short-title {
+  color: var(--atelier-cream) !important;
+}
+
+body .social-subdesc,
+body .short-views {
+  color: var(--atelier-cream-muted) !important;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+body .social-header {
+  gap: 28px;
+  margin-bottom: 36px;
+}
+
+body .social-tabs {
+  border-color: var(--atelier-border-dark) !important;
+  gap: 8px;
+}
+
+body .social-tabs .tab-btn {
+  border-radius: 4px;
+  color: var(--atelier-cream);
+  border: 1px solid var(--atelier-border-dark);
+  background: var(--atelier-navy-panel);
+  font-size: 13px;
+  min-height: 44px;
+  padding: 8px 16px;
+}
+
+body .social-tabs .tab-btn.active {
+  background: var(--atelier-gold);
+  color: var(--atelier-navy-deep);
+  border-color: var(--atelier-gold);
+  font-weight: 700;
+}
+
+body .video-card {
+  background: var(--atelier-navy-panel);
+  border: 1px solid var(--atelier-border-dark);
+  border-radius: 8px;
+  color: var(--atelier-cream);
+}
+
+body .video-title {
+  color: var(--atelier-cream);
+}
+
+body .video-meta {
+  color: var(--atelier-cream-muted);
+  font-size: 12px;
+}
+
+body .btn-youtube,
+body .btn-more-videos {
+  background: var(--atelier-gold) !important;
+  color: var(--atelier-navy-deep) !important;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  min-height: 44px;
+  padding: 12px 20px;
+}
+
+body .social-stats {
+  border-color: var(--atelier-border-dark);
+  color: var(--atelier-cream);
+}
+
+body .stat-item {
+  background: var(--atelier-navy-panel);
+  color: var(--atelier-cream);
+  border-color: var(--atelier-border-dark) !important;
+}
+
+body .stat-value,
+body .stat-label {
+  color: var(--atelier-cream);
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+/* Unified consultation & contact form */
+body #partner-contact {
+  background: var(--atelier-bg);
+  color: var(--atelier-ink);
+}
+
+body .consult-form {
+  max-width: 720px;
+  margin-inline: auto;
+  background: var(--atelier-surface);
+  padding: clamp(24px, 4vw, 48px);
+  border: 1px solid var(--atelier-border);
+  border-radius: 8px;
+}
+
+body .form-row {
+  margin-bottom: 24px;
+}
+
+body .form-row > label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--atelier-ink);
+}
+
+body .form-row :is(input[type="text"], input[type="tel"], input[type="email"], textarea, select) {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--atelier-border);
+  background: var(--atelier-bg);
+  border-radius: 4px;
+  color: var(--atelier-ink);
+  font: inherit;
+  font-size: 16px;
+  min-height: 48px;
+}
+
+body .form-row textarea {
+  min-height: 128px;
+  resize: vertical;
+}
+
+body .form-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+body .form-radio-group label {
+  width: auto;
+  flex: 0 1 auto;
+  padding: 12px 16px;
+  border: 1px solid var(--atelier-border);
+  background: var(--atelier-bg);
+  border-radius: 4px;
+  font-size: 13px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--atelier-ink);
+}
+
+body .form-radio-group label:has(input:checked) {
+  background: var(--atelier-navy);
+  color: var(--atelier-cream);
+  border-color: var(--atelier-navy);
+}
+
+body input:is([type="radio"], [type="checkbox"]) {
+  accent-color: var(--atelier-gold-deep);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+body .form-consent {
+  font-size: 13px;
+  line-height: 1.75;
+  gap: 12px;
+  margin-block: 24px;
+  color: var(--atelier-ink);
+}
+
+body .form-submit {
+  background: var(--atelier-navy);
+  color: var(--atelier-cream);
+  width: 100%;
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+body .form-note {
+  font-size: 13px;
+  margin-top: 16px;
+  color: var(--atelier-ink-muted);
+}
+
+body .privacy-terms-box {
+  background: var(--atelier-bg);
+  border: 1px solid var(--atelier-border);
+  border-radius: 4px;
+  padding: 16px;
+  line-height: 1.75;
+  font-size: 13px;
+  color: var(--atelier-ink);
+}
+
+body .cost-disclaimer {
+  max-width: 900px;
+  margin-inline: auto;
+  padding: 24px;
+  border-radius: 8px !important;
+  background: var(--atelier-surface);
+  color: var(--atelier-ink);
+}
+
+/* Footer */
+body .footer {
+  background: var(--atelier-navy-deep);
+  color: var(--atelier-cream);
+  padding-top: 72px;
+}
+
+body .footer-top {
+  gap: 40px;
+  padding-bottom: 44px;
+  border-color: var(--atelier-border-dark) !important;
+}
+
+body .footer-brand .desc {
+  font-size: 13px;
+  line-height: 1.85;
+  max-width: 260px;
+  color: var(--atelier-cream-muted);
+}
+
+body .footer-col h5 {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--atelier-gold);
+  margin-bottom: 20px;
+}
+
+body .footer-col li,
+body .footer-col a {
+  font-size: 13px;
+  line-height: 1.85;
+  margin-bottom: 8px;
+  color: var(--atelier-cream);
+}
+
+body .footer-company-info {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--atelier-cream-muted);
+  padding-block: 28px;
+}
+
+body .footer-bottom,
+body .footer-bottom .company-copy {
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--atelier-cream-muted);
+}
+
+body .home-standalone-link {
+  background: var(--atelier-surface-2);
+  color: var(--atelier-gold-deep);
+  border-top: 1px solid var(--atelier-border);
+  padding: 20px;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+/* Section navigator */
+.atelier-tools {
+  position: fixed;
+  right: 24px;
+  bottom: 28px;
+  z-index: 85;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+body .atelier-tools button {
+  width: 44px;
+  height: 44px;
+  background: var(--atelier-navy);
+  color: var(--atelier-cream);
+  border: 1px solid var(--atelier-border-dark);
+  border-radius: 50%;
+  box-shadow: var(--atelier-shadow-sm);
+  font-size: 16px;
+}
+
+body .atelier-tools .atelier-index-trigger {
+  width: auto;
+  padding: 0 16px;
+  border-radius: 24px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.atelier-index {
+  border: 1px solid var(--atelier-border);
+  border-radius: 8px;
+  width: min(640px, calc(100% - 32px));
+  max-height: 80svh;
+  margin: auto;
+  padding: 28px;
+  background: var(--atelier-surface);
+  color: var(--atelier-ink);
+}
+
+.atelier-index::backdrop {
+  background: var(--atelier-backdrop);
+}
+
+.atelier-index header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--atelier-border);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.atelier-index h2 {
+  font-size: 22px;
+  letter-spacing: -0.03em;
+}
+
+.atelier-index header button {
+  padding: 8px;
+  min-width: 44px;
+  font-size: 20px;
+}
+
+.atelier-index nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px 24px;
+}
+
+.atelier-index nav a {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--atelier-border);
+  font-size: 14px;
+  color: var(--atelier-ink);
+}
+
+.atelier-index nav a small {
+  font-size: 12px;
+  color: var(--atelier-gold-deep);
+  margin-right: 12px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.atelier-index nav a:hover {
+  color: var(--atelier-accent);
+}
+
+@media (max-width: 1280px) {
+  html[lang] body .nav,
+  html[lang] body .nav.is-scrolled {
+    display: flex;
+    min-height: 76px;
+    padding: 12px 24px;
+    gap: 12px;
+  }
+  html[lang] body .nav .nav-menu,
+  html[lang] body .nav > .lang-switch-group {
+    display: none;
+  }
+  html[lang] body .nav-logo {
+    margin-right: auto;
+  }
+  html[lang] body .nav > .nav-cta {
+    display: flex;
+    align-items: center;
+  }
+  html[lang] body .nav-mobile-toggle {
+    display: flex !important;
+    width: 44px;
+    height: 44px;
+    padding: 12px;
+    color: var(--atelier-cream);
+  }
+  html[lang] body .nav-mobile-panel {
+    display: flex !important;
+    inset: 76px 0 0;
+    background: var(--atelier-navy);
+    color: var(--atelier-cream);
+    padding: 28px 24px 112px;
+    overflow-y: auto;
+    justify-content: flex-start;
+    overscroll-behavior: contain;
+  }
+  html[lang] body .nav-mobile-panel > a {
+    font-size: 20px;
+    line-height: 1.5;
+    min-height: 48px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--atelier-border-dark);
+    width: 100%;
+    color: var(--atelier-cream);
+  }
+}
+
+@media (max-width: 768px) {
+  body .container {
+    padding-inline: 24px;
+  }
+  html[lang] body.kinoya-home .hero {
+    padding: 76px 0 40px !important;
+    min-height: 0 !important;
+  }
+  html[lang] body.kinoya-home .hero > .hero-video {
+    aspect-ratio: 16 / 9;
+    object-fit: contain !important;
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  body.kinoya-home .hero-inner {
+    padding: 28px 24px 0 !important;
+  }
+  body.kinoya-home .hero-headline {
+    font-size: clamp(44px, 10vw, 64px);
+    line-height: 1.16;
+    margin-bottom: 20px;
+  }
+  body.kinoya-home .hero-sub {
+    font-size: 16px;
+    max-width: 100%;
+  }
+  body.kinoya-home .hero-facts {
+    gap: 28px;
+    margin-top: 28px;
+  }
+  body.kinoya-home .hero-facts strong {
+    font-size: 24px;
+  }
+  body .page-header {
+    padding: 128px 0 48px;
+  }
+  html[lang="ko"] body .home-full-section > .page-header {
+    padding: 52px 0 40px;
+  }
+  body .page-header p {
+    font-size: 14px;
+  }
+  body :is(.miracle, .origin-grid) {
+    gap: 32px;
+  }
+  body .miracle-body :is(p, .body-text) {
+    font-size: 15px;
+  }
+  body :is(.cost-table, .fr-cost-table) :is(td, th) {
+    padding: 12px;
+    font-size: 12px;
+  }
+  body .faq-q {
+    font-size: 15px;
+    padding: 20px;
+  }
+  body .faq-a-inner {
+    font-size: 14px;
+    padding: 0 20px 24px;
+  }
+  body .consult-form {
+    padding: 24px 20px;
+  }
+  body .form-radio-group label {
+    font-size: 12px;
+    padding: 12px;
+  }
+  body .footer-top {
+    gap: 32px;
+  }
+  body .footer {
+    padding-bottom: 92px;
+  }
+  body .atelier-tools {
+    right: 16px;
+    bottom: calc(80px + env(safe-area-inset-bottom));
+  }
+  body .atelier-tools button {
+    width: 44px;
+    height: 44px;
+  }
+  body .atelier-tools .atelier-index-trigger {
+    font-size: 12px;
+    padding: 0 16px;
+  }
+  body .mobile-bottom-nav {
+    background: var(--atelier-navy);
+    color: var(--atelier-cream);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  body .mobile-bottom-nav a {
+    min-height: 60px;
+    font-size: 12px;
+  }
+  body .floating-cta {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  body.kinoya-home .discovery-link {
+    padding: 20px 0;
+  }
+  body.kinoya-home .discovery-link strong {
+    font-size: 20px;
+  }
+  .atelier-index nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .atelier-index {
+    padding: 24px;
+  }
+  .atelier-index nav a {
+    padding: 12px 4px;
+  }
+  body .form-radio-group {
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  body :is(.menu-catalog-card, .store-card, .news-list-card, .people-profile-card, .btn-primary, .form-submit) {
+    transition: none !important;
+    transform: none !important;
+  }
+}

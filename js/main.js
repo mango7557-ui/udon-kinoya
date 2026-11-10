@@ -7,6 +7,14 @@
    - Reveal on scroll
    ========================================================= */
 
+// Shared progressive presentation, loaded independently of data services.
+if (!document.getElementById('atelier-script')) {
+  var atelierScript = document.createElement('script');
+  atelierScript.id = 'atelier-script';
+  atelierScript.src = new URL('atelier.js', document.currentScript.src).href;
+  document.head.append(atelierScript);
+}
+
 // Load shared validation/API without replacing window.fetch or touching external requests.
 if (!window.KinoyaRuntimeReady) {
   window.KinoyaRuntimeReady = window.KinoyaRuntime ? Promise.resolve(window.KinoyaRuntime) : new Promise(function(resolve,reject){

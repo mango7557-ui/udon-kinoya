@@ -702,7 +702,7 @@ window.addEventListener('error', function (event) {
       });
       if (!storeList.length) return;
       var filterBar = document.createElement('div');
-      filterBar.className = 'store-single-filter bg-amber-50 border border-amber-200 rounded-xl p-3.5 mb-5 flex flex-wrap items-center justify-between gap-3';
+      filterBar.className = 'store-single-filter border-b border-slate-200 pb-4 mb-5 flex flex-wrap items-center justify-between gap-3';
       filterBar.innerHTML =
         '<div class="text-xs sm:text-sm font-bold text-amber-900 flex items-center gap-2">' +
           '<i class="fa-solid fa-store text-amber-700"></i>' +
@@ -768,7 +768,7 @@ window.addEventListener('error', function (event) {
       });
       if (foodList.length) {
         var foodFilterBar = document.createElement('div');
-        foodFilterBar.className = 'food-single-filter bg-amber-50 border border-amber-200 rounded-xl p-3.5 mb-5 flex flex-wrap items-center justify-between gap-3';
+        foodFilterBar.className = 'food-single-filter border-b border-slate-200 pb-4 mb-5 flex flex-wrap items-center justify-between gap-3';
         foodFilterBar.innerHTML =
           '<div class="text-xs sm:text-sm font-bold text-amber-900 flex items-center gap-2">' +
             '<i class="fa-solid fa-camera text-amber-700"></i>' +
@@ -825,7 +825,7 @@ window.addEventListener('error', function (event) {
       });
       if (storeGalList.length) {
         var storeGalFilterBar = document.createElement('div');
-        storeGalFilterBar.className = 'store-gallery-single-filter bg-amber-50 border border-amber-200 rounded-xl p-3.5 mb-5 flex flex-wrap items-center justify-between gap-3';
+        storeGalFilterBar.className = 'store-gallery-single-filter border-b border-slate-200 pb-4 mb-5 flex flex-wrap items-center justify-between gap-3';
         storeGalFilterBar.innerHTML =
           '<div class="text-xs sm:text-sm font-bold text-amber-900 flex items-center gap-2">' +
             '<i class="fa-solid fa-images text-amber-700"></i>' +
@@ -989,6 +989,10 @@ window.addEventListener('error', function (event) {
     ];
 
     var allManagedElements = [];
+    // Preserve retired gallery fields in the archive rather than showing them under every tab.
+    var archiveTab=CATEGORIES.find(function(c){return c.id==='cat-home-system';}).subtabs.find(function(s){return s.id==='sub-home-archived';});
+    var usedElements=new Set(CATEGORIES.flatMap(function(c){return c.subtabs.flatMap(function(s){return s.elements||[];});}));
+    groups.forEach(function(group){var el=groupByTitle[group];if(el&&!usedElements.has(el))archiveTab.elements.push(el);});
     CATEGORIES.forEach(function (cat) {
       cat.subtabs.forEach(function (sub) {
         sub.elements = (sub.elements || []).filter(Boolean);
@@ -1006,6 +1010,37 @@ window.addEventListener('error', function (event) {
     var activeSubByCat = Object.create(null);
     CATEGORIES.forEach(function (c) { if (c.subtabs[0]) activeSubByCat[c.id] = c.subtabs[0].id; });
     var showAllMode = false;
+
+    window.KinoyaAdminNavigation = {
+      items: CATEGORIES.flatMap(function (cat) { return cat.subtabs.map(function (sub) { return { category:cat.id, id:sub.id, label:cat.label+' / '+sub.label, title:sub.label }; }); }),
+      open: function (category, sub) {
+        showAllMode=false;activeCatId=category;activeSubByCat[category]=sub;
+        renderCategoryBars();updateVisibility();
+      },
+      openTarget: function (targetId) {
+        var target = document.getElementById(targetId);
+        if (!target) return false;
+        for (var cat of CATEGORIES) {
+          var sub = cat.subtabs.find(function (item) {
+            return item.elements.some(function (el) { return el === target || el.contains(target); });
+          });
+          if (sub) {
+            window.KinoyaAdminNavigation.open(cat.id, sub.id);
+            target.scrollIntoView({ block: 'start' });
+            return true;
+          }
+        }
+        return false;
+      }
+    };
+
+    function openHashSection() {
+      try {
+        var id = decodeURIComponent(location.hash.slice(1));
+        if (id) window.KinoyaAdminNavigation.openTarget(id);
+      } catch(e) {}
+    }
+    window.addEventListener('hashchange',openHashSection);
 
     function updateVisibility() {
       if (showAllMode) {
@@ -1137,6 +1172,7 @@ window.addEventListener('error', function (event) {
 
     renderCategoryBars();
     updateVisibility();
+    openHashSection();
   }
 
   async function stageMenuPhoto(f,input) {

@@ -6,23 +6,23 @@
 /* Pretendard & Noto Serif JP는 index.html에서 CDN(jsDelivr / Google Fonts)으로 로드합니다. */
 
 :root{
-  --navy:        #1E2A38;
-  --navy-deep:   #14202B;
-  --navy-soft:   #2A3646;
-  --ivory:       #F4EEE2;
-  --ivory-2:     #EAE2D0;
-  --off-white:   #FBF7EE;
-  --wood:        #6B4A2B;
-  --wood-light:  #A8825C;
-  --noodle:      #E8D9B4;
-  --broth:       #C79A5A;
-  --ink-black:   #17130E;
-  --line-dark:   rgba(214,177,112,0.34);
-  --line-light:  rgba(168,130,92,0.34);
-  --line-gold:   rgba(214,177,112,0.38);
-  --line-gold-strong: rgba(232,217,180,0.68);
-  --line-bronze: rgba(168,130,92,0.36);
-  --line-bronze-strong: rgba(107,74,43,0.58);
+  --navy:        #13202B;
+  --navy-deep:   #0D1720;
+  --navy-soft:   #1D2F3D;
+  --ivory:       #F2F5F9;
+  --ivory-2:     #E7ECF3;
+  --off-white:   #FAFCFF;
+  --wood:        #5C4328;
+  --wood-light:  #5C4328;
+  --noodle:      #EBD8B2;
+  --broth:       #8A6236;
+  --ink-black:   #13202B;
+  --line-dark:   rgba(235,216,178,0.32);
+  --line-light:  rgba(19,32,43,0.16);
+  --line-gold:   rgba(235,216,178,0.36);
+  --line-gold-strong: rgba(235,216,178,0.68);
+  --line-bronze: rgba(19,32,43,0.18);
+  --line-bronze-strong: rgba(92,67,40,0.58);
 
   --font: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif;
   --disp: 'Helvetica Neue','Pretendard',sans-serif;
@@ -198,8 +198,7 @@ html[lang="ko"] .home-full-section > .page-header{ padding:64px 0 48px; }
   gap:16px;
   transition: background 320ms var(--ease-out), padding 320ms var(--ease-out), box-shadow 320ms var(--ease-out);
   color: var(--ivory);
-  /* 규칙3: 스크롤 전에도 어떤 배경(밝은 이미지도) 위에서 글씨 대비가 확보되도록 기본 그라데이션 배경 적용 */
-  background: linear-gradient(180deg, rgba(15,20,28,0.55) 0%, rgba(15,20,28,0.08) 80%, rgba(15,20,28,0) 100%);
+  background: var(--navy);
 }
 .nav.is-scrolled{
   background: rgba(48,70,90,0.98);
@@ -542,9 +541,9 @@ main [id]{ scroll-margin-top: 110px; }
 .section-jump .container::-webkit-scrollbar{ display:none; }
 .section-jump-label{
   font-family:var(--disp);
-  font-size:16.5px; font-weight:700; letter-spacing:0.14em;
-  text-transform:uppercase;
-  color: var(--noodle); opacity:0.6;
+  font-size:15px; font-weight:700;
+  letter-spacing:0.04em; text-transform:none;
+  color: var(--wood); opacity:1;
   flex-shrink:0;
 }
 .section-jump-links{ display:flex; gap:8px; flex-shrink:0; }
@@ -3026,12 +3025,13 @@ a.footer-sns-item:not([href]){ display:none !important; }
 .partner-logo-track{
   display:flex;
   align-items:center;
-  gap:56px;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:48px;
   flex-shrink:0;
-  animation: partner-scroll-left 32s linear infinite;
 }
 .partner-logo-row-reverse .partner-logo-track{
-  animation-name: partner-scroll-right;
+  flex-direction:row;
 }
 .partner-logo-row:hover .partner-logo-track{ animation-play-state: paused; }
 .partner-logo-item{
@@ -4209,4 +4209,3 @@ html[lang="ko"] .nav.is-scrolled{
   border-radius: 10px !important;
   padding: 20px 24px;
 }
-

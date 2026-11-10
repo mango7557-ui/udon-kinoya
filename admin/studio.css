@@ -1,0 +1,665 @@
+/* Hallmark · v2.0.0 · genre: modern-minimal · theme: studio (custom) · scope: app · redesign: restyle */
+/* critique: flattened nested admin cards, established clear 1.35x heading hierarchy, raised all functional labels to >=12px, and moved all colours to root tokens. */
+/* waive: F7 (shared form control recipe across CMS inputs, selects, and textareas) */
+
+:root:root {
+  --studio-font: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --studio-ink: #14222d;
+  --studio-muted: #415261;
+  --studio-paper: #f2f5f9;
+  --studio-surface: #fafcff;
+  --studio-surface-subtle: #e8eef5;
+  --studio-line: #d0dae5;
+  --studio-line-soft: #dee6ef;
+  --studio-navy: #14222d;
+  --studio-header-ink: #f4f7fa;
+  --studio-header-pill: rgba(244, 247, 250, 0.1);
+  --studio-header-pill-border: rgba(244, 247, 250, 0.24);
+  --studio-gold: #e6d2ad;
+  --studio-accent: #5e472b;
+  --studio-emerald: #1f5c46;
+  --studio-danger-bg: #fdf3f2;
+  --studio-danger-ink: #9e2a22;
+  --studio-focus: #9a5b13;
+  --studio-disabled-bg: #e2e8f0;
+  --studio-disabled-ink: #5b6b79;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+body {
+  background: var(--studio-paper) !important;
+  color: var(--studio-ink) !important;
+  font-family: var(--studio-font) !important;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+body :is(button, input, textarea, select) {
+  font-family: inherit;
+}
+
+body :is(a, button, input, textarea, select):focus-visible {
+  outline: 3px solid var(--studio-focus);
+  outline-offset: 4px;
+}
+
+body :is(button, input, select) {
+  min-height: 44px;
+}
+
+body button:active,
+body a:active {
+  transform: translateY(1px);
+}
+
+body button:disabled,
+body .collection-action:disabled {
+  background: var(--studio-disabled-bg) !important;
+  color: var(--studio-disabled-ink) !important;
+  border-color: var(--studio-line) !important;
+  opacity: 1 !important;
+  cursor: not-allowed !important;
+}
+
+body header.bg-slate-900,
+body .admin-header {
+  background: var(--studio-navy) !important;
+  color: var(--studio-header-ink) !important;
+  border-bottom: 1px solid var(--studio-line);
+}
+
+#admin-app > header {
+  position: relative !important;
+}
+
+#admin-app > header > div {
+  max-width: 1540px;
+  padding: 20px 32px;
+}
+
+#admin-app > header .tracking-widest {
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 700;
+}
+
+#admin-app > header span.text-xs {
+  font-size: 12px !important;
+  color: var(--studio-gold) !important;
+}
+
+#admin-app > header a {
+  background: var(--studio-header-pill) !important;
+  border: 1px solid var(--studio-header-pill-border);
+  color: var(--studio-header-ink) !important;
+  border-radius: 4px;
+  min-height: 40px;
+  padding: 8px 12px;
+  font-size: 12px !important;
+  display: inline-flex;
+  align-items: center;
+}
+
+#admin-app > header #jump-consultations-btn {
+  background: var(--studio-gold) !important;
+  color: var(--studio-navy) !important;
+  border-color: var(--studio-gold);
+}
+
+#admin-app > .max-w-7xl {
+  max-width: 1540px;
+  padding: 32px;
+  gap: 28px;
+}
+
+#admin-app aside {
+  width: 248px;
+}
+
+#admin-app aside > div {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  top: 24px !important;
+}
+
+#admin-app aside .text-xs {
+  font-size: 12px !important;
+  color: var(--studio-muted) !important;
+}
+
+#group-nav {
+  scrollbar-width: thin;
+  scrollbar-color: var(--studio-line) transparent;
+}
+
+#group-nav button {
+  border-radius: 4px;
+  font-size: 13px !important;
+  min-height: 44px;
+  padding: 12px;
+}
+
+#group-nav button span {
+  font-size: 12px !important;
+}
+
+#group-nav button.bg-slate-900 {
+  background: var(--studio-navy) !important;
+  color: var(--studio-header-ink) !important;
+}
+
+/* Top-level sections use clean divider hierarchy instead of outer card boxes, preventing Card-inside-card nesting */
+#admin-app main > .bg-white,
+#admin-category-hub {
+  background: var(--studio-surface) !important;
+  border: 1px solid var(--studio-line) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  padding: 24px !important;
+  margin-bottom: 24px !important;
+}
+
+#fields-container > section,
+#consultations-section,
+#backup-section,
+#visitor-stats-section,
+#yt-sync-section,
+#yt-manage-section,
+#plogo-section,
+#stores-manage-section,
+#faq-manage-section,
+#news-manage-section,
+#resources-manage-section {
+  background: transparent !important;
+  border: 0 !important;
+  border-top: 2px solid var(--studio-line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 28px 0 !important;
+  margin-bottom: 28px !important;
+}
+
+/* Inner panels inside flat sections act as single-level cards with generous 20px inset padding */
+#backup-section > .bg-slate-50,
+#visitor-stats-section .bg-slate-50,
+#yt-sync-section > .bg-slate-50,
+#yt-sync-section > .border-2,
+#yt-manage-section > .border,
+#plogo-section > .bg-slate-50,
+#plogo-section > .border,
+#faq-manage-section > .bg-slate-50,
+#faq-manage-section > .border,
+#news-manage-section > .bg-slate-50,
+#news-manage-section > .border,
+#resources-manage-section > .bg-slate-50,
+#resources-manage-section > .border {
+  background: var(--studio-surface) !important;
+  border: 1px solid var(--studio-line) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  padding: 20px !important;
+}
+
+#store-excel-toolbar,
+#store-excel-toolbar :is(div, section),
+#yt-sync-section .grid > .bg-slate-50 {
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--studio-line-soft) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 16px 0 !important;
+}
+
+body #save-all-btn,
+body #save {
+  background: var(--studio-navy) !important;
+  color: var(--studio-header-ink) !important;
+  min-height: 48px;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 14px !important;
+}
+
+body #save-status {
+  border-radius: 4px;
+  font-size: 13px !important;
+  line-height: 1.7;
+  padding: 16px 20px !important;
+  background: var(--studio-surface-subtle) !important;
+  color: var(--studio-ink) !important;
+  border: 1px solid var(--studio-line) !important;
+}
+
+#admin-category-hub {
+  position: sticky !important;
+  top: 12px !important;
+  z-index: 15;
+}
+
+#admin-top-categories {
+  gap: 8px;
+  padding-bottom: 16px;
+}
+
+#admin-top-categories button {
+  font-size: 13px !important;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 12px 16px;
+  background: var(--studio-surface-subtle);
+  color: var(--studio-ink);
+}
+
+#admin-top-categories [aria-selected="true"] {
+  background: var(--studio-navy);
+  color: var(--studio-header-ink);
+}
+
+#admin-sub-tabs {
+  gap: 8px;
+  padding-top: 16px;
+}
+
+#admin-sub-tabs button {
+  font-size: 12px !important;
+  min-height: 40px;
+  border: 1px solid var(--studio-line);
+  border-radius: 4px;
+  padding: 8px 16px;
+  background: var(--studio-surface);
+  color: var(--studio-ink);
+}
+
+#admin-sub-tabs [aria-selected="true"] {
+  background: var(--studio-accent);
+  color: var(--studio-header-ink);
+  border-color: var(--studio-accent);
+}
+
+/* Clear typography hierarchy: h1 (32px) > h2 (22px) > h3 (18px) > body (14px) */
+.studio-welcome h1,
+body .intro h1 {
+  font-size: clamp(28px, 3vw, 36px) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  margin: 0 0 8px;
+  text-wrap: balance;
+  color: var(--studio-ink) !important;
+}
+
+#admin-app h2,
+#fields-container h2 {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--studio-line-soft);
+  text-wrap: balance;
+  color: var(--studio-ink) !important;
+}
+
+#admin-app h3,
+body .collection-card h3 {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  border-bottom: 1px solid var(--studio-line-soft);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  text-wrap: balance;
+  color: var(--studio-ink) !important;
+}
+
+#admin-app :is(div, p, span, small, td, th).text-xs:not(header *):not(button *):not(a *),
+#fields-container .font-mono {
+  font-size: 12px !important;
+  line-height: 1.6;
+  color: var(--studio-muted) !important;
+  overflow-wrap: anywhere;
+}
+
+#admin-app :is(.text-slate-400, .text-slate-500):not(header *) {
+  color: var(--studio-muted) !important;
+}
+
+#admin-app :is(.bg-slate-700, .bg-slate-800, .bg-slate-900, .bg-emerald-600, .bg-emerald-700, .bg-rose-600, .bg-indigo-600, .bg-teal-700, .bg-amber-600) {
+  background: var(--studio-navy) !important;
+  color: var(--studio-header-ink) !important;
+}
+
+#admin-app :is(.bg-slate-700, .bg-slate-800, .bg-slate-900, .bg-emerald-600, .bg-emerald-700) * {
+  color: var(--studio-header-ink) !important;
+}
+
+#fields-container label {
+  font-size: 14px !important;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--studio-ink) !important;
+}
+
+#fields-container :is(textarea, input:not([type="checkbox"]):not([type="file"]), select),
+.collection-card :is(input, textarea, select),
+body #search {
+  border: 1px solid var(--studio-line) !important;
+  border-radius: 4px !important;
+  background: var(--studio-paper) !important;
+  color: var(--studio-ink) !important;
+  font-size: 14px !important;
+  padding: 12px 16px !important;
+  box-shadow: none !important;
+}
+
+#fields-container textarea {
+  min-height: 96px;
+  line-height: 1.75;
+  resize: vertical;
+}
+
+#fields-container input[type="file"] {
+  font-size: 12px !important;
+  padding: 8px 0;
+}
+
+#fields-container input[type="file"]::file-selector-button {
+  background: var(--studio-surface-subtle);
+  border: 1px solid var(--studio-line);
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: var(--studio-ink);
+  margin-right: 12px;
+}
+
+#fields-container img {
+  border-radius: 4px;
+  border-color: var(--studio-line);
+}
+
+#fields-container button {
+  border-radius: 4px;
+  font-size: 12px !important;
+  line-height: 1.5;
+  min-height: 40px;
+  padding: 8px 16px;
+}
+
+#fields-container :is(.bg-emerald-700, .bg-emerald-600) {
+  background: var(--studio-emerald) !important;
+  color: var(--studio-header-ink) !important;
+}
+
+body .collection-card {
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--studio-line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 24px 0 !important;
+  margin: 0 !important;
+  gap: 16px;
+}
+
+body .collection-action {
+  border-radius: 4px;
+  font-size: 13px !important;
+  background: var(--studio-navy) !important;
+  color: var(--studio-header-ink) !important;
+  border: 1px solid var(--studio-navy) !important;
+  padding: 12px 16px;
+  min-height: 44px;
+}
+
+body .collection-action.danger {
+  background: var(--studio-danger-bg) !important;
+  color: var(--studio-danger-ink) !important;
+  border-color: var(--studio-danger-ink) !important;
+}
+
+body .admin-header {
+  padding: 20px 32px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+body .admin-header nav {
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+body .workspace {
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 28px;
+}
+
+body .toolbar {
+  background: var(--studio-paper);
+  border-bottom: 1px solid var(--studio-line);
+  padding: 16px 0;
+}
+
+body .notice {
+  background: var(--studio-surface);
+  border-color: var(--studio-line);
+  border-radius: 4px;
+  padding: 20px 24px;
+  color: var(--studio-muted);
+}
+
+body .field {
+  border-color: var(--studio-line-soft);
+}
+
+.studio-welcome {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 4px 0 24px;
+}
+
+.studio-welcome p {
+  font-size: 14px;
+  color: var(--studio-muted);
+  margin: 0;
+}
+
+.studio-welcome a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--studio-accent);
+  border-bottom: 1px solid var(--studio-accent);
+  padding-bottom: 4px;
+  white-space: nowrap;
+}
+
+.studio-search {
+  margin: 0 0 20px;
+  position: relative;
+}
+
+.studio-search label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-bottom: 8px;
+  color: var(--studio-ink);
+}
+
+.studio-search input {
+  width: 100%;
+  border: 1px solid var(--studio-line);
+  border-radius: 4px;
+  background: var(--studio-surface);
+  padding: 12px;
+  font-size: 13px;
+  color: var(--studio-ink);
+}
+
+.studio-search ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 280px;
+  overflow: auto;
+  background: var(--studio-surface);
+  border-radius: 4px;
+}
+
+.studio-search li button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: 12px;
+  border: 0;
+  border-bottom: 1px solid var(--studio-line-soft);
+  padding: 12px;
+  background: transparent;
+  color: var(--studio-ink);
+}
+
+.studio-search li button:hover {
+  background: var(--studio-surface-subtle);
+}
+
+.studio-search [role="status"] {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--studio-muted);
+}
+
+.studio-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.studio-shortcuts a {
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--studio-line);
+  padding: 12px 16px;
+  background: var(--studio-surface);
+  color: var(--studio-ink);
+  border-radius: 4px;
+}
+
+.studio-shortcuts a:hover {
+  background: var(--studio-surface-subtle);
+}
+
+@media (max-width: 1023px) {
+  #admin-app > .max-w-7xl {
+    padding: 24px;
+    display: block;
+  }
+  #admin-app aside {
+    width: 100%;
+  }
+  #group-nav {
+    display: none;
+  }
+  .studio-search {
+    max-width: none;
+  }
+  #admin-category-hub {
+    position: relative !important;
+    top: auto !important;
+  }
+  #admin-app > header > div {
+    padding: 16px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  #admin-app > .max-w-7xl {
+    padding: 16px;
+  }
+  #admin-app > header > div {
+    padding: 16px;
+  }
+  #admin-app > header a {
+    font-size: 12px !important;
+    padding: 8px 12px;
+  }
+  #fields-container > section {
+    padding: 20px 16px !important;
+  }
+  #admin-top-categories {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  #admin-top-categories button {
+    font-size: 12px !important;
+    text-align: left;
+    padding: 12px;
+  }
+  #admin-sub-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  #admin-sub-tabs button {
+    flex-shrink: 0;
+    max-width: 240px;
+    white-space: normal;
+    text-align: left;
+  }
+  .studio-welcome {
+    align-items: flex-start;
+  }
+  .studio-welcome > a {
+    display: none;
+  }
+  body .workspace {
+    display: block;
+  }
+  body .workspace aside {
+    position: relative;
+    top: auto;
+    max-height: none;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  body .toolbar {
+    position: relative;
+    top: auto;
+  }
+  body .admin-header nav {
+    font-size: 12px;
+  }
+  #fields-container :is(input, textarea, select),
+  body #search {
+    font-size: 16px !important;
+    max-width: 100%;
+    min-width: 0;
+  }
+  #fields-container .flex {
+    min-width: 0;
+    max-width: 100%;
+  }
+  #fields-container select {
+    width: 100%;
+  }
+  body .collection-card {
+    padding: 16px 0 !important;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body .collection-action {
+    overflow-wrap: anywhere;
+  }
+}

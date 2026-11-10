@@ -433,7 +433,7 @@
   function mountExcelToolbarAndReferenceEditor(section) {
     const bar = document.createElement('div');
     bar.id = 'store-excel-toolbar';
-    bar.className = 'bg-slate-50 border border-slate-200 rounded-xl p-4 mb-5 space-y-4';
+    bar.className = 'mb-5 space-y-4';
     bar.innerHTML =
       '<div class="flex flex-wrap items-center justify-between gap-3">' +
         '<div>' +
