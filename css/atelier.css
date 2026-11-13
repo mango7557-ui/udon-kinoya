@@ -95,7 +95,7 @@ body .patent-seal,
 body .banner-tag,
 body .reduction-eyebrow {
   font-family: var(--font);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: none;
@@ -272,7 +272,7 @@ body.kinoya-home .nav-menu {
 
 body .nav-menu a,
 body.kinoya-home .nav-menu a {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.02em;
   min-height: 44px;
@@ -293,7 +293,7 @@ body.kinoya-home .nav > .nav-cta {
   background: var(--atelier-gold);
   color: var(--atelier-navy-deep);
   padding: 12px 20px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   white-space: nowrap;
   min-height: 44px;
@@ -308,7 +308,7 @@ body.kinoya-home .nav > .lang-switch-group {
 
 body .lang-switch,
 body.kinoya-home .lang-switch {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   padding: 8px 12px;
   min-height: 40px;
@@ -339,21 +339,21 @@ body.kinoya-home .hero-brand-tag {
   border: 0;
   border-radius: 0;
   color: var(--atelier-gold);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.02em;
   margin-bottom: 24px;
   padding: 0;
 }
 
 body.kinoya-home .hero-jp {
-  font-size: 15px;
+  font-size: 16px;
   letter-spacing: 0.02em;
   color: var(--atelier-cream-muted);
   margin-bottom: 20px;
 }
 
 body.kinoya-home .hero-headline {
-  font-size: clamp(48px, 6vw, 84px);
+  font-size: clamp(52px, 6.2vw, 86px);
   line-height: 1.14;
   letter-spacing: -0.04em;
   font-weight: 700;
@@ -363,13 +363,13 @@ body.kinoya-home .hero-headline {
 }
 
 body.kinoya-home .hero-sub {
-  font-size: 18px;
+  font-size: clamp(18px, 2vw, 22px);
   line-height: 1.75;
   color: var(--atelier-cream);
 }
 
 body.kinoya-home .hero-inner > p {
-  font-size: 15px !important;
+  font-size: 16px !important;
   color: var(--atelier-cream-muted) !important;
   line-height: 1.85 !important;
 }
@@ -379,10 +379,10 @@ body.kinoya-home .hero-cta-row {
 }
 
 body.kinoya-home .hero-cta-row a {
-  height: 52px;
-  padding-inline: 24px;
+  height: 56px;
+  padding-inline: 28px;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
 }
 
@@ -411,14 +411,14 @@ body.kinoya-home .hero-facts {
 }
 
 body.kinoya-home .hero-facts strong {
-  font-size: 28px;
+  font-size: 32px;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
   color: var(--atelier-cream);
 }
 
 body.kinoya-home .hero-facts span {
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0;
   color: var(--atelier-cream-muted);
 }
@@ -442,20 +442,20 @@ body.kinoya-home .discovery-link {
 }
 
 body.kinoya-home .discovery-link small {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--atelier-gold-deep);
   letter-spacing: 0.02em;
   font-weight: 700;
 }
 
 body.kinoya-home .discovery-link strong {
-  font-size: 22px;
+  font-size: 24px;
   letter-spacing: -0.03em;
   color: var(--atelier-ink);
 }
 
 body.kinoya-home .discovery-link span {
-  font-size: 20px;
+  font-size: 22px;
   color: var(--atelier-gold-deep);
 }
 
@@ -514,13 +514,13 @@ body .section-jump-links {
 
 body .section-jump-label {
   color: var(--atelier-gold-deep);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
 }
 
 body .section-jump-links a,
 body.kinoya-home .section-jump-links a {
-  font-size: 13px;
+  font-size: 14px;
   padding: 8px 16px;
   border-radius: 4px;
   line-height: 1.5;
@@ -665,7 +665,7 @@ body :is(.miracle-visual, .story-visual) {
 }
 
 body .miracle-body :is(p, .body-text) {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.9;
 }
 
@@ -689,7 +689,7 @@ body .menu-category-heading {
 }
 
 body .menu-category-heading h3 {
-  font-size: 28px;
+  font-size: 30px;
   letter-spacing: -0.03em;
 }
 
@@ -698,19 +698,19 @@ body .store-body {
 }
 
 body .store-body h3 {
-  font-size: 22px;
+  font-size: 24px;
   letter-spacing: -0.03em;
 }
 
 body .store-body address {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.7;
 }
 
 body .store-actions a {
   min-height: 44px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 body .news-list-card .news-list-body {
@@ -718,7 +718,7 @@ body .news-list-card .news-list-body {
 }
 
 body .news-list-title {
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1.45;
   letter-spacing: -0.03em;
 }
@@ -730,7 +730,7 @@ body .resource-item {
 
 body .resource-download {
   padding: 12px 20px;
-  font-size: 13px;
+  font-size: 14px;
   border-radius: 4px;
 }
 
@@ -742,25 +742,25 @@ body .faq-item {
 
 body .faq-q {
   padding: 24px;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.6;
   text-align: left;
 }
 
 body .faq-a-inner {
   padding: 0 24px 24px;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.85;
 }
 
 body .faq-category-tabs button {
   border-radius: 4px;
-  font-size: 13px;
+  font-size: 15px;
   min-height: 44px;
 }
 
 body :is(.cost-table, .fr-cost-table) {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.8;
 }
 
@@ -796,11 +796,21 @@ body .short-title {
   color: var(--atelier-cream) !important;
 }
 
+body .social-desc {
+  font-size: 22px;
+  font-weight: 600;
+}
+
 body .social-subdesc,
 body .short-views {
   color: var(--atelier-cream-muted) !important;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
+}
+
+body .social-section-title {
+  font-size: 24px;
+  font-weight: 700;
 }
 
 body .social-header {
@@ -818,9 +828,10 @@ body .social-tabs .tab-btn {
   color: var(--atelier-cream);
   border: 1px solid var(--atelier-border-dark);
   background: var(--atelier-navy-panel);
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 600;
   min-height: 44px;
-  padding: 8px 16px;
+  padding: 12px 20px;
 }
 
 body .social-tabs .tab-btn.active {
@@ -839,11 +850,12 @@ body .video-card {
 
 body .video-title {
   color: var(--atelier-cream);
+  font-size: 17px;
 }
 
 body .video-meta {
   color: var(--atelier-cream-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 body .btn-youtube,
@@ -851,10 +863,10 @@ body .btn-more-videos {
   background: var(--atelier-gold) !important;
   color: var(--atelier-navy-deep) !important;
   border-radius: 4px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
-  min-height: 44px;
-  padding: 12px 20px;
+  min-height: 48px;
+  padding: 12px 24px;
 }
 
 body .social-stats {
@@ -866,13 +878,25 @@ body .stat-item {
   background: var(--atelier-navy-panel);
   color: var(--atelier-cream);
   border-color: var(--atelier-border-dark) !important;
+  padding: 40px 28px;
 }
 
-body .stat-value,
+body .stat-value {
+  color: var(--atelier-gold) !important;
+  font-size: clamp(42px, 4.8vw, 60px) !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.03em !important;
+  margin-bottom: 12px !important;
+  font-variant-numeric: tabular-nums;
+}
+
 body .stat-label {
-  color: var(--atelier-cream);
-  font-size: 13px;
-  letter-spacing: 0;
+  color: var(--atelier-cream) !important;
+  font-size: clamp(16px, 1.6vw, 20px) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.4 !important;
 }
 
 /* Unified consultation & contact form */
@@ -896,7 +920,7 @@ body .form-row {
 
 body .form-row > label {
   display: block;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   margin-bottom: 8px;
   color: var(--atelier-ink);
@@ -932,7 +956,7 @@ body .form-radio-group label {
   border: 1px solid var(--atelier-border);
   background: var(--atelier-bg);
   border-radius: 4px;
-  font-size: 13px;
+  font-size: 15px;
   min-height: 44px;
   display: flex;
   align-items: center;
@@ -954,7 +978,7 @@ body input:is([type="radio"], [type="checkbox"]) {
 }
 
 body .form-consent {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.75;
   gap: 12px;
   margin-block: 24px;
@@ -966,12 +990,12 @@ body .form-submit {
   color: var(--atelier-cream);
   width: 100%;
   padding: 16px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
 }
 
 body .form-note {
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 16px;
   color: var(--atelier-ink-muted);
 }
@@ -982,7 +1006,7 @@ body .privacy-terms-box {
   border-radius: 4px;
   padding: 16px;
   line-height: 1.75;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--atelier-ink);
 }
 
@@ -1009,14 +1033,14 @@ body .footer-top {
 }
 
 body .footer-brand .desc {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.85;
-  max-width: 260px;
+  max-width: 280px;
   color: var(--atelier-cream-muted);
 }
 
 body .footer-col h5 {
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.02em;
   color: var(--atelier-gold);
   margin-bottom: 20px;
@@ -1024,14 +1048,14 @@ body .footer-col h5 {
 
 body .footer-col li,
 body .footer-col a {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.85;
   margin-bottom: 8px;
   color: var(--atelier-cream);
 }
 
 body .footer-company-info {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.9;
   color: var(--atelier-cream-muted);
   padding-block: 28px;
@@ -1039,7 +1063,7 @@ body .footer-company-info {
 
 body .footer-bottom,
 body .footer-bottom .company-copy {
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0;
   text-transform: none;
   color: var(--atelier-cream-muted);
@@ -1050,7 +1074,8 @@ body .home-standalone-link {
   color: var(--atelier-gold-deep);
   border-top: 1px solid var(--atelier-border);
   padding: 20px;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 600;
   letter-spacing: 0;
 }
 
