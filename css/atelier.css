@@ -44,6 +44,13 @@
   --atelier-shadow: 0 16px 40px -24px rgba(13, 23, 32, 0.22);
   --atelier-shadow-sm: 0 8px 24px -16px rgba(13, 23, 32, 0.18);
   --atelier-backdrop: rgba(13, 23, 32, 0.68);
+  --atelier-spot-light: rgba(92, 67, 40, 0.08);
+  --atelier-spot-dark: rgba(230, 207, 158, 0.11);
+  --atelier-card-glow-light: rgba(166, 58, 36, 0.12);
+  --atelier-card-glow-dark: rgba(230, 207, 158, 0.18);
+  --atelier-ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --atelier-ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --atelier-ease-press: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 html,
@@ -1338,12 +1345,369 @@ body .atelier-tools .atelier-index-trigger {
   }
 }
 
+/* =========================================================
+   Full-Site Pointer-Responsive Layer (Desktop Fine Pointer)
+   ========================================================= */
+@media (hover: hover) and (pointer: fine) {
+  /* 1. Ambient cursor spotlight across every section */
+  body main > section,
+  body .home-full-section > .section,
+  body .page-header,
+  body .footer {
+    position: relative;
+    isolation: isolate;
+  }
+
+  body :is(main > section, .home-full-section > .section, .page-header, .footer)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: var(--sec-spot-alpha, 0);
+    transition: opacity 280ms var(--atelier-ease-enter);
+    background: radial-gradient(
+      560px circle at var(--sec-mx, 50%) var(--sec-my, 50%),
+      var(--atelier-spot-light),
+      transparent 70%
+    );
+  }
+
+  body :is(.sec-navy, .sec-social, .hero, .page-header, .footer)::before {
+    background: radial-gradient(
+      620px circle at var(--sec-mx, 50%) var(--sec-my, 50%),
+      var(--atelier-spot-dark),
+      transparent 70%
+    );
+  }
+
+  body :is(main > section, .home-full-section > .section, .page-header, .footer) > .container,
+  body .hero > .hero-inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* 2. Interactive cards across every section: pointer-tracking sheen + crisp 4px lift */
+  body :is(
+    .stat-item,
+    .number-card,
+    .tech-card,
+    .model-card,
+    .store-card,
+    .menu-catalog-card,
+    .menu-card,
+    .video-card,
+    .short-card,
+    .people-profile-card,
+    .news-list-card,
+    .resource-item,
+    .faq-item,
+    .final-card,
+    .fr-cost-guide-card,
+    .cost-concept-block,
+    .fr-conversion-card,
+    .fr-compact-bar-card,
+    .pos-proof-card,
+    .rc-row,
+    .discovery-link
+  ) {
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(var(--ptr-tx, 0px), var(--ptr-ty, 0px), 0);
+    transition:
+      transform 220ms var(--atelier-ease-expo),
+      border-color 200ms var(--atelier-ease-enter),
+      box-shadow 220ms var(--atelier-ease-expo),
+      background-color 200ms var(--atelier-ease-enter);
+  }
+
+  body :is(
+    .stat-item,
+    .number-card,
+    .tech-card,
+    .model-card,
+    .store-card,
+    .menu-catalog-card,
+    .video-card,
+    .people-profile-card,
+    .news-list-card,
+    .resource-item,
+    .faq-item,
+    .final-card,
+    .fr-cost-guide-card,
+    .cost-concept-block,
+    .fr-conversion-card,
+    .fr-compact-bar-card,
+    .pos-proof-card
+  )::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: var(--card-spot-alpha, 0);
+    transition: opacity 200ms var(--atelier-ease-enter);
+    background: radial-gradient(
+      320px circle at var(--mx, 50%) var(--my, 50%),
+      var(--atelier-card-glow-light),
+      transparent 72%
+    );
+  }
+
+  body :is(.sec-navy, .sec-social, .footer) :is(
+    .stat-item,
+    .number-card,
+    .tech-card,
+    .video-card,
+    .final-card,
+    .pos-proof-card
+  )::after,
+  body :is(.stat-item, .video-card, .final-card, .pos-proof-card)::after {
+    background: radial-gradient(
+      340px circle at var(--mx, 50%) var(--my, 50%),
+      var(--atelier-card-glow-dark),
+      transparent 72%
+    );
+  }
+
+  body :is(
+    .stat-item,
+    .number-card,
+    .tech-card,
+    .model-card,
+    .store-card,
+    .menu-catalog-card,
+    .video-card,
+    .short-card,
+    .people-profile-card,
+    .news-list-card,
+    .resource-item,
+    .faq-item,
+    .final-card,
+    .fr-cost-guide-card,
+    .cost-concept-block,
+    .fr-conversion-card,
+    .fr-compact-bar-card,
+    .pos-proof-card
+  ):hover {
+    --ptr-ty: -4px;
+    box-shadow: var(--atelier-shadow);
+    border-color: var(--line-bronze-strong) !important;
+  }
+
+  body :is(.sec-navy, .sec-social) :is(.stat-item, .number-card, .tech-card, .video-card, .short-card, .final-card):hover,
+  body :is(.stat-item, .video-card, .final-card):hover {
+    border-color: var(--line-gold-strong) !important;
+  }
+
+  /* 3. Framed photographs & visual media: subtle 1.035x zoom inside frame on pointer hover */
+  body :is(
+    .miracle-visual img,
+    .story-visual img,
+    .store-thumb img,
+    .video-thumb img,
+    .short-card img,
+    .people-profile-photo img,
+    .news-list-thumb img,
+    .rc-compare img,
+    .conv-photo-slot img,
+    .compact-bar-gallery img,
+    .pos-proof-visual img
+  ) {
+    transition: transform 380ms var(--atelier-ease-expo);
+  }
+
+  body :is(
+    .miracle-visual:hover img,
+    .story-visual:hover img,
+    .store-card:hover .store-thumb img,
+    .video-card:hover .video-thumb img,
+    .short-card:hover img,
+    .people-profile-card:hover .people-profile-photo img,
+    .news-list-card:hover .news-list-thumb img,
+    .rc-row:hover .rc-compare img,
+    .fr-conversion-card:hover .conv-photo-slot img,
+    .compact-bar-gallery figure:hover img,
+    .pos-proof-card:hover .pos-proof-visual img
+  ) {
+    transform: scale(1.035);
+  }
+
+  body .menu-catalog-photo,
+  body .tech-card-bg {
+    transition: transform 380ms var(--atelier-ease-expo);
+  }
+
+  body .menu-catalog-card:hover .menu-catalog-photo,
+  body .tech-card:hover .tech-card-bg {
+    transform: scale(1.035);
+  }
+
+  /* 4. Navigation links, discovery links, buttons, jump chips, and table rows */
+  body .nav-menu a {
+    position: relative;
+  }
+
+  body .nav-menu a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    height: 2px;
+    background: var(--atelier-gold);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 200ms var(--atelier-ease-expo);
+  }
+
+  body .nav-menu a:is(:hover, .is-active)::after {
+    transform: scaleX(1);
+  }
+
+  body .discovery-link span,
+  body .hero-cta-row .arrow,
+  body .final-card .clink {
+    display: inline-block;
+    transition: transform 200ms var(--atelier-ease-expo);
+  }
+
+  body .discovery-link:hover span,
+  body .hero-cta-row a:hover .arrow,
+  body .final-card:hover .clink {
+    transform: translateX(4px);
+  }
+
+  body :is(
+    .btn-primary,
+    .btn-ghost,
+    .nav-cta,
+    .btn-youtube,
+    .btn-more-videos,
+    .resource-download,
+    .store-actions a,
+    .section-jump-links a,
+    .faq-category-tabs button,
+    .social-tabs .tab-btn,
+    .form-radio-group label,
+    .form-submit
+  ) {
+    transform: translate3d(var(--btn-tx, 0px), var(--btn-ty, 0px), 0);
+    transition:
+      transform 180ms var(--atelier-ease-enter),
+      background-color 180ms var(--atelier-ease-enter),
+      color 180ms var(--atelier-ease-enter),
+      border-color 180ms var(--atelier-ease-enter),
+      opacity 180ms var(--atelier-ease-enter);
+  }
+
+  body :is(
+    .btn-primary,
+    .btn-ghost,
+    .nav-cta,
+    .btn-youtube,
+    .btn-more-videos,
+    .resource-download,
+    .store-actions a,
+    .section-jump-links a,
+    .faq-category-tabs button,
+    .social-tabs .tab-btn,
+    .form-radio-group label,
+    .form-submit
+  ):hover {
+    --btn-ty: -2px;
+  }
+
+  body :is(
+    .btn-primary,
+    .btn-ghost,
+    .nav-cta,
+    .btn-youtube,
+    .btn-more-videos,
+    .resource-download,
+    .store-actions a,
+    .section-jump-links a,
+    .faq-category-tabs button,
+    .social-tabs .tab-btn,
+    .form-radio-group label,
+    .form-submit
+  ):active {
+    --btn-ty: 1px;
+    transition-duration: 90ms;
+    transition-timing-function: var(--atelier-ease-press);
+  }
+
+  /* Interactive table row highlight on franchise cost & conversion tables */
+  body :is(.cost-table, .fr-cost-table) tbody tr {
+    transition: background-color 160ms var(--atelier-ease-enter);
+  }
+
+  body :is(.cost-table, .fr-cost-table) tbody tr:hover {
+    background-color: var(--atelier-surface-2);
+  }
+
+  /* Hero facts & key numbers respond subtly on hover */
+  body .hero-facts > div {
+    transition: transform 200ms var(--atelier-ease-expo);
+  }
+
+  body .hero-facts > div:hover {
+    transform: translateY(-3px);
+  }
+
+  /* FAQ question row interactive cue */
+  body .faq-q {
+    transition: background-color 180ms var(--atelier-ease-enter), color 180ms var(--atelier-ease-enter);
+  }
+
+  body .faq-item:hover .faq-q {
+    background-color: var(--atelier-surface-2);
+  }
+
+  /* Form inputs respond cleanly on hover before focus */
+  body .form-row :is(input[type="text"], input[type="tel"], input[type="email"], textarea, select) {
+    transition: border-color 180ms var(--atelier-ease-enter), background-color 180ms var(--atelier-ease-enter);
+  }
+
+  body .form-row :is(input[type="text"], input[type="tel"], input[type="email"], textarea, select):hover {
+    border-color: var(--atelier-gold-deep);
+    background-color: var(--atelier-surface);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  body :is(.menu-catalog-card, .store-card, .news-list-card, .people-profile-card, .btn-primary, .form-submit) {
+  body :is(
+    .stat-item,
+    .number-card,
+    .tech-card,
+    .model-card,
+    .store-card,
+    .menu-catalog-card,
+    .video-card,
+    .short-card,
+    .people-profile-card,
+    .news-list-card,
+    .resource-item,
+    .faq-item,
+    .final-card,
+    .fr-cost-guide-card,
+    .cost-concept-block,
+    .fr-conversion-card,
+    .fr-compact-bar-card,
+    .pos-proof-card,
+    .btn-primary,
+    .btn-ghost,
+    .nav-cta,
+    .form-submit
+  ) {
     transition: none !important;
     transform: none !important;
+  }
+  body *::before,
+  body *::after {
+    transition: none !important;
   }
 }

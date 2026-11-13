@@ -64,6 +64,91 @@
       }, { threshold: 0.3 });
       countTargets.forEach(el => io.observe(el));
     }
+    document.querySelectorAll('.hero-facts > div, .number-card').forEach(box => {
+      box.addEventListener('mouseenter', () => {
+        const num = box.querySelector('strong, .num-value');
+        if (num) countElement(num);
+      });
+    });
+
+    // Pointer-responsive layer across all sections, cards, and primary CTAs (desktop fine pointer only)
+    if (matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const sectionSelector = 'main > section, .home-full-section > .section, .page-header, .footer';
+      const cardSelector = '.stat-item, .number-card, .tech-card, .model-card, .store-card, .menu-catalog-card, .video-card, .people-profile-card, .news-list-card, .resource-item, .faq-item, .final-card, .fr-cost-guide-card, .cost-concept-block, .fr-conversion-card, .fr-compact-bar-card, .pos-proof-card, .discovery-link';
+      const magnetSelector = '.btn-primary, .btn-ghost, .nav-cta, .btn-youtube, .btn-more-videos, .form-submit';
+
+      let activeSec = null, activeCard = null, activeBtn = null, rafId = 0, lastEvent = null;
+
+      const clearCard = card => {
+        if (!card) return;
+        card.style.setProperty('--card-spot-alpha', '0');
+        card.style.setProperty('--ptr-tx', '0px');
+      };
+      const clearBtn = btn => {
+        if (!btn) return;
+        btn.style.setProperty('--btn-tx', '0px');
+      };
+
+      const flushPointer = () => {
+        rafId = 0;
+        const e = lastEvent;
+        if (!e) return;
+        const target = e.target instanceof Element ? e.target : null;
+        if (!target) return;
+
+        const sec = target.closest(sectionSelector);
+        if (sec !== activeSec) {
+          if (activeSec) activeSec.style.setProperty('--sec-spot-alpha', '0');
+          activeSec = sec;
+        }
+        if (sec) {
+          const sr = sec.getBoundingClientRect();
+          sec.style.setProperty('--sec-mx', (e.clientX - sr.left).toFixed(1) + 'px');
+          sec.style.setProperty('--sec-my', (e.clientY - sr.top).toFixed(1) + 'px');
+          sec.style.setProperty('--sec-spot-alpha', '1');
+        }
+
+        const card = target.closest(cardSelector);
+        if (card !== activeCard) {
+          clearCard(activeCard);
+          activeCard = card;
+        }
+        if (card) {
+          const cr = card.getBoundingClientRect();
+          const relX = e.clientX - cr.left;
+          const relY = e.clientY - cr.top;
+          const normX = cr.width > 0 ? ((relX / cr.width) - 0.5) : 0;
+          card.style.setProperty('--mx', relX.toFixed(1) + 'px');
+          card.style.setProperty('--my', relY.toFixed(1) + 'px');
+          card.style.setProperty('--card-spot-alpha', '1');
+          card.style.setProperty('--ptr-tx', (normX * 3).toFixed(2) + 'px');
+        }
+
+        const btn = target.closest(magnetSelector);
+        if (btn !== activeBtn) {
+          clearBtn(activeBtn);
+          activeBtn = btn;
+        }
+        if (btn) {
+          const br = btn.getBoundingClientRect();
+          const bx = br.width > 0 ? ((e.clientX - br.left) / br.width - 0.5) : 0;
+          btn.style.setProperty('--btn-tx', (bx * 4).toFixed(2) + 'px');
+        }
+      };
+
+      document.addEventListener('pointermove', e => {
+        if (e.pointerType && e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
+        lastEvent = e;
+        if (!rafId) rafId = requestAnimationFrame(flushPointer);
+      }, { passive: true });
+
+      document.addEventListener('pointerleave', () => {
+        if (activeSec) activeSec.style.setProperty('--sec-spot-alpha', '0');
+        clearCard(activeCard);
+        clearBtn(activeBtn);
+        activeSec = activeCard = activeBtn = null;
+      }, { passive: true });
+    }
   }
   const ready=()=>Promise.resolve(window.homeContentReady).then(enhance);
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready,{once:true});else ready();
