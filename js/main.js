@@ -855,6 +855,84 @@ function initKinoyaPage() {
     };
     startVideoAutoSlide(4);
 
+    var animateStatNumber = function (el, rawText, durationMs) {
+      if (!el) return;
+      var text = String(rawText == null ? (el.getAttribute('data-count-target') || el.textContent || '') : rawText).trim();
+      if (!text || text === '-') return;
+      el.setAttribute('data-count-target', text);
+      var m = text.match(/^([^0-9]*)([0-9][0-9,]*(?:\.[0-9]+)?)(.*)$/);
+      if (!m) {
+        el.textContent = text;
+        return;
+      }
+      var prefix = m[1] || '';
+      var numStr = m[2];
+      var suffix = m[3] || '';
+      var hasComma = numStr.indexOf(',') !== -1;
+      var dotIdx = numStr.indexOf('.');
+      var decimals = dotIdx !== -1 ? (numStr.length - dotIdx - 1) : 0;
+      var target = parseFloat(numStr.replace(/,/g, ''));
+      if (!Number.isFinite(target) || target <= 0) {
+        el.textContent = text;
+        return;
+      }
+      if (el._countRaf) cancelAnimationFrame(el._countRaf);
+      var dur = durationMs || 1800;
+      var start = performance.now();
+      var formatVal = function (v) {
+        var fixed = decimals > 0 ? v.toFixed(decimals) : String(Math.round(v));
+        if (hasComma) {
+          var parts = fixed.split('.');
+          parts[0] = Number(parts[0]).toLocaleString('ko-KR');
+          fixed = parts.join('.');
+        }
+        return prefix + fixed + suffix;
+      };
+      el.textContent = formatVal(0);
+      var step = function (now) {
+        var progress = Math.min(1, (now - start) / dur);
+        var eased = 1 - Math.pow(1 - progress, 4); // easeOutQuart
+        var current = target * eased;
+        if (progress < 1) {
+          el.textContent = formatVal(current);
+          el._countRaf = requestAnimationFrame(step);
+        } else {
+          el.textContent = text;
+          el._countRaf = null;
+        }
+      };
+      el._countRaf = requestAnimationFrame(step);
+    };
+
+    var triggerAllSocialStatCounts = function () {
+      ['stat-subscribers-value', 'stat-views-value', 'stat-videos-value'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) animateStatNumber(el, el.getAttribute('data-count-target') || el.textContent, 1800);
+      });
+    };
+
+    var statsHost = document.getElementById('social-stats');
+    if (statsHost) {
+      if ('IntersectionObserver' in window) {
+        var statsObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              triggerAllSocialStatCounts();
+            }
+          });
+        }, { threshold: 0.25 });
+        statsObs.observe(statsHost);
+      } else {
+        triggerAllSocialStatCounts();
+      }
+      statsHost.querySelectorAll('.stat-item').forEach(function (card) {
+        card.addEventListener('mouseenter', function () {
+          var valEl = card.querySelector('.stat-value');
+          if (valEl) animateStatNumber(valEl, valEl.getAttribute('data-count-target') || valEl.textContent, 1200);
+        });
+      });
+    }
+
     var YT_CACHE_KEY = 'kinoya_yt_fast_v1';
     var applyYoutubeStats = function (byKey) {
       if (!byKey) return;
@@ -869,10 +947,10 @@ function initKinoyaPage() {
       var subsVal = byKey['social.youtube.stats.subscribers'] && byKey['social.youtube.stats.subscribers'].value;
       var viewsVal = byKey['social.youtube.stats.views'] && byKey['social.youtube.stats.views'].value;
       var videoCountVal = byKey['social.youtube.stats.videocount'] && byKey['social.youtube.stats.videocount'].value;
-      if (subsEl && subsVal) subsEl.textContent = subsVal + '+';
-      if (viewsEl && viewsVal) viewsEl.textContent = viewsVal + '+';
-      if (videosEl && videoCountVal) videosEl.textContent = videoCountVal + '+';
-      if (statsSection && (subsVal || viewsVal || videoCountVal)) { statsSection.style.display = ''; }
+      if (subsEl && subsVal) animateStatNumber(subsEl, String(subsVal).replace(/\++$/, '') + '+', 1800);
+      if (viewsEl && viewsVal) animateStatNumber(viewsEl, String(viewsVal).replace(/\++$/, '') + '+', 1800);
+      if (videosEl && videoCountVal) animateStatNumber(videosEl, String(videoCountVal).replace(/\++$/, '') + '+', 1800);
+      if (statsSection) { statsSection.style.display = ''; }
     };
 
     var applyYoutubeVideos = function (allVideos) {

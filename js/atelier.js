@@ -28,6 +28,42 @@
       else {const link=document.querySelector(i===2?'.footer-sns-item[data-label="instagram"]':i===3?'.footer-sns-item[data-label="tiktok"]':'.btn-youtube');if(link?.href&&link.getAttribute('href')!=='#'){window.open(link.href,'_blank','noopener,noreferrer');}else{let status=document.getElementById('atelier-social-status');if(!status){status=document.createElement('p');status.id='atelier-social-status';status.setAttribute('role','status');button.closest('.social-tabs').after(status);}status.textContent='이 채널은 아직 등록되지 않았습니다.';}}
       tabs.forEach(t=>t.classList.toggle('active',t===button));
     });});
+
+    // Smooth count-up for hero facts and key numeric cards on viewport entry
+    const countElement = el => {
+      const targetText = (el.dataset.countTarget || el.textContent || '').trim();
+      if (!targetText) return;
+      el.dataset.countTarget = targetText;
+      const m = targetText.match(/^([^0-9]*)([0-9][0-9,]*(?:\.[0-9]+)?)(.*)$/);
+      if (!m) return;
+      const prefix = m[1] || '', numStr = m[2], suffix = m[3] || '';
+      const hasComma = numStr.includes(','), dotIdx = numStr.indexOf('.');
+      const decimals = dotIdx !== -1 ? (numStr.length - dotIdx - 1) : 0;
+      const target = parseFloat(numStr.replace(/,/g, ''));
+      if (!Number.isFinite(target) || target <= 0) return;
+      if (el._atelierCountRaf) cancelAnimationFrame(el._atelierCountRaf);
+      const start = performance.now(), dur = 1600;
+      const fmt = v => {
+        let fixed = decimals > 0 ? v.toFixed(decimals) : String(Math.round(v));
+        if (hasComma) { const p = fixed.split('.'); p[0] = Number(p[0]).toLocaleString('ko-KR'); fixed = p.join('.'); }
+        return prefix + fixed + suffix;
+      };
+      el.textContent = fmt(0);
+      const tick = now => {
+        const t = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - t, 4);
+        if (t < 1) { el.textContent = fmt(target * eased); el._atelierCountRaf = requestAnimationFrame(tick); }
+        else { el.textContent = targetText; el._atelierCountRaf = null; }
+      };
+      el._atelierCountRaf = requestAnimationFrame(tick);
+    };
+    const countTargets = document.querySelectorAll('.hero-facts strong, .num-value');
+    if ('IntersectionObserver' in window && countTargets.length) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) countElement(entry.target); });
+      }, { threshold: 0.3 });
+      countTargets.forEach(el => io.observe(el));
+    }
   }
   const ready=()=>Promise.resolve(window.homeContentReady).then(enhance);
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready,{once:true});else ready();
