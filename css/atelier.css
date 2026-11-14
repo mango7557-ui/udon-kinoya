@@ -244,14 +244,73 @@ body.kinoya-home .nav.is-scrolled {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  min-height: 88px;
-  padding: 16px 32px;
+  min-height: 124px;
+  padding: 12px 32px;
   background: var(--atelier-navy);
   color: var(--atelier-cream);
   border-bottom: 1px solid var(--atelier-border-dark);
   overflow: visible;
   mask-image: none;
   -webkit-mask-image: none;
+}
+
+body .nav-brand-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+body .nav-brand-thumb {
+  position: relative;
+  display: block;
+  width: 140px;
+  aspect-ratio: 2 / 1;
+  border-radius: 8px;
+  overflow: clip;
+  border: 1px solid var(--atelier-gold);
+  background: var(--atelier-navy-deep);
+  box-shadow: var(--atelier-shadow-sm);
+  text-decoration: none;
+}
+
+body .nav-brand-thumb img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  aspect-ratio: 2 / 1;
+  object-fit: cover !important;
+  transition: transform 320ms var(--atelier-ease-expo);
+}
+
+body .nav-brand-thumb-badge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--atelier-navy-deep);
+  background: var(--atelier-gold);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body .nav-brand-thumb {
+    transition: transform 200ms var(--atelier-ease-expo), box-shadow 200ms var(--atelier-ease-expo);
+  }
+  body .nav-brand-thumb:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--atelier-shadow);
+  }
+  body .nav-brand-thumb:hover img {
+    transform: scale(1.05);
+  }
 }
 
 body .nav-logo,
@@ -326,8 +385,8 @@ body.kinoya-home .lang-switch {
 
 /* Hero */
 body.kinoya-home .hero {
-  min-height: min(920px, 100svh);
-  padding: 160px 0 80px;
+  min-height: min(940px, 100svh);
+  padding: 176px 0 80px;
   background: var(--atelier-navy-deep);
   color: var(--atelier-cream);
   isolation: isolate;
@@ -468,7 +527,7 @@ body.kinoya-home .discovery-link span {
 
 /* Headers and section jump bars */
 body .page-header {
-  padding: 160px 0 72px;
+  padding: 176px 0 72px;
   background: var(--atelier-navy);
   color: var(--atelier-cream);
   border-bottom: 1px solid var(--atelier-border-dark);
@@ -1180,16 +1239,27 @@ body .atelier-tools .atelier-index-trigger {
   html[lang] body .nav,
   html[lang] body .nav.is-scrolled {
     display: flex;
-    min-height: 76px;
-    padding: 12px 24px;
+    min-height: 108px;
+    padding: 10px 24px;
     gap: 12px;
   }
   html[lang] body .nav .nav-menu,
   html[lang] body .nav > .lang-switch-group {
     display: none;
   }
+  html[lang] body .nav-brand-stack,
   html[lang] body .nav-logo {
     margin-right: auto;
+  }
+  html[lang] body .nav-brand-stack .nav-logo {
+    margin-right: 0;
+  }
+  html[lang] body .nav-brand-thumb {
+    width: 112px;
+  }
+  html[lang] body .nav-brand-thumb-badge {
+    font-size: 11px;
+    padding: 2px 4px;
   }
   html[lang] body .nav > .nav-cta {
     display: flex;
@@ -1204,7 +1274,7 @@ body .atelier-tools .atelier-index-trigger {
   }
   html[lang] body .nav-mobile-panel {
     display: flex !important;
-    inset: 76px 0 0;
+    inset: 108px 0 0;
     background: var(--atelier-navy);
     color: var(--atelier-cream);
     padding: 28px 24px 112px;
@@ -1228,7 +1298,7 @@ body .atelier-tools .atelier-index-trigger {
     padding-inline: 24px;
   }
   html[lang] body.kinoya-home .hero {
-    padding: 76px 0 40px !important;
+    padding: 116px 0 40px !important;
     min-height: 0 !important;
   }
   html[lang] body.kinoya-home .hero > .hero-video {
@@ -1259,7 +1329,7 @@ body .atelier-tools .atelier-index-trigger {
     font-size: 24px;
   }
   body .page-header {
-    padding: 128px 0 48px;
+    padding: 148px 0 48px;
   }
   html[lang="ko"] body .home-full-section > .page-header {
     padding: 52px 0 40px;

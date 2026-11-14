@@ -1,7 +1,68 @@
-/* Progressive navigation; never moves or rewrites CMS-bound content. */
+/* Progressive navigation; never moves or rewrites CMS-bound content before HomeModel builds. */
 (function () {
   'use strict';
+  const scriptEl = document.currentScript || document.getElementById('atelier-script');
+  const siteRoot = scriptEl && scriptEl.src ? new URL('../', scriptEl.src).href : new URL('./', location.href).href;
+
+  function mountUnderLogoBrandThumb() {
+    const nav = document.querySelector('.nav');
+    const logo = nav && nav.querySelector('.nav-logo');
+    if (!nav || !logo || nav.querySelector('.nav-brand-thumb')) return;
+
+    const stack = document.createElement('div');
+    stack.className = 'nav-brand-stack';
+    logo.parentNode.insertBefore(stack, logo);
+    stack.appendChild(logo);
+
+    const thumbLink = document.createElement('a');
+    thumbLink.className = 'nav-brand-thumb';
+    thumbLink.href = new URL('brand-site/', siteRoot).href;
+    thumbLink.setAttribute('aria-label', '우동키노야 공식 브랜드 사이트 열기');
+
+    const thumbImg = document.createElement('img');
+    thumbImg.src = new URL('images/brand-site-thumb-2x1.png', siteRoot).href;
+    thumbImg.alt = '우동키노야 브랜드 사이트 2:1 썸네일';
+    thumbImg.width = 140;
+    thumbImg.height = 70;
+    thumbImg.setAttribute('data-cms', 'global.brandsite.thumb');
+    thumbImg.setAttribute('data-cms-type', 'img');
+
+    const badge = document.createElement('span');
+    badge.className = 'nav-brand-thumb-badge';
+    badge.setAttribute('data-cms', 'global.brandsite.label');
+    badge.textContent = '브랜드 사이트 →';
+
+    thumbLink.append(thumbImg, badge);
+    stack.appendChild(thumbLink);
+
+    // Sync custom thumbnail or badge label if configured in Admin CMS
+    fetch(new URL('tables/site_content?limit=200', siteRoot).href)
+      .then(r => r && r.ok ? r.json() : null)
+      .then(j => {
+        if (!j || !Array.isArray(j.data)) return;
+        const thumbRow = j.data.find(item => item && item.key === 'global.brandsite.thumb' && !item.deleted && item.value);
+        const labelRow = j.data.find(item => item && item.key === 'global.brandsite.label' && !item.deleted && item.value);
+        if (thumbRow) {
+          const cached = window.__kinoyaGetCachedFileDataUrl ? window.__kinoyaGetCachedFileDataUrl(thumbRow.value) : '';
+          thumbImg.src = cached || new URL(thumbRow.value.startsWith('/files/') ? thumbRow.value.slice(1) : thumbRow.value, siteRoot).href;
+          if (window.__kinoyaHydrateFiles) window.__kinoyaHydrateFiles();
+        }
+        if (labelRow) badge.textContent = labelRow.value;
+      })
+      .catch(() => {});
+
+    const mobilePanel = document.querySelector('.nav-mobile-panel');
+    if (mobilePanel && !mobilePanel.querySelector('[data-brand-site-mobile]')) {
+      const mLink = document.createElement('a');
+      mLink.href = new URL('brand-site/', siteRoot).href;
+      mLink.setAttribute('data-brand-site-mobile', '1');
+      mLink.textContent = '우동키노야 브랜드 사이트 ↗';
+      mobilePanel.prepend(mLink);
+    }
+  }
+
   function enhance() {
+    mountUnderLogoBrandThumb();
     if (document.querySelector('.atelier-tools') || !document.querySelector('main')) return;
     const sections = [...document.querySelectorAll('main > section[id]')].filter(el => el.getClientRects().length && getComputedStyle(el).display !== 'none');
     const tools = document.createElement('div'); tools.className = 'atelier-tools';

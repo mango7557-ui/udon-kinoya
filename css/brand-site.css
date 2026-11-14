@@ -1,0 +1,565 @@
+/* Hallmark · v2.0.0 · genre: editorial · theme: kiln (custom) · shape: Brand Flagship · copy: verbatim */
+/* critique: dedicated customer-facing brand site + global 2:1 under-logo thumbnail slot across header navigations. */
+
+html,
+body {
+  overflow-x: clip;
+}
+
+.kinoya-brand-site :is(a, button, input, select, textarea):focus-visible,
+body .nav-brand-thumb:focus-visible {
+  outline: 3px solid var(--atelier-accent);
+  outline-offset: 4px;
+}
+
+.kinoya-brand-site :is(a, button):active,
+body .nav-brand-thumb:active {
+  transform: translateY(1px);
+}
+
+/* =========================================================
+   1. Global Under-Logo 2:1 Brand Site Thumbnail Slot
+   ========================================================= */
+body .nav-brand-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+body .nav-brand-thumb {
+  position: relative;
+  display: block;
+  width: 140px;
+  aspect-ratio: 2 / 1;
+  border-radius: 8px;
+  overflow: clip;
+  border: 1px solid var(--atelier-gold);
+  background: var(--atelier-navy-deep);
+  box-shadow: var(--atelier-shadow-sm);
+  text-decoration: none;
+  transition: transform 200ms var(--atelier-ease-expo), border-color 200ms var(--atelier-ease-enter), box-shadow 200ms var(--atelier-ease-expo);
+}
+
+body .nav-brand-thumb img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  aspect-ratio: 2 / 1;
+  object-fit: cover !important;
+}
+
+body .nav-brand-thumb-badge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--atelier-navy-deep);
+  background: var(--atelier-gold);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body .nav-brand-thumb:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--atelier-shadow);
+  }
+}
+
+@media (max-width: 1280px) {
+  body .nav-brand-stack {
+    margin-right: auto;
+    gap: 8px;
+  }
+  body .nav-brand-thumb {
+    width: 112px;
+  }
+  body .nav-brand-thumb-badge {
+    font-size: 12px;
+    padding: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  body .nav-brand-thumb {
+    width: 96px;
+  }
+  html[lang] body.kinoya-home .hero {
+    padding-top: 128px !important;
+  }
+  body .page-header {
+    padding-top: 152px;
+  }
+}
+
+/* =========================================================
+   2. Dedicated Brand Site (/brand-site/) Layout
+   ========================================================= */
+.kinoya-brand-site .bs-nav {
+  min-height: 124px;
+  padding: 12px 32px;
+}
+
+.kinoya-brand-site .bs-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kinoya-brand-site .bs-switch-link {
+  min-height: 44px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--atelier-cream);
+  border: 1px solid var(--atelier-border-dark);
+}
+
+.kinoya-brand-site .bs-hero {
+  position: relative;
+  min-height: min(940px, 100svh);
+  padding: 184px 0 96px;
+  background: var(--atelier-navy-deep);
+  color: var(--atelier-cream);
+  overflow: clip;
+  display: flex;
+  align-items: center;
+}
+
+.kinoya-brand-site .bs-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.42;
+  z-index: 0;
+}
+
+.kinoya-brand-site .bs-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--atelier-overlay);
+  z-index: 1;
+}
+
+.kinoya-brand-site .bs-hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.kinoya-brand-site .bs-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.kinoya-brand-site .bs-jp {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--atelier-gold) !important;
+  margin-bottom: 16px;
+}
+
+.kinoya-brand-site .bs-hero h1 {
+  font-size: clamp(48px, 6vw, 84px);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  color: var(--atelier-cream);
+  margin-bottom: 24px;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+
+.kinoya-brand-site .bs-lead {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--atelier-cream-muted) !important;
+  max-width: 600px;
+  margin-bottom: 32px;
+}
+
+.kinoya-brand-site .bs-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.kinoya-brand-site .bs-cta-group a {
+  min-height: 52px;
+  padding: 0 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.kinoya-brand-site .bs-cta-group .btn-primary {
+  background: var(--atelier-gold);
+  color: var(--atelier-navy-deep);
+}
+
+.kinoya-brand-site .bs-hero-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 44px;
+  padding-top: 24px;
+  border-top: 1px solid var(--atelier-border-dark);
+}
+
+.kinoya-brand-site .bs-hero-card {
+  background: var(--atelier-navy-panel);
+  border: 1px solid var(--atelier-border-dark);
+  border-radius: 8px;
+  overflow: clip;
+  box-shadow: var(--atelier-shadow);
+}
+
+.kinoya-brand-site .bs-thumb-frame {
+  aspect-ratio: 2 / 1;
+  overflow: clip;
+  background: var(--atelier-navy-deep);
+}
+
+.kinoya-brand-site .bs-thumb-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.kinoya-brand-site .bs-hero-card-body {
+  padding: 28px;
+}
+
+.kinoya-brand-site .bs-hero-card-body strong {
+  display: block;
+  font-size: 20px;
+  color: var(--atelier-gold);
+  margin-bottom: 12px;
+}
+
+.kinoya-brand-site .bs-hero-card-body p {
+  font-size: 15px;
+  color: var(--atelier-cream-muted) !important;
+  margin: 0;
+}
+
+/* Section headings */
+.kinoya-brand-site .bs-section-head {
+  max-width: 780px;
+  margin-bottom: 48px;
+}
+
+.kinoya-brand-site .bs-section-head .p-lead {
+  font-size: 17px;
+  margin-top: 16px;
+}
+
+/* 02 Philosophy */
+.kinoya-brand-site .bs-origin-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 48px;
+  align-items: stretch;
+}
+
+.kinoya-brand-site .bs-origin-photo {
+  margin: 0;
+  border-radius: 8px;
+  overflow: clip;
+  border: 1px solid var(--atelier-border);
+  min-height: 420px;
+}
+
+.kinoya-brand-site .bs-origin-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.kinoya-brand-site .bs-pillars {
+  display: grid;
+  gap: 20px;
+}
+
+.kinoya-brand-site .bs-pillar-card {
+  background: var(--atelier-bg);
+  border: 1px solid var(--atelier-border);
+  border-radius: 8px;
+  padding: 28px;
+}
+
+.kinoya-brand-site .bs-pillar-num {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--atelier-gold-deep);
+  margin-bottom: 8px;
+}
+
+.kinoya-brand-site .bs-pillar-card h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.kinoya-brand-site .bs-pillar-card p {
+  font-size: 15px;
+  margin: 0;
+}
+
+/* 03 Craft */
+.kinoya-brand-site .bs-craft-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.kinoya-brand-site .bs-craft-card {
+  background: var(--atelier-navy-panel) !important;
+  border: 1px solid var(--atelier-border-dark) !important;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+  min-height: 0;
+}
+
+.kinoya-brand-site .bs-craft-media {
+  aspect-ratio: 4 / 3;
+  overflow: clip;
+}
+
+.kinoya-brand-site .bs-craft-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.kinoya-brand-site .bs-craft-body {
+  padding: 24px;
+}
+
+.kinoya-brand-site .bs-step-tag {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--atelier-gold);
+  margin-bottom: 8px;
+}
+
+.kinoya-brand-site .bs-craft-body h3 {
+  font-size: 20px;
+  color: var(--atelier-cream);
+  margin-bottom: 12px;
+  text-wrap: balance;
+}
+
+.kinoya-brand-site .bs-craft-body p {
+  font-size: 15px;
+  color: var(--atelier-cream-muted) !important;
+  margin: 0;
+}
+
+/* 04 Menu & 07 Store Filter Tabs */
+.kinoya-brand-site .bs-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.kinoya-brand-site .bs-filter-bar button {
+  min-height: 44px;
+  padding: 12px 20px;
+  border-radius: 4px;
+  border: 1px solid var(--atelier-border);
+  background: var(--atelier-surface);
+  color: var(--atelier-ink);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kinoya-brand-site .bs-filter-bar button.active {
+  background: var(--atelier-navy);
+  color: var(--atelier-cream);
+  border-color: var(--atelier-navy);
+}
+
+/* 05 Ritual */
+.kinoya-brand-site .bs-ritual-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.kinoya-brand-site .bs-ritual-card {
+  padding: 32px;
+  background: var(--atelier-bg);
+}
+
+.kinoya-brand-site .bs-ritual-step {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--atelier-gold-deep);
+  line-height: 1;
+  margin-bottom: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.kinoya-brand-site .bs-ritual-card h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  text-wrap: balance;
+}
+
+/* 06 Space Gallery */
+.kinoya-brand-site .bs-space-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.kinoya-brand-site .bs-space-item {
+  margin: 0;
+  background: var(--atelier-navy-panel);
+  border: 1px solid var(--atelier-border-dark);
+  border-radius: 8px;
+  overflow: clip;
+}
+
+.kinoya-brand-site .bs-space-item.is-wide {
+  grid-column: 1 / -1;
+}
+
+.kinoya-brand-site .bs-space-item img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.kinoya-brand-site .bs-space-item.is-wide img {
+  aspect-ratio: 21 / 9;
+}
+
+.kinoya-brand-site .bs-space-item figcaption {
+  padding: 24px;
+}
+
+.kinoya-brand-site .bs-space-item figcaption strong {
+  display: block;
+  font-size: 20px;
+  color: var(--atelier-cream);
+  margin-bottom: 8px;
+}
+
+.kinoya-brand-site .bs-space-item figcaption span {
+  font-size: 15px;
+  color: var(--atelier-cream-muted);
+}
+
+/* 07 Stores Search */
+.kinoya-brand-site .bs-store-search-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.kinoya-brand-site #bs-store-search {
+  flex: 1 1 320px;
+  max-width: 520px;
+  min-height: 48px;
+  padding: 12px 16px;
+  border: 1px solid var(--atelier-border);
+  border-radius: 4px;
+  background: var(--atelier-surface);
+  color: var(--atelier-ink);
+  font-size: 15px;
+}
+
+.kinoya-brand-site #bs-store-count {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--atelier-gold-deep);
+}
+
+/* 08 News & Customer Voice */
+.kinoya-brand-site .bs-voice-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.kinoya-brand-site .bs-news-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.kinoya-brand-site .bs-voice-form {
+  margin-top: 28px;
+}
+
+@media (max-width: 1100px) {
+  .kinoya-brand-site .bs-hero-grid,
+  .kinoya-brand-site .bs-origin-split,
+  .kinoya-brand-site .bs-voice-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .kinoya-brand-site .bs-craft-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kinoya-brand-site .bs-ritual-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .kinoya-brand-site .bs-switch-link {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .kinoya-brand-site .bs-hero {
+    padding: 144px 0 64px;
+  }
+  .kinoya-brand-site .bs-hero-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kinoya-brand-site .bs-craft-grid,
+  .kinoya-brand-site .bs-space-gallery {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .kinoya-brand-site .bs-space-item.is-wide img {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .nav-brand-thumb {
+    transition: none !important;
+    transform: none !important;
+  }
+}
