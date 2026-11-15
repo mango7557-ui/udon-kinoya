@@ -21,7 +21,7 @@
     social:'@social', numbers:'brand', 'brand-story':'brand', noodle:'noodle',
     proof:'franchise', system:'franchise', turnover:'franchise', model:'franchise',
     support:'franchise', 'partner-logos-section':'franchise', stores:'store',
-    people:'people', 'menu-preview':'menu', 'faq-preview':'franchise/faq', 'news-full':'news', 'resources-full':'resources', final:'contact'
+    people:'people', 'menu-preview':'menu', 'faq-preview':'franchise/faq', 'news-full':'news', 'resources-full':'resources', final:'contact', 'partner-contact':'contact'
   };
   let frame = 0;
   function linkRoute(link) {

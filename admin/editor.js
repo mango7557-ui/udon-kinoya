@@ -878,16 +878,8 @@ window.addEventListener('error', function (event) {
 
     var CATEGORIES = [
       {
-        id: 'cat-common',
-        label: '🌐 공통 · 로고 · 카카오톡',
-        subtabs: [
-          { id: 'sub-common-logo', label: '공통 로고 · 파비콘 · 카카오톡 썸네일', elements: [groupByTitle['공통(전체 페이지)'], groupByTitle['카카오톡 공유 썸네일']] },
-          { id: 'sub-common-kakao', label: '카카오톡 공유 썸네일 단독 보기', elements: [groupByTitle['카카오톡 공유 썸네일']] }
-        ]
-      },
-      {
         id: 'cat-social',
-        label: '📺 유튜브 · SNS 통합',
+        label: '소셜미디어',
         subtabs: [
           {
             id: 'sub-yt-merged',
@@ -898,8 +890,38 @@ window.addEventListener('error', function (event) {
         ]
       },
       {
+        id: 'cat-brand',
+        label: '브랜드스토리',
+        subtabs: [
+          { id: 'sub-brand-story', label: '브랜드스토리', elements: [groupByTitle['브랜드스토리']] }
+        ]
+      },
+      {
+        id: 'cat-noodle',
+        label: '키노야의 신념과 경쟁력',
+        subtabs: [
+          { id: 'sub-noodle', label: '키노야의 신념과 경쟁력 (48시간 숙성면 · 제면공장)', elements: [groupByTitle['키노야의 신념과 경쟁력(노들)']] }
+        ]
+      },
+      {
+        id: 'cat-people',
+        label: '우동키노야 사람들',
+        subtabs: [
+          { id: 'sub-people', label: '우동키노야 사람들 (경영진 · 전문가)', elements: [groupByTitle['우동키노야 사람들']] }
+        ]
+      },
+      {
+        id: 'cat-franchise',
+        label: '창업안내&비용',
+        subtabs: [
+          { id: 'sub-franchise-guide', label: '창업안내 (7000만원 오픈 · 리뉴얼 · 업종전환)', elements: [groupByTitle['창업안내']] },
+          { id: 'sub-franchise-cost', label: '창업비용 (10평대 · 30평대 표)', elements: [groupByTitle['창업비용']] },
+          { id: 'sub-partner-logos', label: '협력사 로고 관리', elements: [document.getElementById('plogo-section')] }
+        ]
+      },
+      {
         id: 'cat-stores',
-        label: '🏪 매장 통합 관리 (51개)',
+        label: '우리동네 키노야',
         subtabs: [
           {
             id: 'sub-stores-hub',
@@ -908,7 +930,6 @@ window.addEventListener('error', function (event) {
           },
           { id: 'sub-stores-seoul', label: '서울 지역 매장 사진·정보 (26개)', elements: [storeHeroGroup, storeSeoulGroup] },
           { id: 'sub-stores-nation', label: '전국 각지 매장 사진·정보 (25개)', elements: [storeHeroGroup, storeNationGroup] },
-          { id: 'sub-stores-gallery', label: '전국 매장 사진 · 갤러리 (20장 슬라이드)', elements: [storeGalleryGroup] },
           {
             id: 'sub-stores-detail',
             label: '개별 매장 상세페이지 (10개)',
@@ -918,7 +939,7 @@ window.addEventListener('error', function (event) {
       },
       {
         id: 'cat-menu',
-        label: '🍜 메뉴 소개 · 음식사진',
+        label: '메뉴소개',
         subtabs: groups.filter(function (g) {
           return g.indexOf('메뉴소개 · ') === 0 && g.indexOf('보관용') === -1 && g.indexOf('20장 슬라이드') === -1;
         }).map(function (g, idx) {
@@ -936,42 +957,37 @@ window.addEventListener('error', function (event) {
         ])
       },
       {
-        id: 'cat-brand',
-        label: '📖 브랜드 · 면 · 사람들',
+        id: 'cat-faq',
+        label: 'FAQ',
         subtabs: [
-          { id: 'sub-brand-story', label: '브랜드스토리', elements: [groupByTitle['브랜드스토리']] },
-          { id: 'sub-noodle', label: '키노야의 신념과 경쟁력 (면)', elements: [groupByTitle['키노야의 신념과 경쟁력(노들)']] },
-          { id: 'sub-people', label: '우동키노야 사람들 (경영진·전문가)', elements: [groupByTitle['우동키노야 사람들']] },
-          { id: 'sub-partner-logos', label: '협력사 로고 (3줄 슬라이드)', elements: [document.getElementById('plogo-section')] }
-        ]
-      },
-      {
-        id: 'cat-franchise',
-        label: '💼 창업 · 비용 · FAQ 통합',
-        subtabs: [
-          { id: 'sub-franchise-guide', label: '창업안내 (7000만원 오픈 · 리뉴얼 사례)', elements: [groupByTitle['창업안내']] },
-          { id: 'sub-franchise-cost', label: '창업비용 (10평대 · 30평대 표)', elements: [groupByTitle['창업비용']] },
           {
             id: 'sub-franchise-faq',
             label: '창업 FAQ 통합 관리 (DB + 기본 문구)',
             elements: [document.getElementById('faq-manage-section'), faqCmsGroup]
-          },
-          { id: 'sub-franchise-contact', label: '창업문의 폼 문구', elements: [groupByTitle['창업문의']] }
+          }
         ]
       },
       {
-        id: 'cat-board',
-        label: '📰 상담 · 뉴스 · 자료실',
+        id: 'cat-news',
+        label: '뉴스',
         subtabs: [
-          { id: 'sub-consultations', label: '상담신청 접수 내역', elements: [document.getElementById('consultations-section')] },
           { id: 'sub-news', label: '뉴스 · 언론보도 관리', elements: [newsSettingGroup, document.getElementById('news-manage-section')] },
           { id: 'sub-resources', label: '자료실 (브로슈어) 관리', elements: [document.getElementById('resources-manage-section')] }
         ]
       },
       {
-        id: 'cat-home-system',
-        label: '🏠 메인 히어로 · 백업 · 통계',
+        id: 'cat-board',
+        label: 'CONTACT',
         subtabs: [
+          { id: 'sub-consultations', label: '상담신청 · 문의 접수 내역', elements: [document.getElementById('consultations-section')] },
+          { id: 'sub-franchise-contact', label: 'CONTACT · 상담문의 폼 문구 및 수신 이메일', elements: [groupByTitle['창업문의']] }
+        ]
+      },
+      {
+        id: 'cat-home-system',
+        label: '공통 · 히어로 · 백업',
+        subtabs: [
+          { id: 'sub-common-logo', label: '공통 로고 · 파비콘 · 카카오톡 썸네일', elements: [groupByTitle['공통(전체 페이지)'], groupByTitle['카카오톡 공유 썸네일']] },
           {
             id: 'sub-home-active',
             label: '메인 히어로 · 숫자 · 매장슬라이더 · 하단CTA',
@@ -981,8 +997,8 @@ window.addEventListener('error', function (event) {
           { id: 'sub-stats', label: '방문자 통계 리포트', elements: [document.getElementById('visitor-stats-section')] },
           {
             id: 'sub-home-archived',
-            label: '📦 [보관용] 구 홈페이지 요약 문구 (11개 섹션 병합)',
-            elements: groups.filter(function (g) { return archived(g); }).map(function (g) { return groupByTitle[g]; })
+            label: '보관용 (구 홈페이지 요약 · 갤러리)',
+            elements: [storeGalleryGroup].concat(groups.filter(function (g) { return archived(g); }).map(function (g) { return groupByTitle[g]; }))
           }
         ]
       }

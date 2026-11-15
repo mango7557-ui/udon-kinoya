@@ -12,7 +12,7 @@
       const header = document.createElement('header'), title = document.createElement('h2'), close = document.createElement('button');
       title.textContent = '섹션 바로가기'; close.textContent = '×'; close.type='button'; close.setAttribute('aria-label','바로가기 닫기'); close.onclick=()=>dialog.close();
       header.append(title,close); const links = document.createElement('nav'); links.setAttribute('aria-label','페이지 섹션');
-      const names={'top':'우동키노야','social':'소셜미디어','numbers':'숫자로 보는 우동키노야','brand-story':'브랜드스토리','noodle':'키노야의 신념과 경쟁력','people':'우동키노야 사람들','proof':'창업안내','model':'창업비용','stores':'우리동네 키노야','menu-preview':'메뉴소개','faq-preview':'FAQ','news-full':'뉴스','resources-full':'자료실','final':'상담 · 문의'};
+      const names={'top':'우동키노야','social':'소셜미디어','numbers':'숫자로 보는 우동키노야','brand-story':'브랜드스토리','noodle':'키노야의 신념과 경쟁력','people':'우동키노야 사람들','proof':'창업안내&비용','model':'창업비용 상세표','stores':'우리동네 키노야','menu-preview':'메뉴소개','faq-preview':'FAQ','news-full':'뉴스','resources-full':'자료실','final':'CONTACT'};
       sections.forEach((section,i)=>{const a=document.createElement('a'),n=document.createElement('small');a.href='#'+section.id;n.textContent=String(i+1).padStart(2,'0');a.append(n,document.createTextNode(names[section.id]||section.querySelector('h2,h3')?.textContent.trim()||section.id));a.onclick=()=>dialog.close();links.append(a);});
       dialog.append(header,links); document.body.append(dialog);
       const trigger=document.createElement('button');trigger.type='button';trigger.className='atelier-index-trigger';trigger.textContent='목차 +';trigger.setAttribute('aria-haspopup','dialog');trigger.onclick=()=>dialog.showModal();tools.append(trigger);
