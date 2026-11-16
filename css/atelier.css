@@ -661,6 +661,10 @@ body #final .h-display {
   color: var(--atelier-ink);
 }
 
+body #final > .page-header .h-display {
+  color: var(--atelier-cream) !important;
+}
+
 body .sec-navy#final .h-display {
   color: var(--atelier-cream);
 }
