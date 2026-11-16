@@ -1083,6 +1083,16 @@ body .footer-top {
   border-color: var(--atelier-border-dark) !important;
 }
 
+/* Keep the footer's channel links available to the social navigation without displaying the footer section. */
+body .footer-col:has(.footer-sns-grid) {
+  display: none;
+}
+@media (min-width: 769px) {
+  body .footer-top.has-sns {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+}
+
 body .footer-brand .desc {
   font-size: 15px;
   line-height: 1.85;
