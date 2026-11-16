@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var dm = bodyTextForDate.match(/(?:입력|승인|등록|발행|기사입력|게재)\s*[:：]?\s*(20\d{2}[-./년\s]+\d{1,2}[-./월\s]+\d{1,2})/);
       if (dm) rawDate = dm[1];
     }
-    var date = normalizeDateString(rawDate) || new Date().toISOString().slice(0, 10);
+    var date = normalizeDateString(rawDate);
 
     var thumbUrl = meta([
       'meta[property="og:image"]',
@@ -251,9 +251,30 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!/^https?:\/\//i.test(url)) throw new Error('올바른 뉴스 원문 링크(http:// 또는 https://)를 입력해주세요.');
 
     var errors = [];
+    var saved = null;
+    try {
+      var runtime = await window.KinoyaRuntimeReady;
+      var items = await runtime.all('news_items');
+      var target = new URL(url); target.hash = '';
+      saved = items.find(function (item) {
+        try {
+          var original = new URL(item.url); original.hash = '';
+          if (original.href === target.href) return true;
+          return /(^|\.)edaily\.co\.kr$/i.test(target.hostname) && original.hostname === target.hostname &&
+            original.pathname.toLowerCase() === target.pathname.toLowerCase() &&
+            !!target.searchParams.get('newsId') && original.searchParams.get('newsId') === target.searchParams.get('newsId');
+        }
+        catch (e) { return false; }
+      }) || null;
+    } catch (e) { /* External lookup can still succeed without the stored records. */ }
 
     // 1차: AllOrigins JSON / Raw CORS Proxy (원문 HTML 전체 추출로 기사 본문·메타태그 모두 파싱)
     var htmlProxies = [
+      {
+        name: 'direct',
+        buildUrl: function (u) { return u; },
+        parse: async function (res) { return await res.text(); }
+      },
       {
         name: 'allorigins-json',
         buildUrl: function (u) { return 'https://api.allorigins.win/get?url=' + encodeURIComponent(u); },
@@ -271,13 +292,14 @@ document.addEventListener('DOMContentLoaded', function () {
       try {
         var controller = new AbortController();
         var timer = setTimeout(function () { controller.abort(); }, 9000);
-        var res = await window.fetch(htmlProxies[i].buildUrl(url), { signal: controller.signal });
-        clearTimeout(timer);
+        var res;
+        try { res = await window.fetch(htmlProxies[i].buildUrl(url), { signal: controller.signal }); }
+        finally { clearTimeout(timer); }
         if (res.ok) {
           var html = await htmlProxies[i].parse(res);
           if (html && html.length > 150) {
             var extracted = extractArticleFromHtml(html, url);
-            if (extracted.title || extracted.excerpt) {
+            if (extracted.title && !/^(access denied|attention required|just a moment|403 forbidden|접근이 제한)/i.test(extracted.title)) {
               htmlResult = extracted;
               break;
             }
@@ -288,18 +310,42 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
+    // A reader service can recover the title and publication date when HTML proxies are blocked.
+    var readerResult = null;
+    if (!htmlResult) {
+      try {
+        var readerController = new AbortController();
+        var readerTimer = setTimeout(function () { readerController.abort(); }, 12000);
+        var readerRes;
+        try { readerRes = await window.fetch('https://r.jina.ai/' + url, {signal: readerController.signal}); }
+        finally { clearTimeout(readerTimer); }
+        if (readerRes.ok) {
+          var readerText = await readerRes.text();
+          var readerTitle = readerText.match(/^Title:\s*(.+)$/m);
+          var readerDate = readerText.match(/^Published Time:\s*(.+)$/m);
+          if (readerTitle && !/^(access denied|attention required|just a moment|403 forbidden)/i.test(readerTitle[1])) {
+            readerResult = {title: cleanText(readerTitle[1]), date: normalizeDateString(readerDate && readerDate[1]), source: guessSourceFromUrl(url)};
+          }
+        }
+      } catch (e) { errors.push('reader: ' + (e.message || e)); }
+    }
+
     // 2차: Microlink OpenGraph API (빠르고 안정적인 메타데이터·대표 이미지 추출)
     var mlResult = null;
     if (!htmlResult || !htmlResult.title || !htmlResult.thumbnailUrl || !htmlResult.excerpt) {
       try {
-        var mlRes = await window.fetch('https://api.microlink.io/?url=' + encodeURIComponent(url));
+        var mlController = new AbortController();
+        var mlTimer = setTimeout(function () { mlController.abort(); }, 9000);
+        var mlRes;
+        try { mlRes = await window.fetch('https://api.microlink.io/?url=' + encodeURIComponent(url), {signal: mlController.signal}); }
+        finally { clearTimeout(mlTimer); }
         if (mlRes.ok) {
           var mlJson = await mlRes.json();
           if (mlJson && mlJson.status === 'success' && mlJson.data) {
             var d = mlJson.data;
             mlResult = {
               title: cleanText(d.title || ''),
-              date: normalizeDateString(d.date || '') || new Date().toISOString().slice(0, 10),
+              date: normalizeDateString(d.date || ''),
               source: cleanText(d.publisher || guessSourceFromUrl(url)),
               excerpt: cleanText(d.description || ''),
               thumbnailUrl: (d.image && d.image.url) ? d.image.url : ((d.logo && d.logo.url) ? d.logo.url : '')
@@ -311,27 +357,29 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    if (!htmlResult && !mlResult) {
-      throw new Error('해당 언론사 보안 정책으로 자동 불러오기에 실패했습니다. 제목·요약을 직접 입력하거나 다른 기사 링크로 시도해주세요.');
+    if (!htmlResult && !mlResult && !readerResult && !saved) {
+      throw new Error('기사 정보를 가져오지 못했습니다. 기존 입력 내용은 유지됩니다. 잠시 후 다시 시도하거나 필요한 항목을 직접 입력해주세요.');
     }
 
-    var finalTitle = (htmlResult && htmlResult.title) || (mlResult && mlResult.title) || '';
-    var finalDate = (htmlResult && htmlResult.date) || (mlResult && mlResult.date) || new Date().toISOString().slice(0, 10);
-    var finalSource = (htmlResult && htmlResult.source) || (mlResult && mlResult.source) || guessSourceFromUrl(url);
+    var finalTitle = (htmlResult && htmlResult.title) || (mlResult && mlResult.title) || (readerResult && readerResult.title) || (saved && saved.title) || '';
+    var finalDate = (htmlResult && htmlResult.date) || (mlResult && mlResult.date) || (readerResult && readerResult.date) || (saved && saved.date) || '';
+    var finalSource = (htmlResult && htmlResult.source) || (mlResult && mlResult.source) || (readerResult && readerResult.source) || (saved && saved.source) || guessSourceFromUrl(url);
     var finalExcerpt = '';
     if (htmlResult && htmlResult.excerpt && (!mlResult || htmlResult.excerpt.length >= (mlResult.excerpt || '').length)) {
       finalExcerpt = htmlResult.excerpt;
     } else if (mlResult && mlResult.excerpt) {
       finalExcerpt = mlResult.excerpt;
     }
-    var finalThumb = (htmlResult && htmlResult.thumbnailUrl) || (mlResult && mlResult.thumbnailUrl) || '';
+    if (!finalExcerpt && saved) finalExcerpt = saved.excerpt || '';
+    var finalThumb = (htmlResult && htmlResult.thumbnailUrl) || (mlResult && mlResult.thumbnailUrl) || (saved && saved.thumbnail) || '';
 
     return {
       title: finalTitle,
       date: finalDate,
       source: finalSource,
       excerpt: finalExcerpt,
-      thumbnailUrl: finalThumb
+      thumbnailUrl: finalThumb,
+      fromSaved: !htmlResult && !mlResult && !!saved
     };
   }
 
@@ -488,6 +536,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
       try {
         var meta = await fetchNewsMetadata(rawUrl);
+        if (meta.fromSaved) {
+          if (!titleInput.value && meta.title) titleInput.value = meta.title;
+          if (dateInput && !dateInput.value && meta.date) dateInput.value = meta.date;
+          if (sourceInput && !sourceInput.value && meta.source) sourceInput.value = meta.source;
+          if (excerptInput && !excerptInput.value && meta.excerpt) excerptInput.value = meta.excerpt;
+          if (thumbInput && !thumbInput.files.length && !thumbInput.dataset.autofetchedUrl && meta.thumbnailUrl) {
+            thumbInput.dataset.autofetchedUrl = meta.thumbnailUrl;
+            thumbUrlInput.value = meta.thumbnailUrl;
+            thumbHelper.style.display = 'block';
+            thumbPreviewImg.src = meta.thumbnailUrl;
+            thumbPreviewImg.style.display = 'block';
+            openOrigImgBtn.href = meta.thumbnailUrl;
+            downloadImgBtn.href = meta.thumbnailUrl;
+            thumbMsg.textContent = '저장된 기사 이미지 주소입니다. 저장할 때 함께 사용됩니다.';
+          }
+          formEl.dataset.dirty = '1';
+          fetchStatus.textContent = '저장된 뉴스 정보를 불러왔습니다. 현재 입력한 내용과 기존 썸네일은 유지됩니다.';
+          return;
+        }
         if (meta.title) titleInput.value = meta.title;
         if (meta.date && dateInput) dateInput.value = meta.date;
         if (meta.source && sourceInput) sourceInput.value = meta.source;
@@ -538,11 +605,13 @@ document.addEventListener('DOMContentLoaded', function () {
             fetchStatus.textContent = '✅ 제목·날짜·출처·내용·썸네일 자동 입력 완료! 바로 [등록]을 눌러주세요.';
           }
         } else {
-          if (thumbInput) delete thumbInput.dataset.autofetchedUrl;
-          thumbUrlInput.value = '';
-          thumbHelper.style.display = 'none';
-          fetchStatus.textContent = '✅ 제목·날짜·출처·내용을 가져왔습니다! (기사에 대표 썸네일이 없어 사진은 직접 선택해주세요)';
+          fetchStatus.textContent = '가져온 정보만 입력했습니다. 찾지 못한 항목과 기존 썸네일은 유지됩니다.';
         }
+        var missing = [];
+        if (!meta.date) missing.push('날짜');
+        if (!meta.excerpt) missing.push('요약');
+        if (!meta.thumbnailUrl) missing.push('썸네일');
+        if (missing.length) fetchStatus.textContent = '가져온 정보만 입력했습니다. 확인이 필요한 항목: ' + missing.join(', ') + '. 기존 입력은 유지됩니다.';
       } catch (err) {
         fetchStatus.style.color = '#dc2626';
         fetchStatus.textContent = '❌ ' + (err.message || '뉴스 정보를 가져오지 못했습니다.');
