@@ -969,8 +969,11 @@ body .consult-form {
   border-radius: 8px;
 }
 
-body .contact-page-cta :is(.eyebrow, .h-display) {
+body :is(.contact-page-cta, #contact-help, #home-page-final-contact-help) :is(.eyebrow, .h-display) {
   color: #fffaf2 !important;
+}
+body :is(.contact-page-cta, #contact-help, #home-page-final-contact-help) .eyebrow::before {
+  background-color: #fffaf2 !important;
 }
 
 body .form-row {
