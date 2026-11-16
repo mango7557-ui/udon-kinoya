@@ -220,7 +220,7 @@ body .tech-callout:is(.brand-promise-card, .cream-callout) {
 body .sec-navy .tech-callout:is(.brand-promise-card, .cream-callout) :is(.label, h3, p, p *) {
   color: #172735 !important;
 }
-body .patent-header-centered {
+body .patent-cert-header {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
@@ -228,18 +228,18 @@ body .patent-header-centered {
   padding: 14px 0;
   text-align: center;
 }
-body .patent-header-centered .patent-seal {
+body .patent-cert-header .patent-seal {
   flex-shrink: 0;
   margin: 0;
   white-space: nowrap;
 }
-body .patent-header-centered h4 {
+body .patent-cert-header h4 {
   min-width: 0;
 }
 @media (max-width: 600px) {
-  body .patent-header-centered { gap: 6px; }
-  body .patent-header-centered .patent-seal { font-size: 9px; padding: 5px 6px; }
-  body .patent-header-centered h4 { font-size: clamp(9px, 2.4vw, 14px); line-height: 1.4; }
+  body .patent-cert-header { gap: 6px; }
+  body .patent-cert-header .patent-seal { font-size: 9px; padding: 5px 6px; }
+  body .patent-cert-header h4 { font-size: clamp(9px, 2.4vw, 14px); line-height: 1.4; }
 }
 
 body :is(p, li, dd, blockquote, .miracle-body p, .model-card p, .faq-a-inner) {
