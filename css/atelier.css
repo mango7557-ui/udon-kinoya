@@ -221,10 +221,24 @@ body .sec-navy .tech-callout:is(.brand-promise-card, .cream-callout) :is(.label,
   color: #172735 !important;
 }
 body .patent-header-centered {
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+body .patent-header-centered .patent-seal {
+  flex-shrink: 0;
+  margin: 0;
+  white-space: nowrap;
+}
+body .patent-header-centered h4 {
+  min-width: 0;
+}
+@media (max-width: 600px) {
+  body .patent-header-centered { gap: 6px; }
+  body .patent-header-centered .patent-seal { font-size: 9px; padding: 5px 6px; }
+  body .patent-header-centered h4 { font-size: clamp(9px, 2.4vw, 14px); line-height: 1.4; }
 }
 
 body :is(p, li, dd, blockquote, .miracle-body p, .model-card p, .faq-a-inner) {
