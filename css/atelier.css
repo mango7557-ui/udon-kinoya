@@ -963,7 +963,7 @@ body #partner-contact {
 body .consult-form {
   max-width: 720px;
   margin-inline: auto;
-  background: var(--atelier-surface);
+  background: #fffaf2;
   padding: clamp(24px, 4vw, 48px);
   border: 1px solid var(--atelier-border);
   border-radius: 8px;
