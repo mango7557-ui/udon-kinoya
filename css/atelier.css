@@ -195,8 +195,9 @@ body .store-card .store-thumb {
   padding: 12px;
 }
 
-/* Match store cards to the menu catalog's cream background. */
-body .store-card {
+/* Match store and people cards to the menu catalog's cream background. */
+body .store-card,
+body .people-profile-card {
   background-color: #fffaf2 !important;
 }
 
