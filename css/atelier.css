@@ -209,6 +209,17 @@ body :is(#legacy, #home-page-brand-story-legacy) .btn-ghost {
   background-color: #fffaf2 !important;
 }
 
+/* Use the menu-card cream for the requested buttons, notices and resources. */
+body.kinoya-home .hero-cta-row .btn-primary,
+body :is(#faq, #home-page-proof-faq) .btn-ghost,
+body .resource-item,
+body :is([data-cms="cost.disclaimer.top"], [data-cms="cost.disclaimer.bottom"], [data-cms="menu.disclaimer"]),
+body .model-card:has(> [data-cms="cost.summary.included"]),
+body .model-card:has(> [data-cms="cost.summary.excluded"]),
+body #partner-contact .cost-disclaimer {
+  background-color: #fffaf2 !important;
+}
+
 body :is(.tech-callout .label, .patent-seal, .reduction-eyebrow, .banner-copy .banner-tag, .final-card .cn, .r-price em, .banner-copy em) {
   color: var(--atelier-gold) !important;
 }
