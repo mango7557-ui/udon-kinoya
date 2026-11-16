@@ -199,6 +199,20 @@ body :is(.tech-callout .label, .patent-seal, .reduction-eyebrow, .banner-copy .b
   color: var(--atelier-gold) !important;
 }
 
+/* Customer Promise: cream inset against the navy section. */
+body .tech-callout:is(.brand-promise-card, .cream-callout) {
+  background: #f4eee2 !important;
+}
+body .sec-navy .tech-callout:is(.brand-promise-card, .cream-callout) :is(.label, h3, p, p *) {
+  color: #172735 !important;
+}
+body .patent-header-centered {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 body :is(p, li, dd, blockquote, .miracle-body p, .model-card p, .faq-a-inner) {
   line-height: 1.75 !important;
 }
