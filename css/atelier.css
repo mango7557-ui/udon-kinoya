@@ -973,6 +973,10 @@ body .consult-form {
   border-radius: 8px;
 }
 
+body #partner-contact .cost-disclaimer {
+  background-color: #fffaf2;
+}
+
 body :is(.contact-page-cta, #contact-help, #home-page-final-contact-help) :is(.eyebrow, .h-display) {
   color: #fffaf2 !important;
 }
