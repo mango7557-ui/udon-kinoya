@@ -969,6 +969,10 @@ body .consult-form {
   border-radius: 8px;
 }
 
+body .contact-page-cta :is(.eyebrow, .h-display) {
+  color: #fffaf2 !important;
+}
+
 body .form-row {
   margin-bottom: 24px;
 }
