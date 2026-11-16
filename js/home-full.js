@@ -257,7 +257,7 @@
       if(item.hours||item.closed_days||item.meta){const meta=element(doc,'div',null,'store-meta');if(item.hours||item.closed_days){const h=String(item.hours||'').replace(/^🕒\s*/,'').trim(),c=String(item.closed_days||'').trim();meta.append(element(doc,'span','🕒 '+(h&&c?(h+' · '+c):(h||c))));}if(item.meta)meta.append(element(doc,'span',item.meta));body.append(meta);}
       const actions=element(doc,'div',null,'store-actions');
       if(item.phone){const tel=element(doc,'a','전화하기','primary');tel.href='tel:'+String(item.phone).replace(/[^0-9+-]/g,'');actions.append(tel);}
-      if(detailUrl){const det=element(doc,'a','매장 자세히 보기 →');det.href=detailUrl;actions.append(det);}
+      if(detailUrl){const det=element(doc,'a','매장 보기 →');det.href=detailUrl;actions.append(det);}
       const q=encodeURIComponent(item.name||'우동키노야');
       const gMap=safeURL(item.google_map_url)||('https://www.google.com/maps/search/'+q);
       const nMap=safeURL(item.naver_map_url)||('https://map.naver.com/p/search/'+q);

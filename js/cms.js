@@ -348,7 +348,7 @@
           if (detailUrl) {
             var det = document.createElement('a');
             det.href = detailUrl;
-            det.textContent = '매장 자세히 보기 →';
+            det.textContent = '매장 보기 →';
             actions.appendChild(det);
           }
           var q = encodeURIComponent(item.name || '우동키노야');
