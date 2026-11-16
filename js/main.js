@@ -224,6 +224,7 @@ function initKinoyaPage() {
       blog: 'social.sns.blog',
       youtube: 'social.sns.youtube',
       instagram: 'social.sns.instagram',
+      tiktok: 'social.sns.tiktok',
       threads: 'social.sns.threads',
       facebook: 'social.sns.facebook',
       kakao_channel: 'social.sns.kakaochannel',
@@ -231,6 +232,17 @@ function initKinoyaPage() {
     };
 
     function applySnsRows(byKey) {
+      [['youtube', '.btn-youtube'], ['blog', '#social-channel-tabs [data-social-channel="blog"]']].forEach(function (entry) {
+        var row = byKey['social.sns.' + entry[0]];
+        var target = document.querySelector(entry[1]);
+        if (!target || !row) return;
+        var value = String(row.value == null ? '' : row.value).trim();
+        try {
+          var url = value && window.KinoyaRuntime ? window.KinoyaRuntime.safeURL(value) : value;
+          if (/^https?:\/\//i.test(url)) target.setAttribute('href', url);
+          else target.removeAttribute('href');
+        } catch (e) { target.removeAttribute('href'); }
+      });
       snsItems.forEach(function (el) {
         var label = el.getAttribute('data-label');
         var key = snsKeyByLabel[label];

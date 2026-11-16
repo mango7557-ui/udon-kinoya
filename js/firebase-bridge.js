@@ -606,7 +606,11 @@
       return fileRes;
     } catch (err) {
       if (window.KinoyaAdminAuth && method !== 'GET' && method !== 'HEAD' && localServerState === 'serverless') {
-        return jsonResponse({error: '공유 저장에 실패했습니다. 관리자 계정으로 로그인하고 다시 시도해주세요.'}, 403);
+        var adminState = window.KinoyaAdminAuth;
+        var message = !adminState.user
+          ? '공유 저장을 위해 상단의 관리자 Google 로그인 버튼을 눌러 로그인해주세요.'
+          : '공유 저장에 실패했습니다. 로그인한 계정의 Firebase 쓰기 권한과 연결 상태를 확인해주세요. (' + (err.message || '연결 오류') + ')';
+        return jsonResponse({error: message}, 403);
       }
       if (localServerState !== 'serverless') {
         try {
