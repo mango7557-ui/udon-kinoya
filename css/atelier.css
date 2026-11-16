@@ -714,6 +714,22 @@ body :is(.miracle-visual, .story-visual) {
   overflow: hidden;
 }
 
+@media (max-width: 767px) {
+  body .miracle-visual:is([data-cms="brand.origin.bg"], [data-cms="home.brandstory.bg"]) {
+    margin-top: 54px;
+    overflow: visible;
+  }
+  body .miracle-visual:is([data-cms="brand.origin.bg"], [data-cms="home.brandstory.bg"]) .badge {
+    top: -10px;
+    left: 0;
+    max-width: 100%;
+    transform: translateY(-100%);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+  }
+}
+
 body .miracle-body :is(p, .body-text) {
   font-size: 17px;
   line-height: 1.9;
