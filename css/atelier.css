@@ -202,6 +202,13 @@ body .news-list-card {
   background-color: #fffaf2 !important;
 }
 
+/* Match the requested informational cards and brand links to the menu cards. */
+body :is(#numbers, #home-noodle-numbers, #home-page-noodle-numbers) .number-card,
+body :is(#roles, #home-page-people-roles, #model, #home-page-proof-model) .model-grid.is-2x2 > .model-card,
+body :is(#legacy, #home-page-brand-story-legacy) .btn-ghost {
+  background-color: #fffaf2 !important;
+}
+
 body :is(.tech-callout .label, .patent-seal, .reduction-eyebrow, .banner-copy .banner-tag, .final-card .cn, .r-price em, .banner-copy em) {
   color: var(--atelier-gold) !important;
 }
