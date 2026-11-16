@@ -195,6 +195,11 @@ body .store-card .store-thumb {
   padding: 12px;
 }
 
+/* Match store cards to the menu catalog's cream background. */
+body .store-card {
+  background-color: #fffaf2 !important;
+}
+
 body :is(.tech-callout .label, .patent-seal, .reduction-eyebrow, .banner-copy .banner-tag, .final-card .cn, .r-price em, .banner-copy em) {
   color: var(--atelier-gold) !important;
 }
