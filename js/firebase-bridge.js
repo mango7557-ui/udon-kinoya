@@ -65,6 +65,19 @@
   var originalFetch = window.fetch.bind(window);
   var fileDataCache = new Map();
 
+  async function firestoreFetch(input, options) {
+    var admin = window.KinoyaAdminAuth;
+    if (admin) await admin.ready;
+    var token = admin && admin.token ? await admin.token() : '';
+    var requestOptions = Object.assign({}, options || {});
+    if (token) {
+      var headers = new Headers(requestOptions.headers || {});
+      headers.set('Authorization', 'Bearer ' + token);
+      requestOptions.headers = headers;
+    }
+    return originalFetch(input, requestOptions);
+  }
+
   function getFirebaseConfig() {
     var candidates = [];
     try {
@@ -207,7 +220,7 @@
       var prefix = cfg.namespace + '__';
       do {
         var tokenParam = pageToken ? '&pageToken=' + encodeURIComponent(pageToken) : '';
-        var res = await originalFetch(
+        var res = await firestoreFetch(
           firestoreCollectionBase(cfg) +
             '?pageSize=300&key=' +
             encodeURIComponent(cfg.apiKey) +
@@ -310,7 +323,7 @@
     if (method === 'GET' || method === 'HEAD') {
       if (id) {
         var singleUrl = base + '/' + encodeURIComponent(recordDocId(cfg, table, id)) + '?' + keyParam;
-        var singleRes = await originalFetch(singleUrl, { cache: 'no-store' });
+        var singleRes = await firestoreFetch(singleUrl, { cache: 'no-store' });
         if (singleRes.status === 404) return jsonResponse({ error: 'Record not found' }, 404);
         if (!singleRes.ok) throw new Error('Firestore get failed (' + singleRes.status + ')');
         var singleDoc = await singleRes.json();
@@ -330,9 +343,9 @@
 
     if (method === 'DELETE' && id) {
       var delUrl = base + '/' + encodeURIComponent(recordDocId(cfg, table, id)) + '?' + keyParam;
-      var checkDel = await originalFetch(delUrl, { cache: 'no-store' });
+      var checkDel = await firestoreFetch(delUrl, { cache: 'no-store' });
       if (checkDel.status === 404) return jsonResponse({ error: 'Record not found' }, 404);
-      var delRes = await originalFetch(delUrl, { method: 'DELETE' });
+      var delRes = await firestoreFetch(delUrl, { method: 'DELETE' });
       if (!delRes.ok) throw new Error('Firestore delete failed (' + delRes.status + ')');
       invalidateDocsCache();
       return jsonResponse({ id: id, deleted: true }, 200);
@@ -343,7 +356,7 @@
       var previous = {};
       if (id) {
         var existUrl = base + '/' + encodeURIComponent(recordDocId(cfg, table, id)) + '?' + keyParam;
-        var existRes = await originalFetch(existUrl, { cache: 'no-store' });
+        var existRes = await firestoreFetch(existUrl, { cache: 'no-store' });
         if (existRes.status === 404) return jsonResponse({ error: 'Record not found' }, 404);
         if (!existRes.ok) throw new Error('Firestore read failed (' + existRes.status + ')');
         previous = stripInternalFields(fromFirestoreFields((await existRes.json()).fields || {}));
@@ -364,7 +377,7 @@
         }
       );
       var saveUrl = base + '/' + encodeURIComponent(recordDocId(cfg, table, recordId)) + '?' + keyParam;
-      var saveRes = await originalFetch(saveUrl, {
+      var saveRes = await firestoreFetch(saveUrl, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ fields: toFirestoreValue(merged).mapValue.fields })
@@ -408,7 +421,7 @@
     try {
       var keyParam = 'key=' + encodeURIComponent(cfg.apiKey);
       var docUrl = firestoreCollectionBase(cfg) + '/' + encodeURIComponent(fileDocId(cfg, collection, name)) + '?' + keyParam;
-      var res = await originalFetch(docUrl);
+      var res = await firestoreFetch(docUrl);
       if (res.ok) {
         var doc = await res.json();
         var parsed = fromFirestoreFields(doc.fields || {});
@@ -454,7 +467,7 @@
       };
       try {
         var saveUrl = base + '/' + encodeURIComponent(fileDocId(cfg, collection, fileId)) + '?' + keyParam;
-        var res = await originalFetch(saveUrl, {
+        var res = await firestoreFetch(saveUrl, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ fields: toFirestoreValue(payload).mapValue.fields })
@@ -479,7 +492,7 @@
       var referenceToDelete = '/files/' + collection + '/' + name;
       fileDataCache.delete(referenceToDelete);
       var delUrl = base + '/' + encodeURIComponent(fileDocId(cfg, collection, name)) + '?' + keyParam;
-      await originalFetch(delUrl, { method: 'DELETE' }).catch(function () {});
+      await firestoreFetch(delUrl, { method: 'DELETE' }).catch(function () {});
       return jsonResponse({ deleted: true }, 200);
     }
 
@@ -592,6 +605,9 @@
       setTimeout(hydrateUploadedFileElements, 0);
       return fileRes;
     } catch (err) {
+      if (window.KinoyaAdminAuth && method !== 'GET' && method !== 'HEAD' && localServerState === 'serverless') {
+        return jsonResponse({error: '공유 저장에 실패했습니다. 관리자 계정으로 로그인하고 다시 시도해주세요.'}, 403);
+      }
       if (localServerState !== 'serverless') {
         try {
           var localRes = await originalFetch(input, options);
