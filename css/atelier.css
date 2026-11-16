@@ -248,9 +248,9 @@ body .patent-cert-header h4 {
   min-width: 0;
 }
 @media (max-width: 600px) {
-  body .patent-cert-header { gap: 6px; }
-  body .patent-cert-header .patent-seal { font-size: 9px; padding: 5px 6px; }
-  body .patent-cert-header h4 { font-size: clamp(9px, 2.4vw, 14px); line-height: 1.4; }
+  body .patent-cert-header { flex-direction: column; gap: 10px; }
+  body .patent-cert-header .patent-seal { font-size: 12px; padding: 5px 10px; }
+  body .patent-cert-header h4 { font-size: 14px; line-height: 1.4; }
 }
 
 body :is(p, li, dd, blockquote, .miracle-body p, .model-card p, .faq-a-inner) {
