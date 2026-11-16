@@ -791,6 +791,10 @@ body .faq-item {
   overflow: hidden;
 }
 
+body :is(.sec-off, .sec-ivory, #faq-preview) .faq-item {
+  background-color: #fffaf2;
+}
+
 body .faq-q {
   padding: 24px;
   font-size: 18px;
