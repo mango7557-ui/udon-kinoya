@@ -25,7 +25,7 @@
     tabs.forEach((button,i)=>{button.type='button';button.addEventListener('click',()=>{
       const destination=i===0?document.getElementById('shorts-section'):i===1?document.getElementById('videos-section'):null;
       if(destination?.getClientRects().length){destination.scrollIntoView({behavior:'smooth',block:'start'});}
-      else {const link=document.querySelector(i===2?'.footer-sns-item[data-label="instagram"]':i===3?'.footer-sns-item[data-label="tiktok"]':'.btn-youtube');if(link?.href&&link.getAttribute('href')!=='#'){window.open(link.href,'_blank','noopener,noreferrer');}else{let status=document.getElementById('atelier-social-status');if(!status){status=document.createElement('p');status.id='atelier-social-status';status.setAttribute('role','status');button.closest('.social-tabs').after(status);}status.textContent='이 채널은 아직 등록되지 않았습니다.';}}
+      else {const link=document.querySelector(i===2?'.footer-sns-item[data-label="instagram"]':i===3?'.footer-sns-item[data-label="tiktok"]':i===4?'.footer-sns-item[data-label="blog"]':'.btn-youtube');if(link?.href&&link.getAttribute('href')!=='#'){window.open(link.href,'_blank','noopener,noreferrer');}else{let status=document.getElementById('atelier-social-status');if(!status){status=document.createElement('p');status.id='atelier-social-status';status.setAttribute('role','status');button.closest('.social-tabs').after(status);}status.textContent='이 채널은 아직 등록되지 않았습니다.';}}
       tabs.forEach(t=>t.classList.toggle('active',t===button));
     });});
 
