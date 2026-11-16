@@ -225,6 +225,7 @@ body .patent-header-centered {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  padding: 14px 0;
   text-align: center;
 }
 body .patent-header-centered .patent-seal {
