@@ -22,15 +22,16 @@ test('Every sitemap page preserves its static search contract',async()=>{
   }
 });
 
-test('Redesign preserves public CMS contracts and unified contact anchors',async()=>{
+test('Redesign preserves public CMS contracts and phone-only consultation fallback',async()=>{
   const home=await read('index.html'),contact=await read('contact/index.html');
   assert.match(home,/data-cms="home.hero.headline"/);
   assert.doesNotMatch(home,/<video class="hero-video"[^>]*poster=/);
-  assert.equal([...contact.matchAll(/<form\b/g)].length,1);
   assert.match(contact,/id="partner-contact"/);
-  assert.match(contact,/id="consult-form"/);
-  assert.match(contact,/data-notify-email="udonkinoya@daum.net"/);
-  assert.match(contact,/name="consent" required/);
+  for(const path of ['contact/index.html','en/contact/index.html','ja/contact/index.html']){
+    const inquiry=await read(path);
+    assert.match(inquiry,/href="tel:15518748"/,path+' telephone link');
+    assert.doesNotMatch(inquiry,/<form\b|<input\b|<textarea\b|id="consult-form"|id="consult-success"|data-notify-email/,path+' no online form');
+  }
   const robots=await read('robots.txt');
   assert.match(robots,/Disallow: \/admin\//);
   const guide=await read('guide/index.html');
