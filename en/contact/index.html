@@ -91,14 +91,14 @@
 
 <section class="section sec-off">
   <div class="container">
-    <form id="consult-form" class="consult-form" aria-label="Franchise consultation request form" data-notify-email="udonkinoya@daum.net">
+    <form id="consult-form" class="consult-form" aria-label="Franchise consultation request form" method="post" autocomplete="off" inert>
       <div class="form-row">
         <label for="f-name">Name <span class="required">*</span></label>
-        <input type="text" id="f-name" name="name" required autocomplete="name">
+        <input type="text" id="f-name" name="name" required>
       </div>
       <div class="form-row">
         <label for="f-phone">Contact <span class="required">*</span></label>
-        <input type="tel" id="f-phone" name="phone" required autocomplete="tel" placeholder="010-0000-0000">
+        <input type="tel" id="f-phone" name="phone" required placeholder="010-0000-0000">
       </div>
       <div class="form-row">
         <label for="f-region">Desired Area <span class="required">*</span></label>
@@ -117,6 +117,7 @@
         <label for="f-message">Additional Message (optional)</label>
         <textarea id="f-message" name="message" rows="4" placeholder="Feel free to leave any questions."></textarea>
       </div>
+      <p class="form-note">This form uses FormSubmit to relay your information to Udon Kinoya’s inquiry inbox. We use the information to respond to your inquiry.</p>
       <div class="form-consent">
         <input type="checkbox" id="f-consent" name="consent" required style="margin-top:3px;">
         <label for="f-consent">
@@ -125,19 +126,19 @@
           the consultation is complete. <span class="required">*</span>
         </label>
       </div>
-      <button type="submit" class="form-submit" data-event="form_submit">Request Consultation</button>
+      <button type="submit" class="form-submit" disabled data-event="form_submit">Request Consultation</button>
       <p class="form-note">Requesting a consultation does not mean signing a contract — you can decide independently after gathering sufficient information.</p>
     </form>
 
     <div id="consult-success" class="form-success">
-      <h2 class="h-display" style="font-size:24px;">Your consultation request has been received.</h2>
-      <p style="opacity:0.75; margin-top:12px;">Our team will review it and contact you using the information you provided.</p>
+      <h2 class="h-display" style="font-size:24px;">The email service accepted your inquiry.</h2>
+      <p style="opacity:0.75; margin-top:12px;">If you need to follow up, please call our Korea hotline.</p>
       <a href="../" class="btn-ghost" style="color:var(--navy); border-color:var(--line-light); display:inline-flex; margin-top:24px;">Back to Home</a>
     </div>
 
     <div class="cost-disclaimer" style="margin-top:48px;">
       <strong>Phone Inquiry</strong><br>
-      Hotline: 0507-1408-1984 (connection may be difficult while a store line is in use)
+      Hotline (within Korea): <a href="tel:15518748">1551-8748</a>
     </div>
   </div>
 </section>
