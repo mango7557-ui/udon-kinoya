@@ -447,13 +447,25 @@ function initKinoyaPage() {
       submitting = true;
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = messages[2]; }
 
-      window.fetch(CONSULT_EMAIL_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        credentials: 'omit',
-        redirect: 'error',
-        signal: AbortSignal.timeout(15000),
-        body: JSON.stringify(body)
+      var timer;
+      Promise.resolve().then(function () {
+        var options = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          credentials: 'omit',
+          redirect: 'error',
+          body: JSON.stringify(body)
+        };
+        if (window.AbortSignal && typeof window.AbortSignal.timeout === 'function') {
+          options.signal = window.AbortSignal.timeout(15000);
+        } else if (typeof window.AbortController === 'function') {
+          var controller = new window.AbortController();
+          options.signal = controller.signal;
+          timer = window.setTimeout(function () { controller.abort(); }, 15000);
+        }
+        // Without cancellation, wait for fetch to settle rather than offering a
+        // retry while the original submission might still reach the recipient.
+        return window.fetch(CONSULT_EMAIL_ENDPOINT, options);
       }).then(function (response) {
         if (!response.ok) throw new Error('FormSubmit HTTP failure');
         return response.json();
@@ -469,6 +481,7 @@ function initKinoyaPage() {
       }).catch(function () {
         alert(messages[3]);
       }).finally(function () {
+        if (timer !== undefined) window.clearTimeout(timer);
         submitting = false;
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
       });
