@@ -23,7 +23,7 @@ export function normalizeInquiry(input) {
   if(Object.keys(input).some(k=>!known.has(k)) || input.website!=='' || input.consent!==true || !categories.has(input.category) || !pages.has(input.source)) throw bad();
   const rawPhone=str(input.phone,30,true);
   if(!/^\+?[0-9 ()-]+$/.test(rawPhone)) throw bad();
-  const phone=rawPhone.replace(/\D/g,'').replace(/^82(?=10\d{8}$)/,'010');
+  const phone=rawPhone.replace(/\D/g,'').replace(/^82(?=10\d{8}$)/,'0');
   if(!/^\d{8,15}$/.test(phone)) throw bad();
   return {id:ref(input.id),name:str(input.name,60,true),phone,category:input.category,
     region:str(input.region??'',100),message:str(input.message??'',2000),source:input.source,consent:true};
