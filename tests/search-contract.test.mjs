@@ -30,7 +30,7 @@ test('Redesign preserves public CMS contracts and unified contact anchors',async
   assert.match(contact,/id="partner-contact"/);
   assert.match(contact,/id="consult-form"/);
   const handler=await read('js/main.js');
-  assert.match(handler,/https:\/\/formsubmit\.co\/ajax\/udonkinoya%40daum\.net/);
+  assert.match(handler,/https:\/\/formsubmit\.co\/ajax\/delhi1984%40naver\.com/);
   for(const path of ['contact/index.html','en/contact/index.html','ja/contact/index.html']){
     const inquiry=await read(path);
     assert.match(inquiry,/<form[^>]+method="post"[^>]+inert/);
@@ -113,7 +113,7 @@ const assertConsultationModes = async (handler, assert) => {
     const skip = ['blank field','no consent','sync timeout creation failure'].includes(label);
     assert.equal(calls.length,skip ? 0 : 1,label+' fetch count');
     if(!skip) {
-      assert.equal(calls[0].url,'https://formsubmit.co/ajax/udonkinoya%40daum.net',label+' recipient');
+      assert.equal(calls[0].url,'https://formsubmit.co/ajax/delhi1984%40naver.com',label+' recipient');
       assert.equal(calls[0].options.redirect,'error',label+' no redirects');
       assert.equal(calls[0].options.signal?.kind,api === 'absent' ? undefined : api,label+' timeout mechanism');
     }
