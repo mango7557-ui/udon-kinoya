@@ -31,73 +31,43 @@
     ],
     "redirects": [
       {
-        "source": "/company-basic/company-basic-recruit",
+        "regex": "^/company-basic/company-basic-recruit/?$",
         "destination": "/contact/",
         "type": 301
       },
       {
-        "source": "/company-basic/company-basic-recruit/",
+        "regex": "^/company-basic/company-basic-history/?$",
+        "destination": "/brand/",
+        "type": 301
+      },
+      {
+        "regex": "^/company-basic/company-basic-introduce/?$",
+        "destination": "/noodle/",
+        "type": 301
+      },
+      {
+        "regex": "^/company-basic/company-basic-contact/?$",
+        "destination": "/franchise/cost/",
+        "type": 301
+      },
+      {
+        "regex": "^/company-basic/company-basic-product/?$",
+        "destination": "/menu/",
+        "type": 301
+      },
+      {
+        "regex": "^/company-basic/company-basic-gallery/?$",
+        "destination": "/store/",
+        "type": 301
+      },
+      {
+        "regex": "^/company-basic/company-basic-organization/?$",
+        "destination": "/people/",
+        "type": 301
+      },
+      {
+        "regex": "^/컨택트/?$",
         "destination": "/contact/",
-        "type": 301
-      },
-      {
-        "source": "/company-basic/company-basic-history",
-        "destination": "/brand/",
-        "type": 301
-      },
-      {
-        "source": "/company-basic/company-basic-history/",
-        "destination": "/brand/",
-        "type": 301
-      },
-      {
-        "source": "/company-basic/company-basic-introduce",
-        "destination": "/noodle/",
-        "type": 301
-      },
-      {
-        "source": "/company-basic/company-basic-introduce/",
-        "destination": "/noodle/",
-        "type": 301
-      },
-      {
-        "source": "/company-basic/company-basic-contact",
-        "destination": "/franchise/cost/",
-        "type": 301
-      },
-      {
-        "source": "/company-basic/company-basic-contact/",
-        "destination": "/franchise/cost/",
-        "type": 301
-      },
-      {
-        "source": "/company-basic/company-basic-product",
-        "destination": "/menu/",
-        "type": 301
-      },
-      {
-        "source": "/company-basic/company-basic-product/",
-        "destination": "/menu/",
-        "type": 301
-      },
-      {
-        "source": "/company-basic/company-basic-gallery",
-        "destination": "/store/",
-        "type": 301
-      },
-      {
-        "source": "/company-basic/company-basic-gallery/",
-        "destination": "/store/",
-        "type": 301
-      },
-      {
-        "source": "/company-basic/company-basic-organization",
-        "destination": "/people/",
-        "type": 301
-      },
-      {
-        "source": "/company-basic/company-basic-organization/",
-        "destination": "/people/",
         "type": 301
       }
     ]
