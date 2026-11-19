@@ -27,6 +27,7 @@
       } catch (error) { status.textContent = '로그인 실패: ' + (error.message || '다시 시도해 주세요.'); button.disabled = false; }
     });
     bar.append(status, button); document.body.prepend(bar);
+    state.subscribe = callback => authSdk.onAuthStateChanged(auth, callback, () => callback(null));
     state.token = async () => auth.currentUser ? auth.currentUser.getIdToken() : '';
   })().catch(function (error) { console.error('관리자 로그인 준비 실패', error); });
 })();
