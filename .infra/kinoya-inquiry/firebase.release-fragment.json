@@ -1,0 +1,44 @@
+{
+  "note": "Review-only fragment. Merge functions array and exact rewrites into an approved, explicit site-target release config. Never deploy shared repository rules.",
+  "functions": [
+    {
+      "source": ".infra/kinoya-inquiry",
+      "codebase": "kinoya-inquiry",
+      "ignore": [
+        "core.test.mjs",
+        "browser.mjs",
+        "README.md",
+        "firebase.release-fragment.json"
+      ]
+    }
+  ],
+  "hosting": {
+    "ignore": [
+      ".infra/**",
+      "**/.infra/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/inquiries/config",
+        "function": {
+          "functionId": "kinoyaInquiryApi",
+          "region": "asia-northeast3"
+        }
+      },
+      {
+        "source": "/api/inquiries",
+        "function": {
+          "functionId": "kinoyaInquiryApi",
+          "region": "asia-northeast3"
+        }
+      },
+      {
+        "source": "/api/admin/inquiries",
+        "function": {
+          "functionId": "kinoyaInquiryApi",
+          "region": "asia-northeast3"
+        }
+      }
+    ]
+  }
+}
