@@ -29,7 +29,15 @@ test('Redesign preserves public CMS contracts and unified contact anchors',async
   assert.equal([...contact.matchAll(/<form\b/g)].length,1);
   assert.match(contact,/id="partner-contact"/);
   assert.match(contact,/id="consult-form"/);
-  assert.match(contact,/data-notify-email="udonkinoya@daum.net"/);
+  const handler=await read('js/main.js');
+  assert.match(handler,/https:\/\/formsubmit\.co\/ajax\/udonkinoya%40daum\.net/);
+  for(const path of ['contact/index.html','en/contact/index.html','ja/contact/index.html']){
+    const inquiry=await read(path);
+    assert.match(inquiry,/<form[^>]+method="post"[^>]+inert/);
+    assert.match(inquiry,/<button type="submit" class="form-submit" disabled/);
+    assert.match(inquiry,/href="tel:15518748"/);
+    assert.doesNotMatch(inquiry,/data-notify-email/);
+  }
   assert.match(contact,/name="consent" required/);
   const robots=await read('robots.txt');
   assert.match(robots,/Disallow: \/admin\//);
