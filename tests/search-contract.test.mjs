@@ -45,3 +45,92 @@ test('Redesign preserves public CMS contracts and unified contact anchors',async
   assert.match(guide,/@type":"FAQPage"/);
   assert.equal([...guide.matchAll(/class="answer-text"/g)].length,8);
 });
+
+const assertConsultationModes = async (handler, assert) => {
+  const accepted = { success: true, message: 'The form was submitted successfully.' };
+  const table = [
+    ['native acceptance', 'native', accepted, true],
+    ['string acceptance', 'native', { ...accepted, success: 'true' }, true],
+    ['activation pending', 'native', { success: false, message: 'Activate your form' }, false],
+    ['false string', 'native', { ...accepted, success: 'false' }, false],
+    ['ambiguous activation', 'native', { ...accepted, message: 'Check activation email' }, false],
+    ['unknown JSON', 'native', { status: 'ok' }, false],
+    ['non-JSON', 'native', 'malformed', false],
+    ['HTTP 403', 'native', '403', false],
+    ['network rejection', 'native', 'network', false],
+    ['blank field', 'native', accepted, false],
+    ['no consent', 'native', accepted, false],
+    ['controller timeout', 'controller', 'timeout', false],
+    ['API absent', 'absent', accepted, true],
+    ['sync fetch failure', 'absent', 'sync', false],
+    ['sync timeout creation failure', 'throw-timeout', accepted, false],
+    ['native timeout rejection', 'native', 'timeout', false],
+    ['controller acceptance cleanup', 'controller', accepted, true],
+    ['API absent network rejection', 'absent', 'network', false]
+  ];
+  for (const [label, api, outcome, delivered] of table) {
+    let submit, success = false, reset = false, timer, cleared = false, abort;
+    const calls = [], alerts = [];
+    const button = { textContent:'submit', disabled:true };
+    const values = { name:{ value:label === 'blank field' ? '' : 'Synthetic QA' }, phone:{ value:'000' },
+      consent:{ checked:label !== 'no consent' }, region:{value:''}, message:{value:''}, startup_type:null };
+    const form = { inert:true, dataset:{}, style:{}, reset(){reset=true;},
+      querySelector(selector){return selector === '.form-submit' ? button : values[selector.match(/name="([^"]+)/)[1]];},
+      addEventListener(event, listener){submit=listener;} };
+    const w = {
+      location:{pathname:'/contact/'},
+      get localStorage(){throw Error('Unexpected browser storage');},
+      fetch(url, options) {
+        calls.push({url, options});
+        if(outcome === 'sync') throw Error('Synchronous fetch failure');
+        if(outcome === 'network') return Promise.reject(Error('Network rejection'));
+        if(outcome === 'timeout') return new Promise((resolve,reject) => {
+          abort = () => reject(Error('Timed out'));
+        });
+        return Promise.resolve({ok: outcome !== '403', async json(){
+          if(outcome === 'malformed') throw Error('Invalid JSON');
+          return outcome;
+        }});
+      }
+    };
+    if(api === 'native' || api === 'throw-timeout') w.AbortSignal={timeout(ms){
+      assert.equal(ms,15000);if(api === 'throw-timeout') throw Error('timeout creation failed');
+      return { kind:'native' };
+    }};
+    if(api === 'controller') {
+      w.AbortSignal={};
+      w.AbortController=class {constructor(){this.signal={kind:'controller'};} abort(){abort();}};
+      w.setTimeout=(callback,ms)=>{assert.equal(ms,15000);timer=callback;return 0;};
+      w.clearTimeout=id=>{assert.equal(id,0);cleared=true;};
+    }
+    handler({documentElement:{lang:'ko'},getElementById(id){
+      return id === 'consult-form' ? form : {classList:{add(){success=true;}}};
+    }},w,value=>alerts.push(value));
+    submit({preventDefault(){}}); submit({preventDefault(){}});
+    for(let i=0;i<12;i++) await Promise.resolve();
+    if(outcome === 'timeout') api === 'controller' ? timer() : abort();
+    for(let i=0;i<20;i++) await Promise.resolve();
+    const skip = ['blank field','no consent','sync timeout creation failure'].includes(label);
+    assert.equal(calls.length,skip ? 0 : 1,label+' fetch count');
+    if(!skip) {
+      assert.equal(calls[0].url,'https://formsubmit.co/ajax/udonkinoya%40daum.net',label+' recipient');
+      assert.equal(calls[0].options.redirect,'error',label+' no redirects');
+      assert.equal(calls[0].options.signal?.kind,api === 'absent' ? undefined : api,label+' timeout mechanism');
+    }
+    assert.equal(success,delivered,label+' success');
+    assert.equal(reset,delivered,label+' reset');
+    assert.equal(alerts.length > 0,!delivered,label+' alert');
+    assert.equal(button.disabled,false,label+' button restored');
+    assert.equal(button.textContent,'submit',label+' button label restored');
+    assert.equal(cleared,api === 'controller',label+' timer cleared');
+  }
+};
+
+test('Public inquiry delivery fails closed and restores controls on unsupported timeout APIs', async()=>{
+  const js=await read('js/main.js');
+  const start=js.indexOf('  var CONSULT_EMAIL_ENDPOINT');
+  const end=js.indexOf('  /* ---------- Store slider',start);
+  assert.ok(start>=0 && end>start);
+  const handler=new Function('document','window','alert',js.slice(start,end));
+  await assertConsultationModes(handler, assert);
+});
