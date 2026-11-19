@@ -99,7 +99,8 @@
 
 <section class="section sec-off" id="partner-contact">
   <div class="container">
-    <form id="consult-form" class="consult-form" aria-label="창업상담 및 제휴·문의 통합 폼" method="post" autocomplete="off" inert>
+    <form id="consult-form" data-inquiry-source="/contact/" class="consult-form" aria-label="창업상담 및 제휴·문의 통합 폼" method="post" autocomplete="off" inert>
+      <div hidden><input name="website" tabindex="-1" autocomplete="off"></div>
       <div class="form-row">
         <label for="f-name">성함 <span class="required">*</span></label>
         <input type="text" id="f-name" name="name" required placeholder="성함을 입력해주세요">
@@ -136,11 +137,11 @@
           <p><strong>■ 개인정보의 수집 및 이용목적</strong><br>회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.<br>ο 창업 상담 안내, 업무제휴 검토, 고객의 소리 응대, 문의사항 확인 및 회신 안내</p>
           <p><strong>■ 개인정보의 보유 및 이용기간</strong><br>회사는 개인정보 수집 및 이용목적이 달성된 후에는 예외 없이 해당 정보를 지체 없이 파기합니다.</p>
           <p><strong>■ 개인정보의 파기절차 및 방법</strong><br>회사는 원칙적으로 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체없이 파기합니다. 전자적 파일형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다.</p>
-          <p><strong>■ 개인정보 제공 및 위탁</strong><br>이 문의 양식은 FormSubmit을 이용해 입력한 문의 정보를 우동키노야 문의 메일함으로 전달합니다.</p>
+          <p><strong>■ 개인정보 제공 및 위탁</strong><br>입력한 문의는 우동키노야 관리자 화면에 저장됩니다. 문의 내용·유형·접수번호는 업무용 메일함으로 전달될 수 있습니다. 문의에 필요하지 않은 민감한 정보는 입력하지 마세요.</p>
           <p><strong>■ 개인정보에 관한 민원서비스</strong><br>고객서비스담당 부서 전화번호 : 1551-8748 / 이메일 : udonkinoya@daum.net<br>개인정보관리책임자 성명 : 김민찬 / 전화번호 : 1551-8748 / 이메일 : udonkinoya@daum.net</p>
         </div>
       </div>
-      <p class="form-note">온라인 문의는 FormSubmit을 통해 우동키노야의 문의 메일함으로 전달됩니다. 입력하신 정보는 문의 안내에 사용됩니다.</p>
+      <p class="form-note">입력한 문의는 우동키노야 관리자 화면에 저장됩니다. 문의 내용·유형·접수번호는 업무용 메일함으로 전달될 수 있습니다. 문의에 필요하지 않은 민감한 정보는 입력하지 마세요.</p>
       <div class="form-consent">
         <input type="checkbox" id="f-consent" name="consent" required style="margin-top:3px;">
         <label for="f-consent">
@@ -152,11 +153,6 @@
       <p class="form-note" data-cms="contact.form.note" data-cms-label="[창업문의] 폼 하단 안내문">상담 신청은 계약을 의미하지 않으며, 충분한 정보 확인 후 직접 결정하실 수 있습니다.</p>
     </form>
 
-    <div id="consult-success" class="form-success">
-      <h2 class="h-display" style="font-size:24px;">온라인 문의 전송 요청이 접수되었습니다.</h2>
-      <p style="opacity:0.75; margin-top:12px;">실제 회신이 필요하거나 전송 여부가 불확실하면 대표번호로 연락해 주세요.</p>
-      <a href="../" class="btn-ghost" style="color:var(--navy); border-color:var(--line-light); display:inline-flex; margin-top:24px;">홈으로 돌아가기</a>
-    </div>
 
     <div class="cost-disclaimer" style="margin-top:48px;">
       <strong>전화 문의</strong><br>
@@ -293,7 +289,9 @@
   <a href="tel:1551-8748" data-event="store_phone_click" data-label="bottom_nav"><i class="fa-solid fa-phone"></i>전화</a>
 </nav>
 
+<script src="../firebase-config.js"></script>
 <script src="../js/main.js"></script>
+<script type="module" src="../js/inquiry-public.mjs"></script>
 <script src="../js/cms.js"></script>
 </body>
 </html>

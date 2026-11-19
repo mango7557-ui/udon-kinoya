@@ -93,7 +93,8 @@
 
 <section class="section sec-off">
   <div class="container">
-    <form id="consult-form" class="consult-form" aria-label="加盟相談申し込みフォーム" method="post" autocomplete="off" inert>
+    <form id="consult-form" data-inquiry-source="/ja/contact/" class="consult-form" aria-label="加盟相談申し込みフォーム" method="post" autocomplete="off" inert>
+      <div hidden><input name="website" tabindex="-1" autocomplete="off"></div>
       <div class="form-row">
         <label for="f-name">お名前 <span class="required">*</span></label>
         <input type="text" id="f-name" name="name" required>
@@ -119,7 +120,7 @@
         <label for="f-message">追加のお問い合わせ内容（任意）</label>
         <textarea id="f-message" name="message" rows="4" placeholder="気になる点を自由にご記入ください。"></textarea>
       </div>
-      <p class="form-note">入力された情報は、FormSubmit を通じてウドンキノヤのお問い合わせ窓口に送信され、回答のために利用されます。</p>
+      <p class="form-note">お問い合わせはウドンキノヤの管理画面に保存されます。内容・種別・受付番号は業務用のメールボックスに送信される場合があります。不要な機微情報は入力しないでください。</p>
       <div class="form-consent">
         <input type="checkbox" id="f-consent" name="consent" required style="margin-top:3px;">
         <label for="f-consent">
@@ -131,11 +132,6 @@
       <p class="form-note">相談申し込みは契約を意味するものではなく、十分な情報確認の後ご自身で決定いただけます。</p>
     </form>
 
-    <div id="consult-success" class="form-success">
-      <h2 class="h-display" style="font-size:24px;">メールサービスへの送信を受け付けました。</h2>
-      <p style="opacity:0.75; margin-top:12px;">確認が必要な場合は韓国内の代表番号までお電話ください。</p>
-      <a href="../" class="btn-ghost" style="color:var(--navy); border-color:var(--line-light); display:inline-flex; margin-top:24px;">ホームに戻る</a>
-    </div>
 
     <div class="cost-disclaimer" style="margin-top:48px;">
       <strong>電話でのお問い合わせ</strong><br>
@@ -175,7 +171,9 @@
   <div class="wood-line" style="margin-top:32px;"></div>
 </footer>
 
+<script src="../../firebase-config.js"></script>
 <script src="../../js/main.js"></script>
+<script type="module" src="../../js/inquiry-public.mjs"></script>
 <script src="../../js/cms.js"></script>
 </body>
 </html>
