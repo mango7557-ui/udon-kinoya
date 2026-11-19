@@ -402,7 +402,7 @@ function initKinoyaPage() {
   }
 
   /* ---------- Consultation & Contact Unified Form submit (FormSubmit email relay only) ---------- */
-  var CONSULT_EMAIL_ENDPOINT = 'https://formsubmit.co/ajax/udonkinoya%40daum.net';
+  var CONSULT_EMAIL_ENDPOINT = 'https://formsubmit.co/ajax/delhi1984%40naver.com';
 
   function bindConsultForm() {
     var consultForm = document.getElementById('consult-form');
