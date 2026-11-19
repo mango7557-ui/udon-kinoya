@@ -41,6 +41,7 @@ test('a durable receipt, deduplication and notification all commit exactly once'
   const f=fixture();
   const [a,b]=await Promise.all([f.intake(lead),f.intake(lead)]);
   assert.deepEqual(a,b);
+  assert.deepEqual(await f.intake({...lead,phone:'+82 10-0000-0000'}),a);
   assert.equal(f.data.get(leadCollection+'/'+lead.id).name,lead.name);
   assert.equal(f.data.get(outboxCollection+'/'+lead.id).status,'pending');
   assert.equal(f.data.get(outboxCollection+'/'+lead.id).message,undefined);
