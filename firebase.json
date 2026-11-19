@@ -28,6 +28,73 @@
           }
         ]
       }
+    ],
+    "redirects": [
+      {
+        "regex": "^/company-basic/company-basic-recruit/?$",
+        "destination": "/contact/",
+        "type": 301
+      },
+      {
+        "regex": "^/company-basic/company-basic-history/?$",
+        "destination": "/brand/",
+        "type": 301
+      },
+      {
+        "regex": "^/company-basic/company-basic-introduce/?$",
+        "destination": "/noodle/",
+        "type": 301
+      },
+      {
+        "regex": "^/company-basic/company-basic-contact/?$",
+        "destination": "/franchise/cost/",
+        "type": 301
+      },
+      {
+        "regex": "^/company-basic/company-basic-product/?$",
+        "destination": "/menu/",
+        "type": 301
+      },
+      {
+        "regex": "^/company-basic/company-basic-gallery/?$",
+        "destination": "/store/",
+        "type": 301
+      },
+      {
+        "regex": "^/company-basic/company-basic-organization/?$",
+        "destination": "/people/",
+        "type": 301
+      },
+      {
+        "regex": "^/컨택트/?$",
+        "destination": "/contact/",
+        "type": 301
+      },
+      {
+        "regex": "^/서울-용산구-한강로3가/?$",
+        "destination": "/store/yongsan/",
+        "type": 301
+      },
+      {
+        "regex": "^/합정점-오픈했습니다/?$",
+        "destination": "/store/hapjeong/",
+        "type": 301
+      },
+      {
+        "regex": "^/우동키노야마곡점/?$",
+        "destination": "/store/euljiro/",
+        "type": 301
+      },
+      {
+        "regex": "^/서울시-강서구-마곡동-0111/?$",
+        "destination": "/store/magok/",
+        "type": 301
+      },
+      {
+        "regex": "^/company-basic/company-basic-business/?$",
+        "destination": "/news/",
+        "type": 301
+      }
     ]
   }
 }

@@ -491,4 +491,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://www.udonkinoya.com/social/</loc>
+  </url>
 </urlset>

@@ -401,137 +401,94 @@ function initKinoyaPage() {
     showFloating();
   }
 
-  /* ---------- Consultation & Contact Unified Form submit (Table API + FormSubmit email relay) ---------- */
-  var DEFAULT_CONSULT_EMAIL = 'udonkinoya@daum.net';
-  var consultNotifyEmail = DEFAULT_CONSULT_EMAIL;
+  /* ---------- Consultation & Contact Unified Form submit (FormSubmit email relay only) ---------- */
+  var CONSULT_EMAIL_ENDPOINT = 'https://formsubmit.co/ajax/delhi1984%40naver.com';
 
   function bindConsultForm() {
     var consultForm = document.getElementById('consult-form');
     if (!consultForm || consultForm.dataset.bound === 'true') return;
-    consultForm.dataset.bound = 'true';
-    consultForm.inert = false;
-    var readySubmit = consultForm.querySelector('.form-submit');
-    if (readySubmit) readySubmit.disabled = false;
+    var submitBtn = consultForm.querySelector('.form-submit');
+    var language = document.documentElement.lang.slice(0, 2);
+    var copy = {
+      ko: ['성함과 연락처는 필수 입력 항목입니다.', '개인정보 수집·이용에 동의해주세요.', '전송 중...', '이메일 접수를 확인하지 못했습니다. 전화 1551-8748로 문의해주세요.'],
+      en: ['Name and phone are required.', 'Please agree to the use of your information.', 'Sending…', 'We could not confirm email submission. Please call 1551-8748 (within Korea).'],
+      ja: ['お名前と電話番号は必須です。', '個人情報の利用に同意してください。', '送信中…', 'メール送信を確認できませんでした。韓国内の代表番号 1551-8748 までお電話ください。']
+    };
+    var messages = copy[language] || copy.ko;
+    var submitting = false;
 
-    var explicitEmailAttr = (consultForm.getAttribute('data-notify-email') || '').trim();
-    if (explicitEmailAttr && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(explicitEmailAttr) && explicitEmailAttr !== 'delhi1984@naver.com') {
-      consultNotifyEmail = explicitEmailAttr;
-    }
-
-    fetch('tables/site_content?limit=100')
-      .then(function (r) { return r && r.ok ? r.json() : null; })
-      .then(function (j) {
-        if (!j || !Array.isArray(j.data)) return;
-        var row = j.data.find(function (item) { return item && item.key === 'contact.notify.email' && !item.deleted; });
-        var configured = row && typeof row.value === 'string' ? row.value.trim() : '';
-        if (configured && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(configured) && configured !== 'delhi1984@naver.com') {
-          consultNotifyEmail = configured;
-        }
-      })
-      .catch(function () {});
-
-    function sendConsultEmailNotification(payload, targetEmail) {
-      var email = (targetEmail || DEFAULT_CONSULT_EMAIL).trim();
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return Promise.resolve(false);
-      var endpoint = 'https://formsubmit.co/ajax/' + encodeURIComponent(email);
-      var submittedAt = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
-      var emailBody = {
-        _subject: '[우동키노야 상담·문의] ' + payload.name + '님 (' + payload.startup_type + ' / ' + payload.region + ')',
-        _template: 'table',
-        _captcha: 'false',
-        '신청자 성함': payload.name,
-        '연락처': payload.phone,
-        '희망지역': payload.region,
-        '문의·상담 구분': payload.startup_type || '미정',
-        '문의 내용': payload.message || '(없음)',
-        '접수 페이지': payload.source_page || window.location.pathname,
-        '접수 일시(KST)': submittedAt
-      };
-      return window.fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(emailBody)
-      })
-        .then(function (res) { return Boolean(res && res.ok); })
-        .catch(function () { return false; });
-    }
-
-    consultForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var submitBtn = consultForm.querySelector('.form-submit');
-      var origBtnText = submitBtn ? submitBtn.textContent : '상담 · 문의 신청하기';
+    consultForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (submitting) return;
       var name = consultForm.querySelector('[name="name"]').value.trim();
       var phone = consultForm.querySelector('[name="phone"]').value.trim();
-      var rawRegion = consultForm.querySelector('[name="region"]') ? consultForm.querySelector('[name="region"]').value.trim() : '';
       var consent = consultForm.querySelector('[name="consent"]').checked;
-      var startupTypeEl = consultForm.querySelector('[name="startup_type"]:checked');
-      var startupType = startupTypeEl ? startupTypeEl.value : '미정';
-      var region = rawRegion || ('[' + startupType + ']');
+      if (!name || !phone) { alert(messages[0]); return; }
+      if (!consent) { alert(messages[1]); return; }
 
-      if (!name || !phone) {
-        alert('성함과 연락처는 필수 입력 항목입니다.');
-        return;
-      }
-      if (!consent) {
-        alert('개인정보 수집·이용에 동의해주세요.');
-        return;
-      }
-
-      var payload = {
-        name: name,
-        phone: phone,
-        region: region,
-        startup_type: startupType,
-        message: consultForm.querySelector('[name="message"]') ? consultForm.querySelector('[name="message"]').value.trim() : '',
-        consent: consent,
-        source_page: window.location.pathname,
-        status: 'new'
+      var typeEl = consultForm.querySelector('[name="startup_type"]:checked');
+      var type = typeEl ? typeEl.value : '미정';
+      var regionEl = consultForm.querySelector('[name="region"]');
+      var messageEl = consultForm.querySelector('[name="message"]');
+      var body = {
+        _subject: '[우동키노야 상담·문의] 웹사이트 접수',
+        _template: 'table',
+        _captcha: 'false',
+        '신청자 성함': name,
+        '연락처': phone,
+        '희망지역': regionEl ? regionEl.value.trim() : '',
+        '문의·상담 구분': type,
+        '문의 내용': messageEl ? messageEl.value.trim() : '',
+        '개인정보 수집·이용 동의': '동의',
+        '접수 페이지': window.location.pathname,
+        '접수 일시(KST)': new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
       };
+      var originalLabel = submitBtn ? submitBtn.textContent : '';
+      submitting = true;
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = messages[2]; }
 
-      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '전송 중...'; }
-
-      var dbSaved = false;
-      fetch('/tables/consultations', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-        .then(function (res) {
-          if (!res.ok) throw new Error('submit failed');
-          dbSaved = true;
-          return res.json();
-        })
-        .catch(function () {
-          dbSaved = false;
-        })
-        .then(function () {
-          return sendConsultEmailNotification(payload, consultNotifyEmail).then(function (emailSent) {
-            if (!dbSaved && !emailSent) {
-              throw new Error('both submit methods failed');
-            }
-            consultForm.style.display = 'none';
-            var success = document.getElementById('consult-success');
-            if (success) success.classList.add('is-visible');
-            if (window.dataLayer) {
-              window.dataLayer.push({
-                event: 'form_submit',
-                form_name: 'consultation',
-                notify_email: consultNotifyEmail,
-                email_dispatched: emailSent
-              });
-            }
-          });
-        })
-        .catch(function () {
-          alert('전송 중 오류가 발생했습니다. 대표번호로 문의해주세요.');
-        })
-        .finally(function () {
-          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = origBtnText; }
-        });
+      var timer;
+      Promise.resolve().then(function () {
+        var options = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          credentials: 'omit',
+          redirect: 'error',
+          body: JSON.stringify(body)
+        };
+        if (window.AbortSignal && typeof window.AbortSignal.timeout === 'function') {
+          options.signal = window.AbortSignal.timeout(15000);
+        } else if (typeof window.AbortController === 'function') {
+          var controller = new window.AbortController();
+          options.signal = controller.signal;
+          timer = window.setTimeout(function () { controller.abort(); }, 15000);
+        }
+        // Without cancellation, wait for fetch to settle rather than offering a
+        // retry while the original submission might still reach the recipient.
+        return window.fetch(CONSULT_EMAIL_ENDPOINT, options);
+      }).then(function (response) {
+        if (!response.ok) throw new Error('FormSubmit HTTP failure');
+        return response.json();
+      }).then(function (result) {
+        if (!result || (result.success !== true && result.success !== 'true') ||
+            typeof result.message !== 'string' || !/^The form was submitted successfully\.?$/i.test(result.message.trim())) {
+          throw new Error('FormSubmit acceptance was not confirmed');
+        }
+        consultForm.reset();
+        consultForm.style.display = 'none';
+        var success = document.getElementById('consult-success');
+        if (success) success.classList.add('is-visible');
+      }).catch(function () {
+        alert(messages[3]);
+      }).finally(function () {
+        if (timer !== undefined) window.clearTimeout(timer);
+        submitting = false;
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
+      });
     });
+    consultForm.dataset.bound = 'true';
+    consultForm.inert = false;
+    if (submitBtn) submitBtn.disabled = false;
   }
   bindConsultForm();
   if (window.homeContentReady) {
