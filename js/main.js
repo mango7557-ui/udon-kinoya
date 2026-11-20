@@ -20,7 +20,7 @@ if (!window.KinoyaRuntimeReady) {
   window.KinoyaRuntimeReady = window.KinoyaRuntime ? Promise.resolve(window.KinoyaRuntime) : new Promise(function(resolve,reject){
     var curSrc = document.currentScript ? document.currentScript.src : location.href;
     var bridge = document.createElement('script');
-    bridge.src = new URL('firebase-bridge.js', curSrc).href;
+    bridge.src = new URL('firebase-bridge.js?v=consult-save-20261120', curSrc).href;
     document.head.append(bridge);
     var script=document.createElement('script');script.src=new URL('site-runtime.js',curSrc).href;
     script.onload=function(){resolve(window.KinoyaRuntime);};script.onerror=function(){reject(new Error('공통 API를 불러오지 못했습니다.'));};document.head.append(script);
@@ -404,6 +404,9 @@ function initKinoyaPage() {
   /* ---------- Consultation & Contact Unified Form submit (Table API + FormSubmit email relay) ---------- */
   var DEFAULT_CONSULT_EMAIL = 'delhi1984@naver.com';
   var consultNotifyEmail = DEFAULT_CONSULT_EMAIL;
+  var consultSubmitting = false;
+  var pendingConsult = null;
+  var pendingConsultKey = '';
 
   function bindConsultForm() {
     var consultForm = document.getElementById('consult-form');
@@ -461,6 +464,7 @@ function initKinoyaPage() {
 
     consultForm.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (consultSubmitting) return;
       var submitBtn = consultForm.querySelector('.form-submit');
       var origBtnText = submitBtn ? submitBtn.textContent : '상담 · 문의 신청하기';
       var name = consultForm.querySelector('[name="name"]').value.trim();
@@ -490,10 +494,16 @@ function initKinoyaPage() {
         source_page: window.location.pathname,
         status: 'new'
       };
+      var payloadKey = JSON.stringify(payload);
+      if (pendingConsultKey !== payloadKey) {
+        pendingConsultKey = payloadKey;
+        pendingConsult = Object.assign({ id: crypto.randomUUID(), created_at: Date.now() }, payload);
+      }
+      payload = pendingConsult;
 
+      consultSubmitting = true;
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '전송 중...'; }
 
-      var dbSaved = false;
       fetch('/tables/consultations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -501,22 +511,15 @@ function initKinoyaPage() {
       })
         .then(function (res) {
           if (!res.ok) throw new Error('submit failed');
-          dbSaved = true;
           return res.json();
         })
-        .catch(function () {
-          dbSaved = false;
-        })
         .then(function () {
+          consultForm.style.display = 'none';
+          var success = document.getElementById('consult-success');
+          if (success) success.classList.add('is-visible');
           return notifyEmailReady.then(function () {
             return sendConsultEmailNotification(payload, consultNotifyEmail);
           }).then(function (emailSent) {
-            if (!dbSaved && !emailSent) {
-              throw new Error('both submit methods failed');
-            }
-            consultForm.style.display = 'none';
-            var success = document.getElementById('consult-success');
-            if (success) success.classList.add('is-visible');
             if (window.dataLayer) {
               window.dataLayer.push({
                 event: 'form_submit',
@@ -531,6 +534,7 @@ function initKinoyaPage() {
           alert('전송 중 오류가 발생했습니다. 대표번호로 문의해주세요.');
         })
         .finally(function () {
+          consultSubmitting = false;
           if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = origBtnText; }
         });
     });

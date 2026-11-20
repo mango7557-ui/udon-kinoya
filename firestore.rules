@@ -1,11 +1,56 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /site_config/{docId} {
-      allow read, write: if true;
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'mango7557@gmail.com'
+        && request.auth.token.email_verified == true;
     }
-    match /kinoya_{table}/{docId} {
-      allow read, write: if true;
+    match /member_profiles/{uid} {
+      allow read: if isAdmin() || (request.auth != null && request.auth.uid == uid);
+      allow create, update: if request.auth != null && request.auth.uid == uid;
+    }
+    // Public forms can submit; only administrators can read or manage the inbox.
+    match /kinoya_consultations/{docId} {
+      function validSubmission() {
+        let data = request.resource.data;
+        return data.keys().hasOnly([
+            'id', 'name', 'phone', 'region', 'startup_type', 'message', 'consent',
+            'source_page', 'status', 'created_at', 'updated_at',
+            '__kinoya_ns', '__kinoya_table', '__kinoya_kind'
+          ])
+          && data.id is string && data.id.matches('[a-zA-Z0-9_-]{1,100}')
+          && docId == 'kinoya__consultations__' + data.id
+          && data.__kinoya_ns == 'kinoya'
+          && data.__kinoya_table == 'consultations'
+          && data.__kinoya_kind == 'record'
+          && data.name is string && data.name.size() > 0 && data.name.size() <= 120
+          && data.phone is string && data.phone.size() > 0 && data.phone.size() <= 40
+          && data.region is string && data.region.size() <= 200
+          && data.startup_type is string && data.startup_type.size() <= 120
+          && data.message is string && data.message.size() <= 10000
+          && data.source_page is string && data.source_page.size() <= 2048
+          && data.consent == true && data.status == 'new'
+          && data.created_at is int && data.created_at > 0
+          && data.updated_at == data.created_at;
+      }
+      allow create: if validSubmission();
+      // Retrying a lost response must not create duplicates or change a submission.
+      allow update: if validSubmission() && request.resource.data == resource.data;
+    }
+    // Preserve access rules used by the other applications in this project.
+    match /{table}/{docId} {
+      allow read: if isAdmin() || table in [
+        'poster_settings', 'site_config', 'chatbot_data',
+        'franchise_store_rows', 'banners', 'events'
+      ];
+      allow create: if table == 'consultation_requests' || (isAdmin() && safePublicSetting());
+      allow update: if isAdmin() && safePublicSetting();
+      allow delete: if isAdmin();
+      function safePublicSetting() {
+        return table != 'site_config' || !('label' in request.resource.data)
+          || !(request.resource.data.label in ['gemini_api_key', 'openai_api_key']);
+      }
     }
   }
 }

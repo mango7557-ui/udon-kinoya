@@ -8,7 +8,7 @@
     cfgScript.src = new URL('firebase-config.js', root).href;
     document.head.append(cfgScript);
     const bridgeScript = document.createElement('script');
-    bridgeScript.src = new URL('js/firebase-bridge.js', root).href;
+    bridgeScript.src = new URL('js/firebase-bridge.js?v=consult-save-20261120', root).href;
     document.head.append(bridgeScript);
   }
   const inflightGet = new Map();

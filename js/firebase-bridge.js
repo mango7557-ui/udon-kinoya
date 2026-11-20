@@ -262,6 +262,44 @@
     allDocsCache.promise = null;
   }
 
+  function tableConfig(cfg, table) {
+    return table === 'consultations'
+      ? Object.assign({}, cfg, { collection: cfg.namespace + '_consultations' })
+      : cfg;
+  }
+
+  async function readTableRecord(cfg, table, id) {
+    var suffix = '/' + encodeURIComponent(recordDocId(cfg, table, id)) + '?key=' + encodeURIComponent(cfg.apiKey);
+    var url = firestoreCollectionBase(tableConfig(cfg, table)) + suffix;
+    var response = await firestoreFetch(url, { cache: 'no-store' });
+    if (table === 'consultations' && response.status === 404) {
+      url = firestoreCollectionBase(cfg) + suffix;
+      response = await firestoreFetch(url, { cache: 'no-store' });
+    }
+    return { url: url, response: response };
+  }
+
+  async function listConsultationDocs(cfg) {
+    var rows = [];
+    var pageToken = '';
+    do {
+      var params = new URLSearchParams({ pageSize: '300', key: cfg.apiKey });
+      if (pageToken) params.set('pageToken', pageToken);
+      var response = await firestoreFetch(firestoreCollectionBase(tableConfig(cfg, 'consultations')) + '?' + params, { cache: 'no-store' });
+      if (!response.ok) throw new Error('Consultation list failed (' + response.status + ')');
+      var data = await response.json();
+      (data.documents || []).forEach(function (doc) {
+        rows.push({ docName: decodeURIComponent(doc.name.split('/').pop()), data: fromFirestoreFields(doc.fields || {}) });
+      });
+      pageToken = data.nextPageToken || '';
+    } while (pageToken);
+    var legacy = await listAllNamespaceDocs(cfg, false);
+    var ids = new Set(rows.map(function (entry) { return entry.data.id; }));
+    return rows.concat(legacy.filter(function (entry) {
+      return entry.data.__kinoya_table === 'consultations' && !ids.has(entry.data.id);
+    }));
+  }
+
   async function readBodyObject(input, options) {
     var raw = options && options.body !== undefined
       ? options.body
@@ -318,18 +356,18 @@
 
   async function handleFirestoreTable(cfg, table, id, method, url, input, options) {
     var keyParam = 'key=' + encodeURIComponent(cfg.apiKey);
-    var base = firestoreCollectionBase(cfg);
+    var base = firestoreCollectionBase(tableConfig(cfg, table));
 
     if (method === 'GET' || method === 'HEAD') {
       if (id) {
-        var singleUrl = base + '/' + encodeURIComponent(recordDocId(cfg, table, id)) + '?' + keyParam;
-        var singleRes = await firestoreFetch(singleUrl, { cache: 'no-store' });
+        var singleRecord = await readTableRecord(cfg, table, id);
+        var singleRes = singleRecord.response;
         if (singleRes.status === 404) return jsonResponse({ error: 'Record not found' }, 404);
         if (!singleRes.ok) throw new Error('Firestore get failed (' + singleRes.status + ')');
         var singleDoc = await singleRes.json();
         return jsonResponse(stripInternalFields(fromFirestoreFields(singleDoc.fields || {})));
       }
-      var allDocs = await listAllNamespaceDocs(cfg, false);
+      var allDocs = table === 'consultations' ? await listConsultationDocs(cfg) : await listAllNamespaceDocs(cfg, false);
       var tablePrefix = cfg.namespace + '__' + table + '__';
       var rows = allDocs
         .filter(function (entry) {
@@ -342,9 +380,11 @@
     }
 
     if (method === 'DELETE' && id) {
-      var delUrl = base + '/' + encodeURIComponent(recordDocId(cfg, table, id)) + '?' + keyParam;
-      var checkDel = await firestoreFetch(delUrl, { cache: 'no-store' });
+      var deleteRecord = await readTableRecord(cfg, table, id);
+      var delUrl = deleteRecord.url;
+      var checkDel = deleteRecord.response;
       if (checkDel.status === 404) return jsonResponse({ error: 'Record not found' }, 404);
+      if (!checkDel.ok) throw new Error('Firestore read failed (' + checkDel.status + ')');
       var delRes = await firestoreFetch(delUrl, { method: 'DELETE' });
       if (!delRes.ok) throw new Error('Firestore delete failed (' + delRes.status + ')');
       invalidateDocsCache();
@@ -354,29 +394,32 @@
     if ((method === 'POST' && !id) || ((method === 'PUT' || method === 'PATCH') && id)) {
       var body = await readBodyObject(input, options);
       var previous = {};
+      var existingUrl = '';
       if (id) {
-        var existUrl = base + '/' + encodeURIComponent(recordDocId(cfg, table, id)) + '?' + keyParam;
-        var existRes = await firestoreFetch(existUrl, { cache: 'no-store' });
+        var existingRecord = await readTableRecord(cfg, table, id);
+        existingUrl = existingRecord.url;
+        var existRes = existingRecord.response;
         if (existRes.status === 404) return jsonResponse({ error: 'Record not found' }, 404);
         if (!existRes.ok) throw new Error('Firestore read failed (' + existRes.status + ')');
         previous = stripInternalFields(fromFirestoreFields((await existRes.json()).fields || {}));
       }
       var recordId = String(id || body.id || (table === 'site_content' && body.key ? 'cms-' + body.key.replace(/[^a-zA-Z0-9_-]/g, '-') : crypto.randomUUID()));
       var now = Date.now();
+      var createdAt = previous.created_at || body.created_at || now;
       var merged = Object.assign(
         {},
         previous,
         body,
         {
           id: recordId,
-          created_at: previous.created_at || body.created_at || now,
-          updated_at: now,
+          created_at: createdAt,
+          updated_at: table === 'consultations' && method === 'POST' ? createdAt : now,
           __kinoya_ns: cfg.namespace,
           __kinoya_table: table,
           __kinoya_kind: 'record'
         }
       );
-      var saveUrl = base + '/' + encodeURIComponent(recordDocId(cfg, table, recordId)) + '?' + keyParam;
+      var saveUrl = existingUrl || base + '/' + encodeURIComponent(recordDocId(cfg, table, recordId)) + '?' + keyParam;
       var saveRes = await firestoreFetch(saveUrl, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -620,6 +663,9 @@
             return localRes;
           }
         } catch (localErr) {}
+      }
+      if (route.kind === 'table' && route.table === 'consultations') {
+        return jsonResponse({ error: '상담 저장소에 연결하지 못했습니다. 잠시 후 다시 시도해주세요.' }, 503);
       }
       console.warn('[kinoya-firebase] Firestore fallback to localStorage:', err.message);
       if (route.kind === 'table') {
