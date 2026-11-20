@@ -4,10 +4,10 @@
  document.addEventListener('DOMContentLoaded',()=>{
   const host=document.getElementById('consultations-section');if(!host)return;
   const A=AdminCore, node=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
-  const TARGET_EMAIL='udonkinoya@daum.net';
+  const TARGET_EMAIL='delhi1984@naver.com';
   host.append(
    node('h2','상담신청 · 문의 접수 내역 관리'),
-   node('p','홈페이지에서 접수된 창업상담·업무제휴·고객의소리 내역이 실시간으로 저장되며, udonkinoya@daum.net 이메일로도 자동 발송됩니다.')
+   node('p','홈페이지에서 접수된 창업상담·업무제휴·고객의소리 내역이 실시간으로 저장되며, '+TARGET_EMAIL+' 이메일로도 자동 발송됩니다.')
   );
   const emailNotice=node('div');
   emailNotice.style.cssText='background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px 14px;margin:8px 0 12px;font-size:13px;color:#166534;line-height:1.6;';

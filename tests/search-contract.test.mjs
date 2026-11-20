@@ -29,7 +29,7 @@ test('Redesign preserves public CMS contracts and unified contact anchors',async
   assert.equal([...contact.matchAll(/<form\b/g)].length,1);
   assert.match(contact,/id="partner-contact"/);
   assert.match(contact,/id="consult-form"/);
-  assert.match(contact,/data-notify-email="udonkinoya@daum.net"/);
+  assert.match(contact,/data-notify-email="delhi1984@naver.com"/);
   assert.match(contact,/name="consent" required/);
   const robots=await read('robots.txt');
   assert.match(robots,/Disallow: \/admin\//);

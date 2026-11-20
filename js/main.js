@@ -402,7 +402,7 @@ function initKinoyaPage() {
   }
 
   /* ---------- Consultation & Contact Unified Form submit (Table API + FormSubmit email relay) ---------- */
-  var DEFAULT_CONSULT_EMAIL = 'udonkinoya@daum.net';
+  var DEFAULT_CONSULT_EMAIL = 'delhi1984@naver.com';
   var consultNotifyEmail = DEFAULT_CONSULT_EMAIL;
 
   function bindConsultForm() {
@@ -414,17 +414,17 @@ function initKinoyaPage() {
     if (readySubmit) readySubmit.disabled = false;
 
     var explicitEmailAttr = (consultForm.getAttribute('data-notify-email') || '').trim();
-    if (explicitEmailAttr && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(explicitEmailAttr) && explicitEmailAttr !== 'delhi1984@naver.com') {
+    if (explicitEmailAttr && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(explicitEmailAttr)) {
       consultNotifyEmail = explicitEmailAttr;
     }
 
-    fetch('tables/site_content?limit=100')
+    var notifyEmailReady = fetch('tables/site_content?search=contact.notify.email&limit=100')
       .then(function (r) { return r && r.ok ? r.json() : null; })
       .then(function (j) {
         if (!j || !Array.isArray(j.data)) return;
         var row = j.data.find(function (item) { return item && item.key === 'contact.notify.email' && !item.deleted; });
         var configured = row && typeof row.value === 'string' ? row.value.trim() : '';
-        if (configured && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(configured) && configured !== 'delhi1984@naver.com') {
+        if (configured && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(configured)) {
           consultNotifyEmail = configured;
         }
       })
@@ -508,7 +508,9 @@ function initKinoyaPage() {
           dbSaved = false;
         })
         .then(function () {
-          return sendConsultEmailNotification(payload, consultNotifyEmail).then(function (emailSent) {
+          return notifyEmailReady.then(function () {
+            return sendConsultEmailNotification(payload, consultNotifyEmail);
+          }).then(function (emailSent) {
             if (!dbSaved && !emailSent) {
               throw new Error('both submit methods failed');
             }
